@@ -6,17 +6,17 @@ institute: "Instituto de Estudos Sociais e Políticos (IESP-UERJ)"
 date: "2025-07-02"
 format: 
   beamer:
-    theme: "Rochester"       # exemplo de tema
-    colortheme: "dolphin"      # tema de cores
+    theme: "Rochester"
+    colortheme: "dolphin"
     fonttheme: "professionalfonts"
 linkcolor: blue
 fontsize: 10pt
 ---
 
 
-# Text as data
+# Motivação
 
-Nas ciências sociais (e em várias outras ciências), textos são fontes de **evidência empírica**:
+Nas ciências sociais, em particular, e em várias outras ciências, em geral, textos são fontes de **evidência empírica**:
 
 - Discursos de políticos
 - Publicações em redes sociais
@@ -29,13 +29,14 @@ Intuitivamente, a ideia do "texto como dado" é natural, para não dizer óbvia.
 
 # Text as data
 
-Podemos analisar textos de várias formas. Nas ciências sociais, em particular, a análise de texto por muito texto esteve restrita a métodos qualitativos: análise de conteúdo, de discurso e assim por diante.
+Podemos analisar textos de várias formas. Nas ciências sociais, a análise de texto por muito tempo esteve restrita a métodos qualitativos: análise de conteúdo, de discurso e assim por diante.
 
 A análise quantitativa de texto é uma oportunidade de analisar corpus textuais **maiores** e de forma mais [sistemática]{.underline}.
 
+
 # A evolução do text as data
 
-Até recentemente, a análise quantitativa de texto era baseada em métodos como:
+Até recentemente, a análise quantitativa de texto era estritamente baseada em métodos como:
 
 - Bag of Words
 - Contagem de palavras
@@ -43,9 +44,33 @@ Até recentemente, a análise quantitativa de texto era baseada em métodos como
 - Modelagem de tópico
 - N-gramas
 
-São, é claro, métodos muito úteis. No entanto, eles são incapazes de incorporar **contexto** e **significado** de frases e palavras.
 
-# Embeddings: textos $\rightarrow$ vetores
+# A evolução do text as data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/ngrams.png}
+    \caption{N-grams}
+\end{figure}
+:::
+
+::: {.column width="50%"}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/bag_of_words.png}
+    \caption{Bag of Words}
+\end{figure}
+:::
+
+::::
+
+São, é claro, métodos muito úteis. Mas são incapazes de incorporar **contexto** e **significado** de frases e palavras.
+
+
+# Embeddings: textos $\rightarrow$ vetores semânticos
 
 O que diferencia um banco de um banco?
 
@@ -70,7 +95,7 @@ O que diferencia um banco de um banco?
 ::::
 
 
-# Embeddings: textos $\rightarrow$ vetores
+# Embeddings: textos $\rightarrow$ vetores semânticos
 
 Modelos de linguagem precisam representar palavras e frases como vetores numéricos para processá-las. Esses vetores são chamados de **embeddings**.
 
@@ -80,11 +105,13 @@ Modelos de linguagem precisam representar palavras e frases como vetores numéri
     \caption{Word Embeddings -- Fonte: 3b1b}
 \end{figure}
 
-# Embeddings: textos representados como vetores numéricos
+
+# Embeddings: textos $\rightarrow$ vetores semânticos
 
 A ideia é que, ao treinarmos um modelo de linguagem, a representação vetorial de palavras e frases passa a capturar algum significado semântico.
 
 [Embedding Projector](https://projector.tensorflow.org/)
+
 
 # Transformer: o que é?
 
@@ -114,9 +141,11 @@ Na prática, os _transformers_ são capazes de prever a próxima palavra em uma 
     \caption{Transformer -- Fonte: 3b1b}
 \end{figure}
 
+
 # Fine-tuning: como adaptar modelos para tarefas específicas
 
 A técnica de fine-tuning envolve ajustar um modelo pré-treinado em um conjunto de dados específico para melhorar seu desempenho em uma tarefa particular. Isso é especialmente útil quando se tem um conjunto de dados limitado, mas ainda assim se deseja aproveitar o conhecimento adquirido pelo modelo durante o treinamento inicial.
+
 
 # Modelos "grandes" e modelos "pequenos"
 
@@ -124,6 +153,8 @@ Em geral, modelos de linguagem podem ser "grandes" ou "pequenos":
 
 - **Modelos grandes:** treinados com grandes quantidades de dados, geralmente em várias línguas, e com muitos parâmetros. Exemplo: `llama3.1:405b`.
 - **Modelos pequenos:** treinados com menos dados e com menos parâmetros. Menor capacidade de generalização. Exemplo: `llama3.2:1b`.
+
+. . .
 
 ### Saiba {.alert}
 
@@ -138,6 +169,8 @@ O céu é o limite! Alguns exemplos:
 - _Classificação_ de textos
 - _Cálculo de distância_ (i.e., similaridade) entre textos
 - Reconhecimento de entidades nomeadas
+- Sistemas de recomendação
+- E por aí vai...
 
 # Como usar?
 
@@ -155,6 +188,7 @@ Opções pagas
 - ChatGPT, da OpenAI
 - Grok, da xAI
 - Claude, da Anthropic
+- Sabiá, da Maritaca AI
 - ...
 
 # Indicações de material
@@ -169,6 +203,6 @@ Opções pagas
 
 # Contato
 
-**✉️ Email:** [felipe.lamarca@hotmail.com](mailto:felipe.lamarca@hotmail.com)  
-**🌐 Site:** [felipelamarca.com](https://felipelamarca.com)  
-**🔗 LinkedIn:** [felipe-lamarca](https://www.linkedin.com/in/felipe-lamarca)
+**Email:** [felipe.lamarca@hotmail.com](mailto:felipe.lamarca@hotmail.com)  
+**Site:** [felipelamarca.com](https://felipelamarca.com)  
+**LinkedIn:** [felipe-lamarca](https://www.linkedin.com/in/felipe-lamarca)
