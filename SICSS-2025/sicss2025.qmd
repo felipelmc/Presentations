@@ -1,0 +1,174 @@
+---
+title: "Automated Text Analysis"
+subtitle: "Summer Institute in Computational Social Science (SICSS) 2025"
+author: "Felipe Lamarca"
+institute: "Instituto de Estudos Sociais e Políticos (IESP-UERJ)"
+date: "2025-07-02"
+format: 
+  beamer:
+    theme: "Rochester"       # exemplo de tema
+    colortheme: "dolphin"      # tema de cores
+    fonttheme: "professionalfonts"
+linkcolor: blue
+fontsize: 10pt
+---
+
+
+# Text as data
+
+Nas ciências sociais (e em várias outras ciências), textos são fontes de **evidência empírica**:
+
+- Discursos de políticos
+- Publicações em redes sociais
+- Respostas a perguntas abertas em surveys
+- Documentos históricos
+- ...
+
+Intuitivamente, a ideia do "texto como dado" é natural, para não dizer óbvia.
+
+
+# Text as data
+
+Podemos analisar textos de várias formas. Nas ciências sociais, em particular, a análise de texto por muito texto esteve restrita a métodos qualitativos: análise de conteúdo, de discurso e assim por diante.
+
+A análise quantitativa de texto é uma oportunidade de analisar corpus textuais **maiores** e de forma mais [sistemática]{.underline}.
+
+# A evolução do text as data
+
+Até recentemente, a análise quantitativa de texto era baseada em métodos como:
+
+- Bag of Words
+- Contagem de palavras
+- Métodos baseados em dicionário
+- Modelagem de tópico
+- N-gramas
+
+São, é claro, métodos muito úteis. No entanto, eles são incapazes de incorporar **contexto** e **significado** de frases e palavras.
+
+# Embeddings: textos $\rightarrow$ vetores
+
+O que diferencia um banco de um banco?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/banco_de_dinheiro.jpg}
+    \caption{Banco}
+\end{figure}
+:::
+
+::: {.column width="50%"}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/banco_de_sentar.jpg}
+    \caption{Banco}
+\end{figure}
+:::
+
+::::
+
+
+# Embeddings: textos $\rightarrow$ vetores
+
+Modelos de linguagem precisam representar palavras e frases como vetores numéricos para processá-las. Esses vetores são chamados de **embeddings**.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/embeddings3b1b.png}
+    \caption{Word Embeddings -- Fonte: 3b1b}
+\end{figure}
+
+# Embeddings: textos representados como vetores numéricos
+
+A ideia é que, ao treinarmos um modelo de linguagem, a representação vetorial de palavras e frases passa a capturar algum significado semântico.
+
+[Embedding Projector](https://projector.tensorflow.org/)
+
+# Transformer: o que é?
+
+:::: {.columns}
+
+::: {.column width="60%"}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/transformer_architecture.png}
+    \caption{Arquitetura de um Transformer}
+\end{figure}
+:::
+
+::: {.column width="40%"}
+_Transformers_ são uma arquitetura de rede neural que revolucionou o campo de NLP ao permitir que os modelos aprendam relações contextuais entre palavras em uma frase a partir do mecanismo de _attention_. [[link]](https://arxiv.org/abs/1706.03762)
+:::
+
+::::
+
+# Transformer: o que faz?
+
+Na prática, os _transformers_ são capazes de prever a próxima palavra em uma frase, levando em consideração o contexto de todas as palavras anteriores.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/transformer3b1b.png}
+    \caption{Transformer -- Fonte: 3b1b}
+\end{figure}
+
+# Fine-tuning: como adaptar modelos para tarefas específicas
+
+A técnica de fine-tuning envolve ajustar um modelo pré-treinado em um conjunto de dados específico para melhorar seu desempenho em uma tarefa particular. Isso é especialmente útil quando se tem um conjunto de dados limitado, mas ainda assim se deseja aproveitar o conhecimento adquirido pelo modelo durante o treinamento inicial.
+
+# Modelos "grandes" e modelos "pequenos"
+
+Em geral, modelos de linguagem podem ser "grandes" ou "pequenos": 
+
+- **Modelos grandes:** treinados com grandes quantidades de dados, geralmente em várias línguas, e com muitos parâmetros. Exemplo: `llama3.1:405b`.
+- **Modelos pequenos:** treinados com menos dados e com menos parâmetros. Menor capacidade de generalização. Exemplo: `llama3.2:1b`.
+
+### Saiba {.alert}
+
+Em geral, quanto maior o modelo, melhor o desempenho; no entanto, menores são as chances de que você consiga rodar o modelo no seu próprio computador.
+
+# No que usar?
+
+O céu é o limite! Alguns exemplos:
+
+- _Tradução_ de textos
+- _Transcrição_ de textos
+- _Classificação_ de textos
+- _Cálculo de distância_ (i.e., similaridade) entre textos
+- Reconhecimento de entidades nomeadas
+
+# Como usar?
+
+Beleza, Felipe, já entendi. Mas como eu uso esse negócio?
+
+Opções open-source
+
+- HuggingFace
+- Ollama
+- Meta
+
+Opções pagas
+
+- Modelos open-source via Groq (com limite gratuito diário)
+- ChatGPT, da OpenAI
+- Grok, da xAI
+- Claude, da Anthropic
+- ...
+
+# Indicações de material
+
+[[link]](https://arxiv.org/pdf/2305.03514) Can Large Language Models Transform Computational Social Science? (2024)
+
+[[link]](https://www.scielo.br/j/rsocp/a/W34dV4fXQfthZmSmQLmkXzs/?format=pdf&lang=pt) Do 'texto como texto' ao 'texto como dado': o potencial das pesquisas em Relações Internacionais (2022)
+
+[[link]](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) Série de vídeos do 3Blue1Brown sobre redes neurais e _transformers_.
+
+[[link]](https://epoch.ai/blog/how-much-does-it-cost-to-train-frontier-ai-models) How Much Does It Cost to Train Frontier AI Models? (2024)
+
+# Contato
+
+**✉️ Email:** [felipe.lamarca@hotmail.com](mailto:felipe.lamarca@hotmail.com)  
+**🌐 Site:** [felipelamarca.com](https://felipelamarca.com)  
+**🔗 LinkedIn:** [felipe-lamarca](https://www.linkedin.com/in/felipe-lamarca)
