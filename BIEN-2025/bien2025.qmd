@@ -56,7 +56,7 @@ Examinar fatores explicativos de apoio/rejeição entre cariocas usando survey r
 * **Coleta**: 09/07/2024 a 16/07/2024 (online).
 * **Amostra**: 1.687 respondentes, não probabilística, com pós-estratificação sexo, cor/raça e faixa etária a partir do Censo de 2022.
 
-Aplicamos um peso maior para grupos sub-representados na amostra em relação à população da cidade e pesos menores caso contrário [@lumley2011; @wolf2016].
+Aplicamos um peso maior para grupos sub-representados na amostra em relação à população da cidade e pesos menores caso contrário [@lumley2011; @wolf2016]. Isso reduz vieses da amostragem não-probabilística e melhora a aproximação da estrutura populacional.
 
 ------------------------------------------------------------------------------------------------------
 
@@ -84,6 +84,18 @@ onde $X_i$ e $w_i$ são, respectivamente, a matriz de covariáveis e o peso (obt
 Testamos três especificações de modelagem: (1) sexo + idade; (2) adiciona ocupação, ensino superior, avaliação da assistência social; (3) substitui idade por conhecimento sobre a experiência de Maricá.
 
 ------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
+
+::: {.callout-note title="Vale ressaltar"}
+A análise proposta se concentra na estimação de relações condicionais (isto é, do efeito marginal de determinadas covariáveis no desfecho), que tendem a ser mais robustas à amostragem do que estimativas de prevalência absoluta [@gelman2007].
+
+Os resultados devem ser interpretados como indicativos de padrões de associação entre variáveis, mais do que estimativas populacionais exatas.
+:::
+
+------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
 
 # Principais resultados -- Modelo 1
 
