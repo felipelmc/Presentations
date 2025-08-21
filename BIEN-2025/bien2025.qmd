@@ -1,0 +1,176 @@
+---
+title: "Fatores explicativos do apoio ou rejeição à criação de uma política municipal de renda básica"
+subtitle: "Modelando a percepção dos cariocas"
+author: "Felipe Lamarca (IESP-UERJ), Jimmy Medeiros (FGV CPDOC), José Antônio Perez Rojas Mariano de Azevedo (FGV CPDOC) e Philippe Chaves Guedon (FGV CPDOC)"
+institute: "BIEN 2025 / 24º Congresso da Rede Mundial da Renda Básica"
+date: "2025-08-29"
+format:
+    beamer:
+        theme: "metropolis"
+        colortheme: "spruce"
+        fonttheme: "professionalfonts"
+        linkcolor: teal
+        fontsize: 10pt
+bibliography: bibliography.bib
+csl: associacao-brasileira-de-normas-tecnicas-numerico.csl
+---
+
+------------------------------------------------------------------------------------------------------
+
+# Agenda
+
+1. Introdução e contexto
+2. Objetivo do trabalho
+3. Metodologia e desenho de pesquisa
+4. Principais resultados
+5. Considerações finais
+
+------------------------------------------------------------------------------------------------------
+
+# Introdução e contextualização
+
+* No Brasil, a Lei 10.835/2004 institui a Renda Básica de Cidadania, ainda não implementada nacionalmente [@lei10835; @suplicy2007].
+
+* Onda fluminense: desde Maricá (2013/2015) com moeda social (Mumbuca), outras cidades do RJ criaram programas similares (Niterói, Cabo Frio, Itaboraí, Iguaba Grande, Saquarema, Macaé e Campos dos Goytacazes), e há debates na Câmara do Rio sobre criar política municipal própria [@waltenberg2023; @gama2023].
+
+* Experiências recentes no estado do Rio de Janeiro mostram que a moeda social e os programas locais têm produzido impactos relevantes no debate público e na adesão social [@fernandes2023; @vencionek2024; @medeiros2021].
+
+------------------------------------------------------------------------------------------------------
+
+# Objetivo do trabalho
+
+* **Objetivo central**: modelar a **probabilidade de apoio** à criação de uma **política municipal de renda básica** no Rio de Janeiro.
+* **Pergunta**: quais características (sociodemográficas, ocupacionais, avaliação de políticas públicas e conhecimento prévio) **aumentam ou reduzem** a chance de apoio?
+
+::: {.callout-note title="Contribuição"}
+Examinar fatores explicativos de apoio/rejeição entre cariocas usando survey recente e técnicas de modelagem estatística.
+:::
+
+------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
+
+## Desenho da pesquisa
+
+* **Base de dados**: 10ª edição da *Avaliação da Gestão Municipal do Rio de Janeiro* ([Instituto Rio21](https://rio21.org/)).
+* **Coleta**: 09/07/2024 a 16/07/2024 (online).
+* **Amostra**: 1.687 respondentes, não probabilística, com pós-estratificação sexo, cor/raça e faixa etária a partir do Censo de 2022.
+
+Aplicamos um peso maior para grupos sub-representados na amostra em relação à população da cidade e pesos menores caso contrário [@lumley2011; @wolf2016].
+
+------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
+
+## Variável resposta
+
+* "Você é a favor ou contra a criação de uma política de transferência de renda básica para todas as pessoas residentes na cidade do Rio de Janeiro, sem diferenciar raça, sexo, idade, condição civil ou socioeconômica?"
+* Codificação: *A favor* = 1; *Contra* = 0 (exclui *NS/NR*).
+
+------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
+
+## Modelagem
+
+Ajustamos modelos de regressão logística ponderados por máxima verossimilhança. Seja $\pi_i = \mathbb{P}(Y_i = 1 | X_i, \beta)$. Em particular, ajustamos a pseudo-log-verossimilhança:
+
+$$
+\tilde{\ell}(\beta) = \sum_{i=1}^n w_i \Big\{ Y_i\log(\pi_i) + (1-Y_i)\log\big(1-\pi_i\big) \Big\},
+$$
+
+onde $X_i$ é a matriz de covariáveis do carioca $i$ e $\beta$ representa o vetor de coeficientes que indicm a relação entre as variáveis independentes e a variável resposta.
+
+Testamos três especificações de modelagem: (1) sexo + idade; (2) adiciona ocupação, ensino superior, avaliação da assistência social; (3) substitui idade por conhecimento sobre a experiência de Maricá.
+
+------------------------------------------------------------------------------------------------------
+
+# Principais resultados -- Modelo 1
+
+::: {.columns}
+::: {.column width="62%"}
+
+### Coeficientes
+
+![Estimativas dos coeficientes com intervalo de confiança de 95% no modelo 1](img/m1.png)
+
+:::
+
+::: {.column width="38%"}
+
+### Resultados
+
+\footnotesize
+- Ser homem está associado a uma redução de até 11,5 pontos percentuais na chance de apoio em comparação às mulheres
+- O grupo 60 anos ou mais mostra uma probabilidade até 31 pontos percentuais menor de apoiar a política em relação aos mais jovens (16–24 anos e 25–29 anos).
+
+:::
+:::
+
+------------------------------------------------------------------------------------------------------
+
+# Principais resultados -- Modelo 2
+
+::: {.columns}
+::: {.column width="62%"}
+
+### Coeficientes
+
+![Estimativas dos coeficientes com intervalo de confiança de 95% no modelo 2](img/m2.png)
+
+:::
+
+::: {.column width="38%"}
+
+### Resultados
+
+\footnotesize
+- Indivíduos em ocupações vulneráveis têm maior propensão de apoiar a política
+- Ter ensino superior está associado a uma menor probabilidade de apoio à renda básica.
+- Quanto melhor a avaliação da Prefeitura nesse setor, maior a chance de apoio à criação da política.
+
+:::
+:::
+
+------------------------------------------------------------------------------------------------------
+
+# Principais resultados -- Modelo 3
+
+::: {.columns}
+::: {.column width="62%"}
+
+### Coeficientes
+
+![Estimativas dos coeficientes com intervalo de confiança de 95% no modelo 3](img/m3.png)
+
+:::
+
+::: {.column width="38%"}
+
+### Resultados
+
+\footnotesize
+- Quanto maior o conhecimento sobre a experiência de Maricá, maior a probabilidade de apoio.  
+- Quem “conhece muito bem” tem até +17,6 p.p. de chance de apoiar em relação a quem “não conhece nada”.  
+- Mesmo quem “só ouviu falar” já apresenta +12,5 p.p. de apoio adicional.  
+
+:::
+:::
+
+------------------------------------------------------------------------------------------------------
+
+# Considerações finais
+
+* A **onda fluminense** de políticas com **moedas sociais** impulsiona o debate e oferece aprendizado para a capital.
+* Entre os cariocas, apoio varia conforme **gênero, inserção ocupacional, escolaridade, avaliação de políticas** e **exposição a outras experiências**.
+* **Implicações**:
+  * Integração com **Assistência Social** municipal (credibilidade aumenta apoio).
+  * **Difusão de evidências** de Maricá e de outras experiências para ampliar conhecimento e adesão.
+* Próximos passos: aprofundar **robustez** (sensibilidade a especificações), explorar **efeitos heterogêneos** (renda, território) e avaliar **impactos causais** de programas locais.
+
+# Principais referências {.allowframebreaks}
+:::{#refs}
+:::
+
+
+
