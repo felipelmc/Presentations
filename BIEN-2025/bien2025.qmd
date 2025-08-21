@@ -95,8 +95,6 @@ Os resultados devem ser interpretados como indicativos de padrões de associaç�
 
 ------------------------------------------------------------------------------------------------------
 
-# Metodologia e desenho de pesquisa
-
 # Principais resultados -- Modelo 1
 
 ::: {.columns}
