@@ -79,7 +79,7 @@ $$
 \tilde{\ell}(\beta) = \sum_{i=1}^n w_i \Big\{ Y_i\log(\pi_i) + (1-Y_i)\log\big(1-\pi_i\big) \Big\},
 $$
 
-onde $X_i$ é a matriz de covariáveis do carioca $i$ e $\beta$ representa o vetor de coeficientes que indicm a relação entre as variáveis independentes e a variável resposta.
+onde $X_i$ e $w_i$ são, respectivamente, a matriz de covariáveis e o peso (obtido por pós-estratificação) do carioca $i$; e $\beta$ representa o vetor de coeficientes da regressão, que indica a relação entre as variáveis independentes e a variável resposta.
 
 Testamos três especificações de modelagem: (1) sexo + idade; (2) adiciona ocupação, ensino superior, avaliação da assistência social; (3) substitui idade por conhecimento sobre a experiência de Maricá.
 
