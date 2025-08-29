@@ -54,7 +54,7 @@ Examinar fatores explicativos de apoio/rejeição entre cariocas usando survey r
 
 * **Base de dados**: 10ª edição da *Avaliação da Gestão Municipal do Rio de Janeiro* ([Instituto Rio21](https://rio21.org/)).
 * **Coleta**: 09/07/2024 a 16/07/2024 (online).
-* **Amostra**: 1.687 respondentes, não probabilística, com pós-estratificação sexo, cor/raça e faixa etária a partir do Censo de 2022.
+* **Amostra**: 1.687 respondentes, não probabilística, com pós-estratificação sexo, cor/raça e faixa etária a partir do Censo de 2010.
 
 Aplicamos um peso maior para grupos sub-representados na amostra em relação à população da cidade e pesos menores caso contrário [@lumley2011; @wolf2016]. Isso reduz vieses da amostragem não-probabilística e melhora a aproximação da estrutura populacional.
 
@@ -73,7 +73,7 @@ Aplicamos um peso maior para grupos sub-representados na amostra em relação à
 
 ## Modelagem
 
-Ajustamos modelos de regressão logística ponderados por máxima verossimilhança. Seja $\pi_i = \mathbb{P}(Y_i = 1 | X_i, \beta)$. Em particular, ajustamos a pseudo-log-verossimilhança:
+Ajustamos modelos de regressão logística por máxima verossimilhança. Seja $\pi_i = \mathbb{P}(Y_i = 1 | X_i, \beta)$. Em particular, ajustamos a pseudo-log-verossimilhança:
 
 $$
 \tilde{\ell}(\beta) = \sum_{i=1}^n w_i \Big\{ Y_i\log(\pi_i) + (1-Y_i)\log\big(1-\pi_i\big) \Big\},
