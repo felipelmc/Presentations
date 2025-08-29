@@ -71,6 +71,24 @@ Aplicamos um peso maior para grupos sub-representados na amostra em relação à
 
 # Metodologia e desenho de pesquisa
 
+## Covariáveis
+
+\footnotesize
+| Covariável                                     | Categorias / Codificação                                                                                                                                                                                                          |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Conhecimento sobre a experiência de Maricá** | “Conhece muito bem”, “Conhece bem”, “Ouviu falar”, “Não conhece nada”                                                                                                                                                                                  |
+| **Sexo**                                       | “Masculino”, “Feminino”                                                                                                                                                                                                           |
+| **Faixa etária**                               | “16 a 24 anos”, “25 a 29 anos”, “30 a 39 anos”, “40 a 49 anos”, “50 a 59 anos”, “60 anos ou mais”                                                                                                                                 |
+| **Ocupação**                                   | **1 = Vulnerável** (estudante que não trabalha fora; conta própria **sem funcionários**; aprendiz/ajudante/estagiário etc.; empregado **sem carteira assinada**; dona(o) de casa que não trabalha fora). **0 = Demais ocupações** |
+| **Ensino superior**                            | 0 = Não, 1 = Sim                                                                                                                                                                                                                  |
+| **Avaliação da Assistência Social**            | “Ruim_Péssimo”, “Ótimo_Bom”, “Regular”, “NS/NR”                                                                                                                                                                                   |
+
+
+
+------------------------------------------------------------------------------------------------------
+
+# Metodologia e desenho de pesquisa
+
 ## Modelagem
 
 Ajustamos modelos de regressão logística por máxima verossimilhança. Seja $\pi_i = \mathbb{P}(Y_i = 1 | X_i, \beta)$. Em particular, ajustamos a pseudo-log-verossimilhança:
