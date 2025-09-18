@@ -1,0 +1,323 @@
+---
+title: "Machine Learning"
+subtitle: "Formação Metodológica do MAPE"
+author: "Felipe Lamarca"
+institute: "Instituto de Estudos Sociais e Políticos (IESP-UERJ)"
+date: "2025-09-19"
+format:
+  beamer:
+    pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \usepackage{emoji}
+        \setemojifont{Segoe UI Emoji}[Renderer=Harfbuzz]
+    theme: "Rochester"
+    colortheme: "dolphin"
+    fonttheme: "professionalfonts"
+linkcolor: blue
+fontsize: 10pt
+from: markdown+emoji
+---
+
+# Um curso de ML, em média
+
+Se eu tivesse um semestre, provavelmente falaríamos de:
+
+- $k$-NN
+- Regressão linear
+- Regressão logística
+- Processos gaussianos
+- Técnicas de seleção de modelos
+- Técnicas de redução de dimensionalidade
+- Redes neurais
+- ...
+
+------------------------------------------------------------
+
+# Hoje
+
+[**Não**]{.underline} falaremos dos vários algoritmos e modelos utilizados em machine learning. Antes, e talvez mais importante, vamos falar de _machine learning_ como um [**paradigma**]{.underline} próprio.
+
+------------------------------------------------------------
+
+# Uma anedota: machine learning $\times$ modelagem estatística
+
+No 5º período da graduação em ciência de dados, cursei machine learning e modelagem estatística. Uma aula era seguida da outra, às segundas e quartas.
+
+Quais são as diferenças entre uma coisa e outra? Qual é mais legal?
+
+------------------------------------------------------------
+
+# Uma anedota: machine learning $\times$ modelagem estatística
+
+No 5º período da graduação em ciência de dados, cursei machine learning e modelagem estatística. Uma aula era seguida da outra, às segundas e quartas.
+
+Qual é a diferença entre um e outro? Qual é mais legal?
+
+::: {.callout-note title="A saber"}
+Esse foi o motivo pelo qual eu e minha namorada brigamos pela primeira vez!
+:::
+
+------------------------------------------------------------
+
+# Na aula de machine learning...
+
+::: {.columns}
+::: {.column width="30%"}
+
+![Diego Parente, professor de Machine Learning](img/diego.jpg)
+
+:::
+
+::: {.column width="70%"}
+
+\scriptsize
+O tema da aula era regressão linear. Em particular, Diego terminou a aula mostrando, sob certas condições, [o estimador por máxima verossimilhança e o estimador por mínimos quadrados coincidem no caso normal]{.underline}. De fato, sendo $\mathcal{L}$ a verossimilhança:
+
+$$
+\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} (y - X \beta)^T (y - X \beta) \right),
+$$
+
+queremos $\beta$ que minimiza a log-verossimilhança negativa $l (\beta)$:
+
+$$
+- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} (y - X\beta)^T (y - X \beta)
+$$
+
+Então...
+
+$$
+\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||_2^2
+$$
+
+\
+
+\center
+Uau! \emoji{raised-hand-medium-light-skin-tone} \emoji{open-mouth} \emoji{raised-back-of-hand-medium-light-skin-tone}
+
+:::
+:::
+
+------------------------------------------------------------
+
+# Na aula de modelagem estatística...
+
+::: {.columns}
+::: {.column width="30%"}
+
+![Luiz Max, professor de modelagem estatística](img/max.jpeg)
+
+:::
+
+::: {.column width="70%"}
+
+\scriptsize
+O tema da aula era regressão linear. Em particular, Max terminou a aula mostrando que, sob certas condições, [o estimador por máxima verossimilhança e o estimador por mínimos quadrados coincidem no caso normal]{.underline}. De fato, sendo $\mathcal{L}$ a verossimilhança,
+
+$$
+\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} (y - X \beta)^T (y - X \beta) \right)
+$$
+
+queremos $\beta$ que minimiza a log-verossimilhança negativa $l (\beta)$:
+
+$$
+- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} (y - X\beta)^T (y - X \beta).
+$$
+
+Então...
+
+$$
+\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||_2^2
+$$
+
+\
+
+\center
+Ué?! \emoji{thinking-face}
+
+:::
+:::
+
+------------------------------------------------------------
+
+# E tem diferença, então?
+
+Mas e aí? Tem diferença, então?
+
+------------------------------------------------------------
+
+# E tem diferença, então?
+
+[**Tem!**]{.underline} Mas a diferença não tá na matemática. Trata-se sobretudo de uma diferença de objetivos. 
+
+Eu destacaria, em particular: enquanto a modelagem estatística quer reconstruir o processo gerador dos dados (Lego I e II),  machine learning quer acertar as previsões sobre a variável de interesse. Isso tem implicações:
+
+- Foco em previsão ao invés de explicação
+- Seleção automática de variáveis
+- Menor preocupação com interpretabilidade
+- Alta dimensionalidade, conjuntos enormes de dados
+
+------------------------------------------------------------
+
+# O que é Machine Learning?
+
+> Machine learning, a subset of AI, uses algorithms to analyze data, identify patterns, and make predictions. It learns from data on its own, improving over time. -- [Microsoft](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-machine-learning-platform/)
+
+Em geral, a ideia do aprendizado de máquina é encontrar a função $f$ que melhor relaciona as variáveis preditoras à variável resposta, ou _target_.
+
+------------------------------------------------------------
+
+# Regressão é machine learning
+
+Suponha que nosso objetivo é estimar a **probabilidade** de um candidato ser eleito em 2026. Para isso, temos à nossa disposição um banco de dados históricos (2012-2020) que inclui o sexo biológico dos candidatos, seus gastos de campanha, uma variável que indica se o candidato é incumbente ou desafiante e o resultado das urnas.
+
+------------------------------------------------------------
+
+# Regressão é machine learning
+
+Sendo $X$ a matriz de covariáveis (_preditores_) e $Y$ a variável resposta (_target_), podemos estimar os coeficientes de um modelo de regressão logística:
+
+$$
+\mathbb{P}(Y_i = 1) = \text{logit}^{-1} (X_i \beta) 
+$$
+
+Estimados os coeficientes, podemos estimar a probabilidade de um candidato qualquer ser eleito. Machine learning é isso, mas de maneira um pouco mais sofisticada.
+
+------------------------------------------------------------
+
+# Tipos de problema
+
+1. Aprendizado `supervisionado`: quando o _target_ é conhecido
+  - queremos estimar a probabilidade de um candidato ser eleito
+
+2. Aprendizado `não-supervisionado`: quando o _target_ é desconhecido
+  - queremos agrupar os eleitores em grupos; fazemos análise temática de _corpus_ textuais
+
+3. Aprendizado `por reforço`: quando o agente aprende por tentativa e erro, recebendo recompensas ou punições
+  - humanos avaliam respostas do modelo para guiar comportamento (RLHF)
+
+------------------------------------------------------------
+
+# Treino, teste e validação
+
+Em geral, dividimos o nosso banco de dados 2 ou 3 subconjuntos:
+
+- O conjunto de **treino** é usado para ensinar o modelo a reconhecer padrões (i.e., _treinar_ o modelo)
+- O conjunto de teste contém dados nunca vistos pelo modelo e serve para medir sua capacidade de generalização (i.e., _testar_ o modelo)
+- O conjunto de validação ajuda a ajustar os hiperparâmetros, evitando overfitting.
+
+![Treino, teste e validação](img/train-test-validation.png){width=50%}
+
+------------------------------------------------------------
+
+# Overfitting e underfitting
+
+- **Underfitting**  
+  - Modelo muito simples, não consegue capturar os padrões dos dados.  
+  - Erro alto no treino **e** no teste.
+
+- **Overfitting**  
+  - Modelo muito complexo, "decora" o conjunto de treino.  
+  - Erro baixo no treino, mas alto no teste.
+
+- **Objetivo:** encontrar o **equilíbrio** $\rightarrow$ boa performance no treino **e** no teste.
+
+------------------------------------------------------------
+
+# Overfitting e underfitting
+
+![Overfitting e underfitting](img/overfitting-overfitting.png)
+
+------------------------------------------------------------
+
+# Avaliação de modelos -- Regressão
+
+- **Erro Médio Absoluto (MAE):** média dos erros em valor absoluto  
+
+  $$
+  \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+  $$
+
+- **Erro Quadrático Médio (MSE):** penaliza mais os erros grandes  
+
+  $$
+  \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+  $$
+
+- **Raiz do Erro Quadrático Médio (RMSE):** raiz do MSE  
+
+  $$
+  \text{RMSE} = \sqrt{ \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 }
+  $$
+
+
+------------------------------------------------------------
+
+# Avaliação de modelos -- Classificação
+
+As métricas de classificação se baseiam, principalmente, na matriz de confusão:
+
+|                 | Predicted Positive | Predicted Negative |
+|-----------------|--------------------|--------------------|
+| **Actual Positive** | True Positive (TP)   | False Negative (FN)  |
+| **Actual Negative** | False Positive (FP)  | True Negative (TN)   |
+
+------------------------------------------------------------
+
+# Avaliação de modelos -- Classificação
+
+\small
+
+- **Acurácia**: proporção de acertos totais  
+  $$
+  Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+  $$
+
+- **Precisão**: dos preditos como positivos, quantos realmente são positivos?  
+  $$
+  Precision = \frac{TP}{TP + FP}
+  $$
+
+- **Recall (Sensibilidade)**: dos positivos reais, quantos foram identificados?  
+  $$
+  Recall = \frac{TP}{TP + FN}
+  $$
+
+- **F1-Score**: equilíbrio entre precisão e recall  
+  $$
+  F1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+  $$
+
+É possível treinar modelos para maximizar uma ou outra métrica, dependendo do target.
+
+------------------------------------------------------------
+
+# Outros modelos -- $k$-NN
+
+![$k$-nearest neighbors](img/knn.png)
+
+------------------------------------------------------------
+
+# Outros modelos -- Árvores de decisão
+
+![Decision trees](img/decision-trees.jpg){width=70%}
+
+------------------------------------------------------------
+
+# Outros modelos -- Redes neurais
+
+![Neural networks](img/neural-network.png)
+
+------------------------------------------------------------
+
+# Tópicos especiais (que não veremos)
+
+- Regularização (L1, L2, Dropout) para evitar _overfitting_
+- $k$-fold cross-validation
+- Técnicas de redução de dimensionalidade (PCA, UMAP, t-SNE)
+
+------------------------------------------------------------
+
+# Hands-on
+
+Código!
