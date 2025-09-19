@@ -19,9 +19,25 @@ fontsize: 10pt
 from: markdown+emoji
 ---
 
+# Itinerário
+
+- O que é _machine learning_?
+- Machine learning é modelagem/inferência estatística?
+- Treinamento e avaliação de modelos
+
+------------------------------------------------------------
+
+# O que é Machine Learning?
+
+> Machine learning, a subset of AI, uses algorithms to analyze data, identify patterns, and make predictions. It learns from data on its own, improving over time. -- [Microsoft](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-machine-learning-platform/)
+
+Em geral, a ideia do aprendizado de máquina é encontrar a função $f$ que melhor relaciona as variáveis preditoras à variável resposta, ou _target_. Podemos encontrar $f$ de várias maneiras.
+
+------------------------------------------------------------
+
 # Um curso de ML, em média
 
-Se eu tivesse um semestre, provavelmente falaríamos de:
+Se tivéssemos um semestre, provavelmente falaríamos de:
 
 - $k$-NN
 - Regressão linear
@@ -67,30 +83,42 @@ Esse foi o motivo pelo qual eu e minha namorada brigamos pela primeira vez!
 
 ![Diego Parente, professor de Machine Learning](img/diego.jpg)
 
+_"Isso não é um curso de modelagem estatística"_
+
 :::
 
 ::: {.column width="70%"}
 
 \scriptsize
-O tema da aula era regressão linear. Em particular, Diego terminou a aula mostrando, sob certas condições, [o estimador por máxima verossimilhança e o estimador por mínimos quadrados coincidem no caso normal]{.underline}. De fato, sendo $\mathcal{L}$ a verossimilhança:
+O tema da aula era regressão linear. Diego terminou a aula mostrando, sob certas condições, o estimador por máxima verossimilhança e o estimador por MQO coincidem no caso normal:
 
 $$
-\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} (y - X \beta)^T (y - X \beta) \right),
+\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} || y - X \beta ||^2 \right),
 $$
 
 queremos $\beta$ que minimiza a log-verossimilhança negativa $l (\beta)$:
 
 $$
-- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} (y - X\beta)^T (y - X \beta)
+- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} || y - X \beta ||^2
 $$
 
 Então...
 
 $$
-\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||_2^2
+\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||^2
 $$
 
-\
+$$
+\therefore
+$$
+
+$$
+\hat{\beta}_{\text{MLE}}
+   \;=\;
+   \arg\min_{\beta} \, \| y - X\beta \|^2
+   \;=\;
+   (X^\top X)^{-1} X^\top y.
+$$
 
 \center
 Uau! \emoji{raised-hand-medium-light-skin-tone} \emoji{open-mouth} \emoji{raised-back-of-hand-medium-light-skin-tone}
@@ -107,30 +135,42 @@ Uau! \emoji{raised-hand-medium-light-skin-tone} \emoji{open-mouth} \emoji{raised
 
 ![Luiz Max, professor de modelagem estatística](img/max.jpeg)
 
+_"Isso não é um curso de machine learning"_
+
 :::
 
 ::: {.column width="70%"}
 
 \scriptsize
-O tema da aula era regressão linear. Em particular, Max terminou a aula mostrando que, sob certas condições, [o estimador por máxima verossimilhança e o estimador por mínimos quadrados coincidem no caso normal]{.underline}. De fato, sendo $\mathcal{L}$ a verossimilhança,
+O tema da aula era regressão linear. Max terminou a aula mostrando, sob certas condições, o estimador por máxima verossimilhança e o estimador por MQO coincidem no caso normal:
 
 $$
-\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} (y - X \beta)^T (y - X \beta) \right)
+\mathcal{L}(\beta) = (2 \pi \sigma^2)^{-n/2} \exp \left ( -\dfrac{1}{2 \sigma^2} || y - X \beta ||^2 \right),
 $$
 
 queremos $\beta$ que minimiza a log-verossimilhança negativa $l (\beta)$:
 
 $$
-- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} (y - X\beta)^T (y - X \beta).
+- \mathcal{l}(\beta) = \dfrac{n}{2} \log (2 \pi) + \dfrac{n}{2} \log \sigma^2 + \dfrac{1}{2 \sigma^2} || y - X \beta ||^2
 $$
 
 Então...
 
 $$
-\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||_2^2
+\underset{\beta}{\text{min}} - \mathcal{l} (\beta) = \underset{\beta}{\text{min}} \ || y - X \beta ||^2
 $$
 
-\
+$$
+\therefore
+$$
+
+$$
+\hat{\beta}_{\text{MLE}}
+   \;=\;
+   \arg\min_{\beta} \, \| y - X\beta \|^2
+   \;=\;
+   (X^\top X)^{-1} X^\top y.
+$$
 
 \center
 Ué?! \emoji{thinking-face}
@@ -159,7 +199,13 @@ Eu destacaria, em particular: enquanto a modelagem estatística quer reconstruir
 
 ------------------------------------------------------------
 
-# O que é Machine Learning?
+# São duas culturas
+
+![Statistical Modeling: The Two Cultures](img/two-cultures.png){width=80%}
+
+------------------------------------------------------------
+
+# Retomando: o que é Machine Learning?
 
 > Machine learning, a subset of AI, uses algorithms to analyze data, identify patterns, and make predictions. It learns from data on its own, improving over time. -- [Microsoft](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-machine-learning-platform/)
 

@@ -3,6 +3,10 @@
 # regressão linear (votos) e regressão logistica (resultado_bin)
 # --------------------------------------------------------------
 
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+
 # 1) Ler dados
 dados <- read_csv("data.csv")
 
@@ -83,3 +87,53 @@ print(res_cls)
 # Matriz de confusão para a especificação com incumbente
 cat("\nMatriz de confusão (com_incumbente):\n")
 print(table(Real = teste$resultado_bin, Predito = cB))
+
+
+# ------------------------------------------------------------
+# CLASSIFICAÇÃO com ÁRVORE DE DECISÃO (resultado_bin)
+# ------------------------------------------------------------
+
+# (A) sem incumbente
+dt_A <- rpart(
+  formula = resultado_bin ~ genero + despesa_total,
+  data = treino,
+  method = "class",
+  control = rpart.control(minsplit = 20, cp = 0.001, maxdepth = 10)
+)
+
+prob_dt_A <- predict(dt_A, newdata = teste, type = "prob")[,2]
+c_dt_A <- ifelse(prob_dt_A >= 0.5, 1, 0)
+
+# (B) com incumbente
+dt_B <- rpart(
+  formula = resultado_bin ~ incumbente + genero + despesa_total,
+  data = treino,
+  method = "class",
+  control = rpart.control(minsplit = 20, cp = 0.001, maxdepth = 10)
+)
+
+prob_dt_B <- predict(dt_B, newdata = teste, type = "prob")[,2]
+c_dt_B <- ifelse(prob_dt_B >= 0.5, 1, 0)
+
+# Métricas
+prec_dt_A <- precision(teste$resultado_bin, c_dt_A); rec_dt_A <- recall(teste$resultado_bin, c_dt_A)
+prec_dt_B <- precision(teste$resultado_bin, c_dt_B); rec_dt_B <- recall(teste$resultado_bin, c_dt_B)
+
+res_dt <- rbind(
+  c("sem_incumbente", accuracy(teste$resultado_bin, c_dt_A), prec_dt_A, rec_dt_A, f1(prec_dt_A, rec_dt_A)),
+  c("com_incumbente", accuracy(teste$resultado_bin, c_dt_B), prec_dt_B, rec_dt_B, f1(prec_dt_B, rec_dt_B))
+)
+colnames(res_dt) <- c("especificacao","Acuracia","Precisao","Recall","F1")
+
+cat("\n=== Árvore de decisão (resultado_bin) ===\n")
+print(res_dt)
+
+# Matriz de confusão para a especificação com incumbente
+cat("\nMatriz de confusão (Árvore - com_incumbente):\n")
+print(table(Real = teste$resultado_bin, Predito = c_dt_B))
+
+# visualizar as árvores
+rpart.plot(dt_A, main = "Árvore - sem incumbente")
+rpart.plot(dt_B, main = "Árvore - com incumbente")
+
+
