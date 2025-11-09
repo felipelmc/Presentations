@@ -1,0 +1,122 @@
+---
+title: "Quantos votos meu partido vai fazer?"
+subtitle: "Prevendo o _vote share_ nos municípios fluminenses"
+author: "Felipe Lamarca"
+institute: "10º Seminário Discente do IESP-UERJ"
+date: "2025-11-10"
+format:
+  beamer:
+    pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \usepackage{emoji}
+        \setemojifont{Segoe UI Emoji}[Renderer=Harfbuzz]
+    theme: "Rochester"
+    colortheme: "dolphin"
+    fonttheme: "professionalfonts"
+linkcolor: blue
+fontsize: 10pt
+from: markdown+emoji
+bibliography: referencias.bib
+---
+
+# Itinerário da apresentação
+
+1. Uma introdução ao problema;
+2. Um levantamento do que pode ajudar a prever resultados eleitorais;
+3. A estratégia empírica utilizada;
+4. Considerações finais, limitações e próximos passos.
+
+------------------------------------------------------------
+
+# Introdução
+
+Neste trabalho, utilizo uma série de modelos lineares para prever os resultados das eleições para as Câmaras Municipais dos 92 municípios do estado do Rio de Janeiro ao longo de três eleições: 2016, 2020 e 2024.
+
+Parto de dois diagnósticos:
+
+1. Há poucos trabalhos que investiram na realização de pesquisas empíricas sobre os determinantes do sucesso eleitoral no nível municipal [@sampaio2019];
+2. A literatura em ciência política, em geral, dá preferência a uma abordagem estritamente explanatória. No entanto, há ganhos na combinação de diferentes objetivos -- em particular, objetivos preditivos [@verhagen2022pragmatist].
+
+------------------------------------------------------------
+
+# O que explica (ou prevê) o resultado?
+
+A literatura que analisa os determinantes do sucesso eleitoral no nível federal já ofereceu uma série de explicações para os resultados das urnas [@mancuso2015]:
+
+- **dinheiro** [@sampaio2019; @arraes2017; @cervi2015; @deschamps2021; @figueiredofilho2005; @menezes2010; @speck_mancuso2014; @mancusospeck2013]; 
+- **sexo** [@sacchet_speck2012a; @sacchet_speck2012b];
+- **cor/raça** [@campos2020]; 
+- **experiência política prévia** [@menezes2010; @mancusospeck2013];
+- etc, etc, etc.
+
+------------------------------------------------------------
+
+# O que explica (ou prevê) o resultado?
+
+Além de focados quase estritamente em dados ao nível nacional, esses trabalhos também usam o indivíduo (isto é, o candidato) como unidade de análise.
+
+::: {.callout-note title="O ponto é..."}
+Faltam trabalhos que investiguem esses determinantes no nível dos partidos políticos -- o que, afinal, se conecta melhor ao esquema de distribuição de cadeiras no sistema eleitoral brasileiro.
+:::
+
+------------------------------------------------------------
+
+# Desenho de pesquisa e metodologia
+
+Para estimar a proporção de votos de cada partido nas disputas para as Câmaras Municipais do estado do Rio, construí um banco de dados unificado que inclui os seguintes dados das eleições municipais de 2016 a 2024:
+
+- A performance do partido na eleição anterior (isto é, o _vote share_ da última eleição);
+- a proporção de brancos, mulheres, pessoas com ensino superior (completo ou incompleto) e incumbentes na lista partidária;
+- a proporção de candidatos eleitos no ciclo anterior que mudaram de partido (uma taxa de migração partidária);
+- o tamanho da lista do partido;
+- o número de partidos disputando cadeiras;
+- o logarítmo natural do PIB do município, para incluir uma variável de controle no nível da cidade.
+
+------------------------------------------------------------
+
+# Desenho de pesquisa e metodologia
+
+- Por simplicidade, todos os modelos ajustados são regressões lineares.
+
+- Para permitir a avaliação da capacidade de generalização dos modelos, os dados são separados, para cada ano, em um conjunto de treino e um conjunto de teste na proporção 70%/30%. Obtemos os parâmetros $\beta$ da regressão no conjunto de treino e avaliamos os resultados no conjunto de teste. 
+
+- As métricas utilizadas para avaliar a capacidade preditiva foram o _Root Mean Squared Error_ (RMSE) e o _Mean Absolute Error_ (MAE). Ao utilizar uma abordagem preditiva e reportar métricas de avaliação, espero ajudar a **estabelecer uma espécie de benchmark para estudos futuros**.
+
+- Todos os dados, códigos e o relatório final estão disponíveis [no GitHub](https://github.com/felipelmc/Municipal-Vote-Share-Forecasting) para permitir a reprodução dos resultados encontrados.
+
+------------------------------------------------------------
+
+# Resultados
+
+![](img/coefs.png)
+
+------------------------------------------------------------
+
+# Resultados
+
+![](img/eval.png)
+
+------------------------------------------------------------
+
+# Resultados
+
+![](img/residuals.png)
+
+------------------------------------------------------------
+
+
+# Considerações finais e limitações
+
+- Dois preditores se destacam de forma robusta: o desempenho passado da legenda no município e a proporção de incumbentes na lista; 
+- Variáveis organizacionais e contextuais -- tamanho da lista, número de partidos em disputa e composição das candidaturas por sexo e raça -- também contribuem e, na maior parte dos anos, apresentam efeitos estatisticamente diferentes de zero.
+
+Uma limitação grande, no entanto, é o fato de que a quebra de dados em treino e teste é feito com os dados da mesma eleição. 
+Para garantir a validade da predição dos resultados das eleições no ano $(t)$, seria muito mais razoável treinar o modelo com os dados da eleição $(t - 4)$ e testar nos dados da eleição $(t)$. Por fim, a análise também deveria ser estendida a todos os municípios brasileiros.
+
+------------------------------------------------------------
+
+# Algumas referências {.allowframebreaks}
+
+:::{#refs}
+:::
