@@ -67,23 +67,27 @@ Faltam trabalhos que investiguem esses determinantes no nível dos partidos pol�
 Para estimar a proporção de votos de cada partido nas disputas para as Câmaras Municipais do estado do Rio, construí um banco de dados unificado que inclui os seguintes dados das eleições municipais de 2016 a 2024:
 
 - A performance do partido na eleição anterior (isto é, o _vote share_ da última eleição);
-- a proporção de brancos, mulheres, pessoas com ensino superior (completo ou incompleto) e incumbentes na lista partidária;
-- a proporção de candidatos eleitos no ciclo anterior que mudaram de partido (uma taxa de migração partidária);
-- o tamanho da lista do partido;
+- a proporção de brancos, mulheres, pessoas com ensino superior e incumbentes na lista partidária;
+- a proporção de candidatos eleitos no ciclo anterior que mudaram de partido;
+- o tamanho da lista;
 - o número de partidos disputando cadeiras;
-- o logarítmo natural do PIB do município, para incluir uma variável de controle no nível da cidade.
+- o logarítmo natural do PIB do município.
 
 ------------------------------------------------------------
 
 # Desenho de pesquisa e metodologia
 
-- Por simplicidade, todos os modelos ajustados são regressões lineares.
+- Por simplicidade, todos os modelos ajustados são regressões lineares;
 
-- Para permitir a avaliação da capacidade de generalização dos modelos, os dados são separados, para cada ano, em um conjunto de treino e um conjunto de teste na proporção 70%/30%. Obtemos os parâmetros $\beta$ da regressão no conjunto de treino e avaliamos os resultados no conjunto de teste. 
+- Os dados são separados, para cada ano, em um conjunto de treino e um conjunto de teste na proporção 70%/30%;
 
-- As métricas utilizadas para avaliar a capacidade preditiva foram o _Root Mean Squared Error_ (RMSE) e o _Mean Absolute Error_ (MAE). Ao utilizar uma abordagem preditiva e reportar métricas de avaliação, espero ajudar a **estabelecer uma espécie de benchmark para estudos futuros**.
+- Métricas: _Root Mean Squared Error_ (RMSE) e o _Mean Absolute Error_ (MAE);
 
-- Todos os dados, códigos e o relatório final estão disponíveis [no GitHub](https://github.com/felipelmc/Municipal-Vote-Share-Forecasting) para permitir a reprodução dos resultados encontrados.
+- Todos os dados, códigos e o relatório final estão disponíveis [no GitHub](https://github.com/felipelmc/Municipal-Vote-Share-Forecasting) para garantir replicabilidade.
+
+::: {.callout-note title="O ponto é..."}
+Ao utilizar uma abordagem preditiva e reportar métricas de avaliação, espero ajudar a **estabelecer uma espécie de benchmark para estudos futuros** e permitir comparações entre _papers_.
+:::
 
 ------------------------------------------------------------
 
