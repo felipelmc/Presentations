@@ -409,7 +409,7 @@ Você assina o trabalho. A responsabilidade sobre o que o agente faz é sua.
 </div>
 
 <div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
-📂 &nbsp;github.com/felipelmc/Presentations
+📂 &nbsp;github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-2026
 </div>
 </div>
 

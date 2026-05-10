@@ -11,3 +11,5 @@ This repository contains the presentations I have given.
 [2025-11-10] _Quantos votos meu partido vai fazer? Prevendo o vote share nos municípios fluminenses_. 10ª Semana Discente dos Programas de Pós-Graduação do IESP-UERJ. GT 18 -- Política e instituições no nível subnacional. [[files]](GT-Jornada-Discente-IESP-2025)
 
 [2025-11-12] _Deep Learning e Text-as-Data_. 10ª Semana Discente dos Programas de Pós-Graduação do IESP-UERJ. Minicurso. [[files]](Minicurso-DL-Jornada-Discente-IESP-2025)
+
+[2026-05-13] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. Workshop CERES 2026.1, IESP-UERJ. [[files]](Intro-to-ClaudeCode-2026/)
