@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-3f230b53dc93e4a04bf4a3505d77a42a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.35">
+
+  <meta name="author" content="Felipe Lamarca">
+  <title>Agentes de IA para pesquisa em ciências sociais</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-e3e4076e3d6d8e5d1f3a9b811321aa1a.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="slides_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="slides_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="slides_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('#title-slide');
+    if (title) {
+      var badge = document.createElement('div');
+      badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
+      badge.innerHTML = '<img src="logo-ceres.svg" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">Workshop CERES 2026.1</span>';
+      title.insertBefore(badge, title.firstChild);
+
+      var el = document.createElement('div');
+      el.style.cssText = 'font-size:0.45em; color:#94a3b8; margin-top:1.2em; font-style:italic;';
+      el.innerHTML = 'Feito com Claude Code 😉';
+      title.appendChild(el);
+    }
+  });
+  </script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Agentes de IA para pesquisa em ciências sociais</h1>
+  <p class="subtitle">uma introdução ao Claude Code</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Felipe Lamarca 
+</div>
+        <p class="quarto-title-affiliation">
+            IESP-UERJ · MAPE · DOXA · NECON
+          </p>
+    </div>
+</div>
+
+  <p class="date">13 de maio de 2026</p>
+</section>
+<section id="section" class="slide level2" data-background-color="#1e293b">
+<h2></h2>
+<p><br></p>
+<p><span class="agenda-num">01</span> &nbsp; <strong>Do chat ao agente:</strong> o que muda na prática</p>
+<p><br></p>
+<p><span class="agenda-num">02</span> &nbsp; <strong>Claude Code na prática:</strong> rules, skills e contexto</p>
+<p><br></p>
+<p><span class="agenda-num">03</span> &nbsp; <strong>Quatro aplicações:</strong> demos ao vivo</p>
+<p><br></p>
+<p><span class="agenda-num">04</span> &nbsp; <strong>Limites e recursos:</strong> o que não delegar</p>
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="do-chat-ao-agente" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Do chat ao agente</h1>
+
+</section>
+<section id="você-provavelmente-já-usa-ia" class="slide level2">
+<h2>Você provavelmente já usa IA 💬</h2>
+<ul>
+<li>Interface de chat: você digita, o modelo responde</li>
+<li>Cada conversa começa do zero: sem memória de sessões anteriores, sem acesso ao seu ambiente de trabalho</li>
+<li>Interações <strong>transacionais</strong>: úteis para tarefas pontuais, mas sem continuidade</li>
+</ul>
+</section>
+<section id="o-chat-tem-limites-para-pesquisa" class="slide level2">
+<h2>O chat tem limites para pesquisa</h2>
+<ul>
+<li>Sem acesso ao seu ambiente de trabalho (arquivos, código, terminal)</li>
+<li>Sem memória entre sessões</li>
+<li>Coletar dados, ajustar modelos, documentar decisões, comunicar achados: você coordena tudo manualmente</li>
+</ul>
+</section>
+<section id="o-que-é-um-agente-de-ia" class="slide level2">
+<h2>O que é um agente de IA? 🤖</h2>
+<blockquote>
+<p>Em vez de responder a perguntas pontuais, o agente planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima.</p>
+</blockquote>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Chat</th>
+<th>Agente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Responde</td>
+<td>Age</td>
+</tr>
+<tr class="even">
+<td>Uma troca</td>
+<td>Múltiplas etapas</td>
+</tr>
+<tr class="odd">
+<td>Você executa</td>
+<td>Ele executa</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="o-loop-do-agente" class="slide level2">
+<h2>O loop do agente 🔄</h2>
+<div class="cell" data-reveal="true" data-fig-width="7" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A("👁️  Observa") --&gt; B("🧠  Planeja")
+  B --&gt; C("⚡  Age")
+  C --&gt; A
+  style A fill:#2563eb,color:white,stroke:none
+  style B fill:#2563eb,color:white,stroke:none
+  style C fill:#2563eb,color:white,stroke:none
+  linkStyle default stroke:#94a3b8,stroke-width:2px
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>Ferramentas:</strong> lê e escreve arquivos · executa código · chama APIs · navega na web</p>
+</section>
+<section id="claude-code" class="slide level2">
+<h2>Claude Code 🖥️</h2>
+<ul>
+<li>CLI que roda diretamente no terminal</li>
+<li>Lê e escreve arquivos, executa código, acessa o <code>git</code> e o shell</li>
+<li>Trata-se do caso mais desenvolvido de agente de IA para uso em pesquisa</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p><em>“Em vez de responder a perguntas pontuais, ele planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima”</em></p>
+</blockquote>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="claude-code-na-prática" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Claude Code na prática</h1>
+
+</section>
+<section id="primeiros-passos" class="slide level2">
+<h2>Primeiros passos</h2>
+<p><strong>Mac / Linux</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span>
+<span id="cb1-2"><a href=""></a><span class="ex">claude</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Windows</strong></p>
+<p>Baixar o app em <code>claude.com/download</code> · instalar <strong>Git for Windows</strong> · abrir a aba <strong>Code</strong> no app</p>
+</section>
+<section id="quanto-custa" class="slide level2">
+<h2>Quanto custa? 💰</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Plano</th>
+<th>Preço</th>
+<th>Para quem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pro</strong></td>
+<td>US$ 20/mês</td>
+<td>Uso individual (meu plano)</td>
+</tr>
+<tr class="even">
+<td><strong>Max 5×</strong></td>
+<td>US$ 100/mês</td>
+<td>Uso intensivo</td>
+</tr>
+<tr class="odd">
+<td><strong>Max 20×</strong></td>
+<td>US$ 200/mês</td>
+<td>Uso muito intensivo</td>
+</tr>
+<tr class="even">
+<td><strong>API</strong></td>
+<td>Por token</td>
+<td>Desenvolvedores</td>
+</tr>
+<tr class="odd">
+<td><strong>Team / Enterprise</strong></td>
+<td>A partir de US$ 30/usuário</td>
+<td>Organizações</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>O plano Pro cobre bem a maior parte dos casos de uso em pesquisa acadêmica (pelo menos no meu caso, que não estou disposto a gastar mais 😄)</p>
+</div>
+</section>
+<section id="claude.md-as-regras-do-jogo" class="slide level2">
+<h2>CLAUDE.md: as regras do jogo 📋</h2>
+<p>Arquivo de instruções persistentes, lido automaticamente a cada sessão</p>
+<p><br></p>
+<p>O que colocar:</p>
+<ul>
+<li>Contexto do projeto e objetivos</li>
+<li>Convenções e restrições analíticas</li>
+<li>Decisões já tomadas (e por quê)</li>
+</ul>
+<div class="fragment">
+<p>É a memória permanente do agente no projeto – o que sobrevive ao <code>/clear</code></p>
+</div>
+</section>
+<section id="skills-comandos-customizados" class="slide level2">
+<h2>Skills: comandos customizados ⚡</h2>
+<p><code>/nome-da-skill</code> executa um <em>prompt</em> reutilizável, portável entre projetos</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="ex">/voice</span>           <span class="co"># reescreve texto no seu estilo</span></span>
+<span id="cb2-2"><a href=""></a><span class="ex">/document-notes</span>  <span class="co"># organiza anotações brutas</span></span>
+<span id="cb2-3"><a href=""></a><span class="ex">/review</span>          <span class="co"># revisa código ou argumento</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Na prática, é o mecanismo de ensinar o agente a executar tarefas no seu vocabulário e com suas convenções</p>
+</div>
+</section>
+<section id="section-1" class="slide level2" data-background-color="#0f172a">
+<h2></h2>
+<div class="r-fit-text">
+<p>Gerenciamento de contexto</p>
+</div>
+<div style="color: #94a3b8; text-align: center; font-size: 0.7em; margin-top: 0.5em;">
+<p>O conceito mais importante da aula</p>
+</div>
+</section>
+<section id="a-janela-de-contexto" class="slide level2">
+<h2>A janela de contexto 🧠</h2>
+<p>Tudo que o modelo “vê” ao mesmo tempo cresce a cada iteração</p>
+<div style="display:flex; gap:1.4em; align-items:flex-end; justify-content:center; font-size:0.4em; margin-top:0.8em;">
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Início
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ como coletar os dados?
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+</div>
+</div>
+<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">
+→
+</div>
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Algumas trocas depois
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ como coletar os dados?
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+💻 erro na linha 12
+</div>
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ corrija o erro
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 [versão corrigida]
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+📄 dados.csv
+</div>
+</div>
+</div>
+<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">
+→
+</div>
+<div style="flex:1; max-width:200px;">
+<div style="color:#f87171; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Muitas iterações depois
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ como coletar os dados?
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+💻 erro na linha 12
+</div>
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ corrija o erro
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 [versão corrigida]
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+📄 dados.csv
+</div>
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ agora plote os dados
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 [mais código…]
+</div>
+<div style="background:#7f1d1d; color:#fca5a5; border-radius:6px; padding:0.45em 0.9em; font-family:monospace; font-weight:bold;">
+⚠️ LIMITE DA JANELA
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="estratégias-de-gerenciamento" class="slide level2">
+<h2>Estratégias de gerenciamento 🎯</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Estratégia</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/clear</code></td>
+<td>Reinicia a sessão, preserva o CLAUDE.md</td>
+</tr>
+<tr class="even">
+<td>Compaction automática</td>
+<td>O Claude resume o contexto sozinho</td>
+</tr>
+<tr class="odd">
+<td>Sessões focadas</td>
+<td>Uma tarefa por sessão</td>
+</tr>
+<tr class="even">
+<td><strong>CLAUDE.md</strong></td>
+<td>Memória que sobrevive ao <code>/clear</code></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<blockquote>
+<p>Tarefas grandes = múltiplas sessões pequenas e focadas</p>
+</blockquote>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="quatro-aplicações-práticas" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Quatro aplicações práticas</h1>
+
+</section>
+<section id="as-demos-de-hoje" class="slide level2">
+<h2>As demos de hoje</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>🏛️ &nbsp;<strong>Dados legislativos</strong> API da Câmara dos Deputados</p>
+<p><br></p>
+<p>📚 &nbsp;<strong>Documentação</strong> Anotações de disciplinas</p>
+</div><div class="column" style="width:50%;">
+<p>🖊️ &nbsp;<strong>Skill de voz</strong> Escreve como você</p>
+<p><br></p>
+<p>🌐 &nbsp;<strong>Site pessoal</strong> Do currículo ao deploy</p>
+</div></div>
+</section>
+<section id="demo-1-pesquisa-legislativa-aplicada" class="slide level2">
+<h2>Demo 1: pesquisa legislativa aplicada 🏛️</h2>
+<p>A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre o Legislativo federal.</p>
+<div class="fragment">
+<p>Roteiro ao vivo:</p>
+<ol type="1">
+<li>Coletar proposições em educação via API da Câmara dos Deputados</li>
+<li><em>Embeddar</em> os textos (representação semântica vetorial)</li>
+<li>Produzir visualizações: clusters temáticos, distribuição temporal, temas latentes</li>
+</ol>
+</div>
+</section>
+<section id="demo-2-skill-de-voice" class="slide level2">
+<h2>Demo 2: skill de “voice” 🖊️</h2>
+<p>Você tem um estilo de escrita. O modelo pode aprendê-lo.</p>
+<p><br></p>
+<p>Como criar: (i) reunir <em>writing samples</em> seus (artigos, e-mails, textos); (ii) criar o arquivo de skill <code>/voice</code></p>
+<p><br></p>
+<p>Uso: pedir ao Claude que revise ou reescreva textos no seu estilo</p>
+</section>
+<section id="demo-3-documentando-anotações" class="slide level2">
+<h2>Demo 3: documentando anotações 📚</h2>
+<p>Skill criada para o meu próprio <em>workflow</em></p>
+<p><br></p>
+<ul>
+<li>Input: anotações brutas de disciplinas</li>
+<li>Output: arquivos organizados em repositório público</li>
+</ul>
+<p><br></p>
+<p>O Claude Code lê, estrutura e faz o <em>commit</em>; você só anota</p>
+</section>
+<section id="demo-4-site-pessoal-a-partir-do-currículo" class="slide level2">
+<h2>Demo 4: site pessoal a partir do currículo 🌐</h2>
+<ul>
+<li>Input: currículo em PDF ou texto simples</li>
+<li>Output: site HTML/CSS completo e responsivo</li>
+<li>Publicável no GitHub Pages sem configuração manual</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="para-além-do-workshop" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Para além do workshop</h1>
+
+</section>
+<section id="recursos-úteis" class="slide level2">
+<h2>Recursos úteis 📖</h2>
+<p>Documentação oficial: <code>claude.ai/code</code></p>
+<p><br></p>
+<p>Seções recomendadas:</p>
+<ul>
+<li><em>How Claude Code uses memory</em></li>
+<li><em>Claude Code hooks</em></li>
+<li><em>Model Context Protocol (MCP)</em></li>
+</ul>
+</section>
+<section id="os-limites-da-delegação" class="slide level2">
+<h2>Os limites da delegação ⚠️</h2>
+<ul>
+<li>O agente comete erros; a revisão é parte do <em>workflow</em>, não exceção</li>
+<li>Sessões longas degradam qualidade – à medida que o contexto enche, as respostas perdem coerência</li>
+<li>Reprodutibilidade depende de documentar decisões analíticas, não apenas o código gerado</li>
+<li>O uso de IA na pesquisa científica ainda está sendo estudado – há literatura nova saindo com frequência</li>
+</ul>
+<div class="fragment">
+<p>Você assina o trabalho. A responsabilidade sobre o que o agente faz é sua.</p>
+</div>
+</section>
+<section id="quando-a-supervisão-é-insubstituível" class="slide level2">
+<h2>Quando a supervisão é insubstituível 🔑</h2>
+<ul>
+<li>A interpretação substantiva dos achados</li>
+<li>As decisões de design: o que medir, como operacionalizar, quais hipóteses testar</li>
+<li>A validação: o agente sabe se o código roda; você verifica se o achado faz sentido</li>
+<li>O controle da ferramenta: entender o que foi feito, passo a passo, antes de confiar no resultado</li>
+</ul>
+</section>
+<section id="obrigado" class="slide level2" data-background-color="#1e293b">
+<h2>Obrigado!</h2>
+<div style="display:flex; align-items:center; gap:3em; margin-top:0.8em;">
+<div style="flex:1;">
+<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">
+Felipe Lamarca
+</div>
+<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">
+IESP-UERJ · MAPE · DOXA · NECON
+</div>
+<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
+<p>📧 &nbsp;felipe.lamarca@hotmail.com<br> 🌐 &nbsp;felipelamarca.com</p>
+</div>
+<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
+<p>📂 &nbsp;github.com/felipelmc/Presentations</p>
+</div>
+</div>
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+<div style="background:white; display:inline-block; padding:16px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
+<p><img src="linkedin-qr.png" style="width:280px; display:block;"></p>
+</div>
+<div style="font-size:0.52em; color:#64748b; margin-top:0.8em; letter-spacing:0.04em;">
+🔗 LinkedIn
+</div>
+</div>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Workshop CERES 2026.1 · Felipe Lamarca</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiada");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiada");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

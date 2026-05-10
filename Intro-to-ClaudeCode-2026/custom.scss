@@ -1,0 +1,150 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: 'Inter', sans-serif;
+$font-family-monospace: 'JetBrains Mono', monospace;
+$presentation-font-size-root: 34px;
+$link-color: #2563eb;
+$body-color: #1e293b;
+
+/*-- scss:rules --*/
+
+// ── Headings ──────────────────────────────────────────────────────────────
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.reveal h2 {
+  color: #2563eb;
+}
+
+// Section slides override heading color to white
+.reveal .slide-background-content ~ .reveal-block h2,
+section[data-background-color] h2,
+section[data-background-color="#2563eb"] h2,
+section[data-background-color="#1e293b"] h2,
+section[data-background-color="#0f172a"] h2 {
+  color: white !important;
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+.reveal .footer {
+  font-size: 0.42em;
+  color: #94a3b8;
+}
+
+// ── Blockquote ─────────────────────────────────────────────────────────────
+.reveal blockquote {
+  border-left: 4px solid #2563eb;
+  padding: 0.6em 1.2em;
+  color: #475569;
+  font-style: italic;
+  background: #f8fafc;
+  width: 88%;
+  margin: 0.8em auto;
+  border-radius: 0 8px 8px 0;
+  box-shadow: none;
+}
+
+// ── Tables ─────────────────────────────────────────────────────────────────
+.reveal table {
+  font-size: 0.75em;
+  margin: 0.4em auto;
+  border-collapse: collapse;
+}
+
+.reveal table th {
+  background-color: #e2e8f0;
+  font-weight: 600;
+  padding: 0.5em 1em;
+}
+
+.reveal table td {
+  padding: 0.45em 1em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+// ── Code ───────────────────────────────────────────────────────────────────
+.reveal code {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #f1f5f9;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.82em;
+  color: #1e293b;
+}
+
+.reveal pre {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.reveal pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.78em;
+}
+
+// ── Agenda slide ───────────────────────────────────────────────────────────
+.agenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin: 0.6em 0;
+  font-size: 1em;
+}
+
+.agenda-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  width: 1.6em;
+  height: 1.6em;
+  font-weight: 700;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+// ── Demo overview boxes ─────────────────────────────────────────────────────
+.demo-box {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 0.4rem;
+  text-align: center;
+  font-size: 0.78em;
+  line-height: 1.5;
+}
+
+// ── Context window visual ──────────────────────────────────────────────────
+.context-box {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em;
+  background: #0f172a;
+  color: #94a3b8;
+  border-radius: 8px;
+  padding: 1em 1.5em;
+  text-align: left;
+  display: inline-block;
+  line-height: 1.8;
+}
+
+// ── Title slide sizing ─────────────────────────────────────────────────────
+#title-slide .title {
+  font-size: 1.55em !important;
+}
+
+#title-slide .date {
+  font-size: 0.58em;
+  color: #94a3b8;
+}
+
+// ── Fragment spacing ───────────────────────────────────────────────────────
+.reveal .fragment {
+  margin-top: 0.3em;
+}

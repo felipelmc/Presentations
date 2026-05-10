@@ -1,0 +1,423 @@
+---
+title: "Agentes de IA para pesquisa em ciências sociais"
+subtitle: "uma introdução ao Claude Code"
+author: "Felipe Lamarca"
+institute: "IESP-UERJ · MAPE · DOXA · NECON"
+date: 2026-05-13
+date-format: "D [de] MMMM [de] YYYY"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    progress: true
+    transition: slide
+    code-block-bg: true
+    highlight-style: github
+    footer: "Workshop CERES 2026.1 · Felipe Lamarca"
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var title = document.querySelector('#title-slide');
+          if (title) {
+            var badge = document.createElement('div');
+            badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
+            badge.innerHTML = '<img src="logo-ceres.svg" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">Workshop CERES 2026.1</span>';
+            title.insertBefore(badge, title.firstChild);
+
+            var el = document.createElement('div');
+            el.style.cssText = 'font-size:0.45em; color:#94a3b8; margin-top:1.2em; font-style:italic;';
+            el.innerHTML = 'Feito com Claude Code 😉';
+            title.appendChild(el);
+          }
+        });
+        </script>
+lang: pt-BR
+---
+
+## {background-color="#1e293b"}
+
+<br>
+
+[01]{.agenda-num} &nbsp; **Do chat ao agente:** o que muda na prática
+
+<br>
+
+[02]{.agenda-num} &nbsp; **Claude Code na prática:** rules, skills e contexto
+
+<br>
+
+[03]{.agenda-num} &nbsp; **Quatro aplicações:** demos ao vivo
+
+<br>
+
+[04]{.agenda-num} &nbsp; **Limites e recursos:** o que não delegar
+
+---
+
+# Do chat ao agente {background-color="#2563eb"}
+
+---
+
+## Você provavelmente já usa IA 💬
+
+- Interface de chat: você digita, o modelo responde
+- Cada conversa começa do zero: sem memória de sessões anteriores, sem acesso ao seu ambiente de trabalho
+- Interações **transacionais**: úteis para tarefas pontuais, mas sem continuidade
+
+---
+
+## O chat tem limites para pesquisa
+
+- Sem acesso ao seu ambiente de trabalho (arquivos, código, terminal)
+- Sem memória entre sessões
+- Coletar dados, ajustar modelos, documentar decisões, comunicar achados: você coordena tudo manualmente
+
+---
+
+## O que é um agente de IA? 🤖
+
+> Em vez de responder a perguntas pontuais, o agente planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima.
+
+<br>
+
+| Chat | Agente |
+|------|--------|
+| Responde | Age |
+| Uma troca | Múltiplas etapas |
+| Você executa | Ele executa |
+
+---
+
+## O loop do agente 🔄
+
+```{mermaid}
+%%| fig-width: 7
+flowchart LR
+  A("👁️  Observa") --> B("🧠  Planeja")
+  B --> C("⚡  Age")
+  C --> A
+  style A fill:#2563eb,color:white,stroke:none
+  style B fill:#2563eb,color:white,stroke:none
+  style C fill:#2563eb,color:white,stroke:none
+  linkStyle default stroke:#94a3b8,stroke-width:2px
+```
+
+<br>
+
+**Ferramentas:** lê e escreve arquivos · executa código · chama APIs · navega na web
+
+---
+
+## Claude Code 🖥️
+
+- CLI que roda diretamente no terminal
+- Lê e escreve arquivos, executa código, acessa o `git` e o shell
+- Trata-se do caso mais desenvolvido de agente de IA para uso em pesquisa
+
+. . .
+
+> *"Em vez de responder a perguntas pontuais, ele planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima"*
+
+---
+
+# Claude Code na prática {background-color="#2563eb"}
+
+---
+
+## Primeiros passos
+
+**Mac / Linux**
+
+```bash
+npm install -g @anthropic-ai/claude-code
+claude
+```
+
+**Windows**
+
+Baixar o app em `claude.com/download` · instalar **Git for Windows** · abrir a aba **Code** no app
+
+---
+
+## Quanto custa? 💰
+
+| Plano | Preço | Para quem |
+|---|---|---|
+| **Pro** | US$ 20/mês | Uso individual (meu plano) |
+| **Max 5×** | US$ 100/mês | Uso intensivo |
+| **Max 20×** | US$ 200/mês | Uso muito intensivo |
+| **API** | Por token | Desenvolvedores |
+| **Team / Enterprise** | A partir de US$ 30/usuário | Organizações |
+
+. . .
+
+O plano Pro cobre bem a maior parte dos casos de uso em pesquisa acadêmica (pelo menos no meu caso, que não estou disposto a gastar mais 😄)
+
+---
+
+## CLAUDE.md: as regras do jogo 📋
+
+Arquivo de instruções persistentes, lido automaticamente a cada sessão
+
+<br>
+
+O que colocar:
+
+- Contexto do projeto e objetivos
+- Convenções e restrições analíticas
+- Decisões já tomadas (e por quê)
+
+. . .
+
+É a memória permanente do agente no projeto -- o que sobrevive ao `/clear`
+
+---
+
+## Skills: comandos customizados ⚡
+
+`/nome-da-skill` executa um *prompt* reutilizável, portável entre projetos
+
+```bash
+/voice           # reescreve texto no seu estilo
+/document-notes  # organiza anotações brutas
+/review          # revisa código ou argumento
+```
+
+. . .
+
+Na prática, é o mecanismo de ensinar o agente a executar tarefas no seu vocabulário e com suas convenções
+
+---
+
+## {background-color="#0f172a"}
+
+::: {.r-fit-text}
+Gerenciamento
+de contexto
+:::
+
+::: {style="color: #94a3b8; text-align: center; font-size: 0.7em; margin-top: 0.5em;"}
+O conceito mais importante da aula
+:::
+
+---
+
+## A janela de contexto 🧠
+
+Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
+
+<div style="display:flex; gap:1.4em; align-items:flex-end; justify-content:center; font-size:0.4em; margin-top:0.8em;">
+
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Início</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
+</div>
+</div>
+
+<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">→</div>
+
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Algumas trocas depois</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
+  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">💻 erro na linha 12</div>
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ corrija o erro</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [versão corrigida]</div>
+  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">📄 dados.csv</div>
+</div>
+</div>
+
+<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">→</div>
+
+<div style="flex:1; max-width:200px;">
+<div style="color:#f87171; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Muitas iterações depois</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
+  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">💻 erro na linha 12</div>
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ corrija o erro</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [versão corrigida]</div>
+  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">📄 dados.csv</div>
+  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ agora plote os dados</div>
+  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [mais código...]</div>
+  <div style="background:#7f1d1d; color:#fca5a5; border-radius:6px; padding:0.45em 0.9em; font-family:monospace; font-weight:bold;">⚠️ LIMITE DA JANELA</div>
+</div>
+</div>
+
+</div>
+
+---
+
+## Estratégias de gerenciamento 🎯
+
+| Estratégia | O que faz |
+|---|---|
+| `/clear` | Reinicia a sessão, preserva o CLAUDE.md |
+| Compaction automática | O Claude resume o contexto sozinho |
+| Sessões focadas | Uma tarefa por sessão |
+| **CLAUDE.md** | Memória que sobrevive ao `/clear` |
+
+. . .
+
+> Tarefas grandes = múltiplas sessões pequenas e focadas
+
+---
+
+# Quatro aplicações práticas {background-color="#2563eb"}
+
+---
+
+## As demos de hoje
+
+:::: {.columns}
+
+::: {.column width="50%"}
+🏛️ &nbsp;**Dados legislativos**
+API da Câmara dos Deputados
+
+<br>
+
+📚 &nbsp;**Documentação**
+Anotações de disciplinas
+:::
+
+::: {.column width="50%"}
+🖊️ &nbsp;**Skill de voz**
+Escreve como você
+
+<br>
+
+🌐 &nbsp;**Site pessoal**
+Do currículo ao deploy
+:::
+
+::::
+
+---
+
+## Demo 1: pesquisa legislativa aplicada 🏛️
+
+A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre o Legislativo federal.
+
+. . .
+
+Roteiro ao vivo:
+
+1. Coletar proposições em educação via API da Câmara dos Deputados
+2. *Embeddar* os textos (representação semântica vetorial)
+3. Produzir visualizações: clusters temáticos, distribuição temporal, temas latentes
+
+
+---
+
+## Demo 2: skill de "voice" 🖊️
+
+Você tem um estilo de escrita. O modelo pode aprendê-lo.
+
+<br>
+
+Como criar: (i) reunir *writing samples* seus (artigos, e-mails, textos); (ii) criar o arquivo de skill `/voice`
+
+<br>
+
+Uso: pedir ao Claude que revise ou reescreva textos no seu estilo
+
+---
+
+## Demo 3: documentando anotações 📚
+
+Skill criada para o meu próprio *workflow*
+
+<br>
+
+- Input: anotações brutas de disciplinas
+- Output: arquivos organizados em repositório público
+
+<br>
+
+O Claude Code lê, estrutura e faz o *commit*; você só anota
+
+---
+
+## Demo 4: site pessoal a partir do currículo 🌐
+
+- Input: currículo em PDF ou texto simples
+- Output: site HTML/CSS completo e responsivo
+- Publicável no GitHub Pages sem configuração manual
+
+---
+
+# Para além do workshop {background-color="#2563eb"}
+
+---
+
+## Recursos úteis 📖
+
+Documentação oficial: `claude.ai/code`
+
+<br>
+
+Seções recomendadas:
+
+- *How Claude Code uses memory*
+- *Claude Code hooks*
+- *Model Context Protocol (MCP)*
+
+---
+
+## Os limites da delegação ⚠️
+
+- O agente comete erros; a revisão é parte do *workflow*, não exceção
+- Sessões longas degradam qualidade -- à medida que o contexto enche, as respostas perdem coerência
+- Reprodutibilidade depende de documentar decisões analíticas, não apenas o código gerado
+- O uso de IA na pesquisa científica ainda está sendo estudado -- há literatura nova saindo com frequência
+
+. . .
+
+Você assina o trabalho. A responsabilidade sobre o que o agente faz é sua.
+
+---
+
+## Quando a supervisão é insubstituível 🔑
+
+- A interpretação substantiva dos achados
+- As decisões de design: o que medir, como operacionalizar, quais hipóteses testar
+- A validação: o agente sabe se o código roda; você verifica se o achado faz sentido
+- O controle da ferramenta: entender o que foi feito, passo a passo, antes de confiar no resultado
+
+
+---
+
+## Obrigado! {background-color="#1e293b"}
+
+<div style="display:flex; align-items:center; gap:3em; margin-top:0.8em;">
+
+<div style="flex:1;">
+<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">Felipe Lamarca</div>
+<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">IESP-UERJ · MAPE · DOXA · NECON</div>
+
+<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
+📧 &nbsp;felipe.lamarca@hotmail.com<br>
+🌐 &nbsp;felipelamarca.com
+</div>
+
+<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
+📂 &nbsp;github.com/felipelmc/Presentations
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+<div style="background:white; display:inline-block; padding:16px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
+<img src="linkedin-qr.png" style="width:280px; display:block;"/>
+</div>
+<div style="font-size:0.52em; color:#64748b; margin-top:0.8em; letter-spacing:0.04em;">🔗 LinkedIn</div>
+</div>
+
+</div>
