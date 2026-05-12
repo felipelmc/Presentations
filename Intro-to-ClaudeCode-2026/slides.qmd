@@ -200,10 +200,6 @@ Gerenciamento
 de contexto
 :::
 
-::: {style="color: #94a3b8; text-align: center; font-size: 0.7em; margin-top: 0.5em;"}
-O conceito mais importante da aula
-:::
-
 ---
 
 ## A janela de contexto 🧠
@@ -342,7 +338,7 @@ Skill criada para o meu próprio *workflow*
 
 <br>
 
-O Claude Code lê, estrutura e faz o *commit*; você só anota
+A skill `/document-notes` lê, estrutura e abre o PR; você só anota
 
 ---
 
@@ -351,6 +347,10 @@ O Claude Code lê, estrutura e faz o *commit*; você só anota
 - Input: currículo em PDF ou texto simples
 - Output: site HTML/CSS completo e responsivo
 - Publicável no GitHub Pages sem configuração manual
+
+. . .
+
+O mesmo raciocínio vale para páginas de projeto: o gap entre ter um artigo com código e ter uma página sobre ele é menor do que parece -- o Claude Code lê o repositório e produz o HTML.
 
 ---
 
@@ -381,7 +381,7 @@ Seções recomendadas:
 
 . . .
 
-Você assina o trabalho. A responsabilidade sobre o que o agente faz é sua.
+Em última instância, o pesquisador responde por tudo que assina -- inclusive pelo que o agente produziu.
 
 ---
 
