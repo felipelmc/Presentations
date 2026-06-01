@@ -46,11 +46,11 @@ lang: pt-BR
 
 <br>
 
-[02]{.agenda-num} &nbsp; **Claude Code na prática:** rules, skills e contexto
+[02]{.agenda-num} &nbsp; **Claude Code na prática:** CLAUDE.md, skills e contexto
 
 <br>
 
-[03]{.agenda-num} &nbsp; **Quatro aplicações:** demos ao vivo
+[03]{.agenda-num} &nbsp; **Três aplicações:** demos ao vivo
 
 <br>
 
@@ -74,7 +74,7 @@ lang: pt-BR
 
 - Sem acesso ao seu ambiente de trabalho (arquivos, código, terminal)
 - Sem memória entre sessões
-- Coletar dados, ajustar modelos, documentar decisões, comunicar achados: você coordena tudo manualmente
+- Cada etapa do ciclo de pesquisa -- coleta, análise, documentação, comunicação -- exige sua coordenação manual
 
 ---
 
@@ -92,23 +92,29 @@ lang: pt-BR
 
 ---
 
-## O loop do agente 🔄
+## Anatomia de um agente 🔬
 
 ```{mermaid}
-%%| fig-width: 7
+%%| fig-width: 9
 flowchart LR
-  A("👁️  Observa") --> B("🧠  Planeja")
-  B --> C("⚡  Age")
-  C --> A
-  style A fill:#2563eb,color:white,stroke:none
-  style B fill:#2563eb,color:white,stroke:none
-  style C fill:#2563eb,color:white,stroke:none
-  linkStyle default stroke:#94a3b8,stroke-width:2px
+  H(["👤  Pesquisador"]) -->|instrução| L(["🧠  LLM"])
+  M(["💾  Memória"]) <--> L
+  L --> T(["🛠️  Ferramentas"])
+  T -->|executa| E(["🌍  Ambiente"])
+  E -->|"resultado / erro"| L
+
+  style H fill:#475569,color:white,stroke:none
+  style L fill:#2563eb,color:white,stroke:none
+  style M fill:#1e293b,color:#94a3b8,stroke:#475569
+  style T fill:#1e293b,color:#94a3b8,stroke:#475569
+  style E fill:#475569,color:white,stroke:none
+  linkStyle default stroke:#64748b,stroke-width:2px
 ```
 
-<br>
-
-**Ferramentas:** lê e escreve arquivos · executa código · chama APIs · navega na web
+<div style="display:flex; justify-content:center; gap:2.5em; font-size:0.52em; color:#64748b; margin-top:0.4em;">
+<span>💾 contexto da sessão + CLAUDE.md</span>
+<span>🛠️ terminal · arquivos · APIs · web</span>
+</div>
 
 ---
 
@@ -120,7 +126,7 @@ flowchart LR
 
 . . .
 
-> *"Em vez de responder a perguntas pontuais, ele planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima"*
+> Roda o script, encontra o erro, corrige e re-executa -- sem você abrir o terminal.
 
 ---
 
@@ -155,7 +161,7 @@ Baixar o app em `claude.com/download` · instalar **Git for Windows** · abrir a
 
 . . .
 
-O plano Pro cobre bem a maior parte dos casos de uso em pesquisa acadêmica (pelo menos no meu caso, que não estou disposto a gastar mais 😄)
+O plano Pro tem limites de uso, mas permite um bom aproveitamento para pesquisa acadêmica
 
 ---
 
@@ -266,7 +272,7 @@ Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
 ---
 
-# Quatro aplicações práticas {background-color="#2563eb"}
+# Três aplicações práticas {background-color="#2563eb"}
 
 ---
 
@@ -274,22 +280,17 @@ Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
 :::: {.columns}
 
-::: {.column width="50%"}
-🏛️ &nbsp;**Dados legislativos**
-API da Câmara dos Deputados
-
-<br>
-
-📚 &nbsp;**Documentação**
-Anotações de disciplinas
+::: {.column width="33%"}
+🗳️ &nbsp;**Dados eleitorais**
+Análise e modelagem
 :::
 
-::: {.column width="50%"}
+::: {.column width="33%"}
 🖊️ &nbsp;**Skill de voz**
 Escreve como você
+:::
 
-<br>
-
+::: {.column width="33%"}
 🌐 &nbsp;**Site pessoal**
 Do currículo ao deploy
 :::
@@ -298,17 +299,17 @@ Do currículo ao deploy
 
 ---
 
-## Demo 1: pesquisa legislativa aplicada 🏛️
+## Demo 1: análise de dados eleitorais 🗳️
 
-A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre o Legislativo federal.
+A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre eleições.
 
 . . .
 
 Roteiro ao vivo:
 
-1. Coletar proposições em educação via API da Câmara dos Deputados
-2. *Embeddar* os textos (representação semântica vetorial)
-3. Produzir visualizações: clusters temáticos, distribuição temporal, temas latentes
+1. Carregar e explorar dados eleitorais do TSE
+2. Análise exploratória: distribuições, padrões regionais, visualizações
+3. Ajustar modelos de regressão e interpretar os coeficientes
 
 
 ---
@@ -327,22 +328,7 @@ Uso: pedir ao Claude que revise ou reescreva textos no seu estilo
 
 ---
 
-## Demo 3: documentando anotações 📚
-
-Skill criada para o meu próprio *workflow*
-
-<br>
-
-- Input: anotações brutas de disciplinas
-- Output: arquivos organizados em repositório público
-
-<br>
-
-A skill `/document-notes` lê, estrutura e abre o PR; você só anota
-
----
-
-## Demo 4: site pessoal a partir do currículo 🌐
+## Demo 3: site pessoal a partir do currículo 🌐
 
 - Input: currículo em PDF ou texto simples
 - Output: site HTML/CSS completo e responsivo
@@ -358,6 +344,51 @@ O mesmo raciocínio vale para páginas de projeto: o gap entre ter um artigo com
 
 ---
 
+## Problemas parcialmente contornáveis 🔧
+
+| Problema | Mitigação |
+|---|---|
+| Erros e alucinações | Revisão sistemática; agentes paralelos para verificação cruzada |
+| Degradação do contexto | Sessões focadas por tarefa; compactação automática |
+| Deriva de escopo | CLAUDE.md com restrições analíticas explícitas |
+| Reprodutibilidade | Documentar decisões, não apenas o código gerado |
+
+---
+
+## Problemas incontornáveis ⚠️
+
+- A interpretação substantiva dos achados é do pesquisador
+- As decisões de *design*: o que medir, como operacionalizar, quais hipóteses testar
+- A validação: o agente sabe se o código roda; você verifica se o achado faz sentido
+- O uso de IA na pesquisa ainda está sendo estudado -- há literatura nova saindo com frequência
+
+. . .
+
+Em última instância, o pesquisador responde por tudo que assina -- inclusive pelo que o agente produziu.
+
+---
+
+## Bônus: `/insights` 📊
+
+Skill que analisa o histórico de sessões e gera um relatório personalizado de uso
+
+<br>
+
+. . .
+
+O que o relatório traz:
+
+- Áreas de projeto e padrão de interação
+- O que está funcionando -- e o que gera atrito
+- Sugestões de adições ao `CLAUDE.md` e de skills a criar
+- Workflows mais ambiciosos a explorar
+
+. . .
+
+> *"Claude confidently blamed an 'expired' Gemini API key — the real culprit was just a wrong model name"*
+
+---
+
 ## Recursos úteis 📖
 
 Documentação oficial: `claude.ai/code`
@@ -369,29 +400,6 @@ Seções recomendadas:
 - *How Claude Code uses memory*
 - *Claude Code hooks*
 - *Model Context Protocol (MCP)*
-
----
-
-## Os limites da delegação ⚠️
-
-- O agente comete erros; a revisão é parte do *workflow*, não exceção
-- Sessões longas degradam qualidade -- à medida que o contexto enche, as respostas perdem coerência
-- Reprodutibilidade depende de documentar decisões analíticas, não apenas o código gerado
-- O uso de IA na pesquisa científica ainda está sendo estudado -- há literatura nova saindo com frequência
-
-. . .
-
-Em última instância, o pesquisador responde por tudo que assina -- inclusive pelo que o agente produziu.
-
----
-
-## Quando a supervisão é insubstituível 🔑
-
-- A interpretação substantiva dos achados
-- As decisões de design: o que medir, como operacionalizar, quais hipóteses testar
-- A validação: o agente sabe se o código roda; você verifica se o achado faz sentido
-- O controle da ferramenta: entender o que foi feito, passo a passo, antes de confiar no resultado
-
 
 ---
 

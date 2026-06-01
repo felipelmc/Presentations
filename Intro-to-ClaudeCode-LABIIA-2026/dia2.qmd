@@ -1,0 +1,407 @@
+---
+title: "Agentes de IA para pesquisa em ciências sociais"
+subtitle: "Dia 2 — Claude Code na pesquisa"
+author: "Felipe Lamarca"
+institute: "IESP-UERJ · MAPE · DOXA · NECON"
+date: 2026-06-03
+date-format: "D [de] MMMM [de] YYYY"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    progress: true
+    transition: slide
+    code-block-bg: true
+    highlight-style: github
+    footer: "LABIIA Lab · Felipe Lamarca"
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var title = document.querySelector('#title-slide');
+          if (title) {
+            var badge = document.createElement('div');
+            badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
+            badge.innerHTML = '<img src="logo-labiia.png" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
+            title.insertBefore(badge, title.firstChild);
+
+            var el = document.createElement('div');
+            el.style.cssText = 'font-size:0.45em; color:#94a3b8; margin-top:1.2em; font-style:italic;';
+            el.innerHTML = 'Feito com Claude Code 😉';
+            title.appendChild(el);
+          }
+        });
+        </script>
+lang: pt-BR
+---
+
+## {background-color="#1e293b"}
+
+<br>
+
+[01]{.agenda-num} &nbsp; **Recap + CLAUDE.md na prática**
+
+<br>
+
+[02]{.agenda-num} &nbsp; **Skills customizadas**
+
+<br>
+
+[03]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
+
+<br>
+
+[04]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
+
+---
+
+# Recap + CLAUDE.md na prática {background-color="#2563eb"}
+
+---
+
+## O que vimos no Dia 1
+
+- Claude Code é um agente que age no seu ambiente: lê arquivos, executa código, acessa o git
+- Instalação via npm ou app desktop; integra ao VSCode, Positron e terminal
+- **CLAUDE.md** é a memória permanente do agente — contexto, convenções, decisões
+
+. . .
+
+> Hoje vamos usar tudo isso para pesquisa de verdade
+
+---
+
+## CLAUDE.md avançado
+
+Além de convenções técnicas, documente as **decisões analíticas** do projeto:
+
+```markdown
+## Decisões de design da pesquisa
+- Hipótese principal: deputados de partidos menores
+  gastam proporcionalmente mais em passagens aéreas
+- Variável dependente: gasto per capita por categoria
+- Período de análise: 2019–2023 (legislatura completa)
+- Excluímos deputados com menos de 6 meses de mandato
+```
+
+. . .
+
+Isso evita que o agente tome atalhos que contradizem suas escolhas metodológicas
+
+---
+
+## Boas práticas de sessão
+
+| Prática | Por quê |
+|---|---|
+| Uma tarefa por sessão | Contexto focado, menos deriva |
+| Começar com `/clear` | Sessão limpa, CLAUDE.md recarregado |
+| Revisar antes de salvar | O agente executa; você valida |
+| Documentar decisões no CLAUDE.md | Persistência entre sessões |
+
+. . .
+
+> Não delegue a interpretação — só a execução
+
+---
+
+# Skills customizadas {background-color="#2563eb"}
+
+---
+
+## O que são skills ⚡
+
+Arquivos de prompt reutilizáveis, invocados com `/nome-da-skill`
+
+```
+.claude/
+└── commands/
+    ├── voice.md
+    ├── summarize.md
+    └── review.md
+```
+
+. . .
+
+- Portáveis entre projetos
+- Encapsulam o seu vocabulário e as suas convenções
+- Funcionam como atalhos para tarefas recorrentes
+
+---
+
+## Como criar uma skill
+
+Criar o arquivo `.claude/commands/summarize.md`:
+
+```markdown
+Você vai receber um texto acadêmico em português.
+Produza um resumo estruturado com:
+1. Pergunta de pesquisa (1 frase)
+2. Método principal (1 frase)
+3. Resultado central (2 frases)
+4. Limitações reconhecidas pelos autores (bullet points)
+
+Escreva de forma direta, sem jargão desnecessário.
+```
+
+. . .
+
+Uso: `/summarize` — cole o abstract ou o artigo inteiro
+
+---
+
+## Skills úteis para pesquisa
+
+```bash
+/voice        # reescreve texto no seu estilo de escrita
+/summarize    # resume artigos acadêmicos
+/review       # revisa argumento ou código
+/lit-map      # extrai conceitos e autores-chave de um texto
+```
+
+. . .
+
+Na prática, é o mecanismo de **ensinar o agente a trabalhar no seu vocabulário**
+
+---
+
+## Demo rápida: criando uma skill ao vivo 🎬
+
+Vamos criar juntos a skill `/summarize` e testá-la num abstract real
+
+. . .
+
+1. Criar `.claude/commands/summarize.md` com as instruções
+2. Invocar `/summarize` com um artigo da área
+3. Ajustar as instruções ao vivo
+
+---
+
+# Demo 1: análise da Cota Parlamentar {background-color="#2563eb"}
+
+---
+
+## O que é a Cota Parlamentar? 🏛️
+
+A **CEAP** (Cota para o Exercício da Atividade Parlamentar) é a verba de gabinete dos deputados federais
+
+- Cada deputado recebe até **~R$ 45 mil/mês** para despesas do mandato
+- Categorias: passagens aéreas, alimentação, hospedagem, combustível, consultorias...
+- **Todos os gastos são públicos** — Portal da Câmara disponibiliza os dados
+
+. . .
+
+Em 2023: mais de **R$ 220 milhões** em gastos totais
+
+---
+
+## Por que interessa ao LABIIA? 🔍
+
+Em 2016, a equipe do projeto **Serenata de Amor** usou machine learning para detectar gastos suspeitos nesse mesmo dataset
+
+. . .
+
+> A Rosie — a IA do projeto — identificou automaticamente reembolsos para restaurantes fechados, gastos acima do limite e outras irregularidades
+
+. . .
+
+É um caso real de IA para **transparência, accountability e dados abertos** — exatamente o escopo do LABIIA
+
+---
+
+## Como baixar os dados 📥
+
+Acesso direto no Portal da Câmara:
+
+```
+https://dadosabertos.camara.leg.br/swagger/api.html
+```
+
+Ou baixar o CSV diretamente:
+
+```python
+import pandas as pd
+
+url = "https://www.camara.leg.br/cotas/Ano-2023.csv.zip"
+df = pd.read_csv(url, sep=";", encoding="latin-1", compression="zip")
+df.head()
+```
+
+. . .
+
+Sem autenticação, sem cadastro — **dados abertos de verdade**
+
+---
+
+## Roteiro da demo ao vivo 🎬
+
+Com o Claude Code + dataset CEAP 2023:
+
+1. Carregar e inspecionar os dados
+2. Análise exploratória: distribuição de gastos, categorias mais comuns
+3. Gastos por partido e por estado — padrões regionais
+4. Identificar os maiores gastadores e as categorias mais polêmicas
+5. Visualizações prontas para comunicar os achados
+
+. . .
+
+> Vocês acompanham no próprio computador — o CLAUDE.md do projeto vai estar no repositório
+
+---
+
+# Demo 2: API da Câmara dos Deputados {background-color="#2563eb"}
+
+---
+
+## APIs de dados abertos no Brasil 🇧🇷
+
+| API | O que oferece |
+|---|---|
+| **Câmara dos Deputados** | Deputados, votações, proposições, despesas |
+| **Portal da Transparência** | Gastos do governo federal, contratos, servidores |
+| **IBGE** | PNAD, censo, indicadores socioeconômicos |
+| **TSE** | Resultados eleitorais, candidatos, financiamento |
+
+. . .
+
+Todas gratuitas, sem autenticação obrigatória, com documentação pública
+
+---
+
+## API da Câmara dos Deputados
+
+Base URL: `https://dadosabertos.camara.leg.br/api/v2`
+
+```python
+import requests
+
+# Listar deputados da legislatura atual
+resp = requests.get(
+    "https://dadosabertos.camara.leg.br/api/v2/deputados",
+    params={"idLegislatura": 57, "ordem": "ASC", "ordenarPor": "nome"}
+)
+deputados = resp.json()["dados"]
+```
+
+. . .
+
+Retorna JSON bem estruturado — fácil de transformar em DataFrame com `pd.json_normalize()`
+
+---
+
+## Endpoints úteis
+
+| Endpoint | O que traz |
+|---|---|
+| `/deputados` | Lista com partido, estado, foto |
+| `/deputados/{id}/despesas` | Gastos individuais (mesmo que o CEAP) |
+| `/votacoes` | Votações nominais na Câmara |
+| `/votacoes/{id}/votos` | Como cada deputado votou |
+| `/proposicoes` | PL, PEC, MP e outros |
+
+---
+
+## Roteiro da demo ao vivo 🎬
+
+Conectando a API com o que já analisamos no CEAP:
+
+1. Buscar a lista completa de deputados via API
+2. Enriquecer o dataset CEAP com informações de partido e estado
+3. Cruzar padrão de gastos com padrão de votação
+4. Gerar visualização integrada
+
+. . .
+
+> O agente escreve o código de coleta, tratamento e análise — você orienta o que quer descobrir
+
+---
+
+# Limites e ética {background-color="#2563eb"}
+
+---
+
+## Problemas parcialmente contornáveis 🔧
+
+| Problema | Mitigação |
+|---|---|
+| Erros e alucinações | Revisão sistemática do output; rodar o código antes de confiar |
+| Degradação do contexto | Sessões focadas por tarefa; CLAUDE.md com decisões-chave |
+| Deriva de escopo | Instruções explícitas; revisão incremental |
+| Reprodutibilidade | Documentar decisões — não só o código gerado |
+
+---
+
+## O que não delegar ⚠️
+
+- A **interpretação substantiva** dos achados é do pesquisador
+- As **decisões de design**: o que medir, como operacionalizar, quais hipóteses testar
+- A **validação**: o agente sabe se o código roda; você verifica se o achado faz sentido
+- A **responsabilidade autoral**: o pesquisador assina — inclusive pelo que o agente produziu
+
+. . .
+
+> O Claude Code é um acelerador, não um substituto do raciocínio científico
+
+---
+
+## Reprodutibilidade na pesquisa com IA
+
+O código gerado pelo agente roda — mas o código sozinho não documenta **por que** você fez cada escolha
+
+. . .
+
+Boas práticas:
+
+- Registrar no CLAUDE.md as decisões analíticas e suas justificativas
+- Comentar no código as escolhas não óbvias
+- Tratar o repositório como um diário de pesquisa, não só como um arquivo de scripts
+
+---
+
+# Para além do workshop {background-color="#2563eb"}
+
+---
+
+## Recursos úteis 📖
+
+Documentação oficial: **claude.ai/code**
+
+<br>
+
+Seções recomendadas:
+
+- *How Claude Code uses memory* — entender o CLAUDE.md em profundidade
+- *Claude Code hooks* — automatizar ações recorrentes
+- *Model Context Protocol (MCP)* — conectar a APIs e fontes externas
+
+---
+
+## Obrigado! {background-color="#1e293b"}
+
+<div style="display:flex; align-items:center; gap:3em; margin-top:0.8em;">
+
+<div style="flex:1;">
+<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">Felipe Lamarca</div>
+<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">IESP-UERJ · MAPE · DOXA · NECON</div>
+
+<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
+📧 &nbsp;felipe.lamarca@hotmail.com<br>
+🌐 &nbsp;felipelamarca.com
+</div>
+
+<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
+📂 &nbsp;github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-LABIIA-2026
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+<div style="background:white; display:inline-block; padding:16px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
+<img src="linkedin-qr.png" style="width:280px; display:block;"/>
+</div>
+<div style="font-size:0.52em; color:#64748b; margin-top:0.8em; letter-spacing:0.04em;">🔗 LinkedIn</div>
+</div>
+
+</div>

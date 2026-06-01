@@ -12,4 +12,6 @@ This repository contains the presentations I have given.
 
 [2025-11-12] _Deep Learning e Text-as-Data_. 10ª Semana Discente dos Programas de Pós-Graduação do IESP-UERJ. Minicurso. [[files]](Minicurso-DL-Jornada-Discente-IESP-2025)
 
-[2026-05-13] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. Workshop CERES 2026.1, IESP-UERJ. [[files]](Intro-to-ClaudeCode-2026/)
+[2026-05-13] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. Workshop CERES 2026.1, IESP-UERJ. [[files]](Intro-to-ClaudeCode-CERES-2026/)
+
+[2026-06-02] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. LABIIA Lab (curso de 2 dias). [[files]](Intro-to-ClaudeCode-LABIIA-2026/)

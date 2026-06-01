@@ -239,9 +239,9 @@ Felipe Lamarca
 <p><br></p>
 <p><span class="agenda-num">01</span> &nbsp; <strong>Do chat ao agente:</strong> o que muda na prática</p>
 <p><br></p>
-<p><span class="agenda-num">02</span> &nbsp; <strong>Claude Code na prática:</strong> rules, skills e contexto</p>
+<p><span class="agenda-num">02</span> &nbsp; <strong>Claude Code na prática:</strong> CLAUDE.md, skills e contexto</p>
 <p><br></p>
-<p><span class="agenda-num">03</span> &nbsp; <strong>Quatro aplicações:</strong> demos ao vivo</p>
+<p><span class="agenda-num">03</span> &nbsp; <strong>Três aplicações:</strong> demos ao vivo</p>
 <p><br></p>
 <p><span class="agenda-num">04</span> &nbsp; <strong>Limites e recursos:</strong> o que não delegar</p>
 </section>
@@ -266,7 +266,7 @@ Felipe Lamarca
 <ul>
 <li>Sem acesso ao seu ambiente de trabalho (arquivos, código, terminal)</li>
 <li>Sem memória entre sessões</li>
-<li>Coletar dados, ajustar modelos, documentar decisões, comunicar achados: você coordena tudo manualmente</li>
+<li>Cada etapa do ciclo de pesquisa – coleta, análise, documentação, comunicação – exige sua coordenação manual</li>
 </ul>
 </section>
 <section id="o-que-é-um-agente-de-ia" class="slide level2">
@@ -298,29 +298,35 @@ Felipe Lamarca
 </tbody>
 </table>
 </section>
-<section id="o-loop-do-agente" class="slide level2">
-<h2>O loop do agente 🔄</h2>
-<div class="cell" data-reveal="true" data-fig-width="7" data-layout-align="default">
+<section id="anatomia-de-um-agente" class="slide level2">
+<h2>Anatomia de um agente 🔬</h2>
+<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  A("👁️  Observa") --&gt; B("🧠  Planeja")
-  B --&gt; C("⚡  Age")
-  C --&gt; A
-  style A fill:#2563eb,color:white,stroke:none
-  style B fill:#2563eb,color:white,stroke:none
-  style C fill:#2563eb,color:white,stroke:none
-  linkStyle default stroke:#94a3b8,stroke-width:2px
+  H(["👤  Pesquisador"]) --&gt;|instrução| L(["🧠  LLM"])
+  M(["💾  Memória"]) &lt;--&gt; L
+  L --&gt; T(["🛠️  Ferramentas"])
+  T --&gt;|executa| E(["🌍  Ambiente"])
+  E --&gt;|"resultado / erro"| L
+
+  style H fill:#475569,color:white,stroke:none
+  style L fill:#2563eb,color:white,stroke:none
+  style M fill:#1e293b,color:#94a3b8,stroke:#475569
+  style T fill:#1e293b,color:#94a3b8,stroke:#475569
+  style E fill:#475569,color:white,stroke:none
+  linkStyle default stroke:#64748b,stroke-width:2px
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p><br></p>
-<p><strong>Ferramentas:</strong> lê e escreve arquivos · executa código · chama APIs · navega na web</p>
+<div style="display:flex; justify-content:center; gap:2.5em; font-size:0.52em; color:#64748b; margin-top:0.4em;">
+<p><span>💾 contexto da sessão + CLAUDE.md</span> <span>🛠️ terminal · arquivos · APIs · web</span></p>
+</div>
 </section>
 <section id="claude-code" class="slide level2">
 <h2>Claude Code 🖥️</h2>
@@ -331,7 +337,7 @@ Felipe Lamarca
 </ul>
 <div class="fragment">
 <blockquote>
-<p><em>“Em vez de responder a perguntas pontuais, ele planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima”</em></p>
+<p>Roda o script, encontra o erro, corrige e re-executa – sem você abrir o terminal.</p>
 </blockquote>
 </div>
 </section>
@@ -390,7 +396,7 @@ Felipe Lamarca
 </tbody>
 </table>
 <div class="fragment">
-<p>O plano Pro cobre bem a maior parte dos casos de uso em pesquisa acadêmica (pelo menos no meu caso, que não estou disposto a gastar mais 😄)</p>
+<p>O plano Pro tem limites de uso, mas permite um bom aproveitamento para pesquisa acadêmica</p>
 </div>
 </section>
 <section id="claude.md-as-regras-do-jogo" class="slide level2">
@@ -545,32 +551,30 @@ Muitas iterações depois
 
 </section></section>
 <section>
-<section id="quatro-aplicações-práticas" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>Quatro aplicações práticas</h1>
+<section id="três-aplicações-práticas" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Três aplicações práticas</h1>
 
 </section>
 <section id="as-demos-de-hoje" class="slide level2">
 <h2>As demos de hoje</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<p>🏛️ &nbsp;<strong>Dados legislativos</strong> API da Câmara dos Deputados</p>
-<p><br></p>
-<p>📚 &nbsp;<strong>Documentação</strong> Anotações de disciplinas</p>
-</div><div class="column" style="width:50%;">
+<div class="column" style="width:33%;">
+<p>🗳️ &nbsp;<strong>Dados eleitorais</strong> Análise e modelagem</p>
+</div><div class="column" style="width:33%;">
 <p>🖊️ &nbsp;<strong>Skill de voz</strong> Escreve como você</p>
-<p><br></p>
+</div><div class="column" style="width:33%;">
 <p>🌐 &nbsp;<strong>Site pessoal</strong> Do currículo ao deploy</p>
 </div></div>
 </section>
-<section id="demo-1-pesquisa-legislativa-aplicada" class="slide level2">
-<h2>Demo 1: pesquisa legislativa aplicada 🏛️</h2>
-<p>A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre o Legislativo federal.</p>
+<section id="demo-1-análise-de-dados-eleitorais" class="slide level2">
+<h2>Demo 1: análise de dados eleitorais 🗳️</h2>
+<p>A ideia é simples: usar o agente para construir, do zero, um protótipo de pesquisa empírica sobre eleições.</p>
 <div class="fragment">
 <p>Roteiro ao vivo:</p>
 <ol type="1">
-<li>Coletar proposições em educação via API da Câmara dos Deputados</li>
-<li><em>Embeddar</em> os textos (representação semântica vetorial)</li>
-<li>Produzir visualizações: clusters temáticos, distribuição temporal, temas latentes</li>
+<li>Carregar e explorar dados eleitorais do TSE</li>
+<li>Análise exploratória: distribuições, padrões regionais, visualizações</li>
+<li>Ajustar modelos de regressão e interpretar os coeficientes</li>
 </ol>
 </div>
 </section>
@@ -582,19 +586,8 @@ Muitas iterações depois
 <p><br></p>
 <p>Uso: pedir ao Claude que revise ou reescreva textos no seu estilo</p>
 </section>
-<section id="demo-3-documentando-anotações" class="slide level2">
-<h2>Demo 3: documentando anotações 📚</h2>
-<p>Skill criada para o meu próprio <em>workflow</em></p>
-<p><br></p>
-<ul>
-<li>Input: anotações brutas de disciplinas</li>
-<li>Output: arquivos organizados em repositório público</li>
-</ul>
-<p><br></p>
-<p>A skill <code>/document-notes</code> lê, estrutura e abre o PR; você só anota</p>
-</section>
-<section id="demo-4-site-pessoal-a-partir-do-currículo" class="slide level2">
-<h2>Demo 4: site pessoal a partir do currículo 🌐</h2>
+<section id="demo-3-site-pessoal-a-partir-do-currículo" class="slide level2">
+<h2>Demo 3: site pessoal a partir do currículo 🌐</h2>
 <ul>
 <li>Input: currículo em PDF ou texto simples</li>
 <li>Output: site HTML/CSS completo e responsivo</li>
@@ -612,6 +605,70 @@ Muitas iterações depois
 <h1>Para além do workshop</h1>
 
 </section>
+<section id="problemas-parcialmente-contornáveis" class="slide level2">
+<h2>Problemas parcialmente contornáveis 🔧</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problema</th>
+<th>Mitigação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Erros e alucinações</td>
+<td>Revisão sistemática; agentes paralelos para verificação cruzada</td>
+</tr>
+<tr class="even">
+<td>Degradação do contexto</td>
+<td>Sessões focadas por tarefa; compactação automática</td>
+</tr>
+<tr class="odd">
+<td>Deriva de escopo</td>
+<td>CLAUDE.md com restrições analíticas explícitas</td>
+</tr>
+<tr class="even">
+<td>Reprodutibilidade</td>
+<td>Documentar decisões, não apenas o código gerado</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="problemas-incontornáveis" class="slide level2">
+<h2>Problemas incontornáveis ⚠️</h2>
+<ul>
+<li>A interpretação substantiva dos achados é do pesquisador</li>
+<li>As decisões de <em>design</em>: o que medir, como operacionalizar, quais hipóteses testar</li>
+<li>A validação: o agente sabe se o código roda; você verifica se o achado faz sentido</li>
+<li>O uso de IA na pesquisa ainda está sendo estudado – há literatura nova saindo com frequência</li>
+</ul>
+<div class="fragment">
+<p>Em última instância, o pesquisador responde por tudo que assina – inclusive pelo que o agente produziu.</p>
+</div>
+</section>
+<section id="bônus-insights" class="slide level2">
+<h2>Bônus: <code>/insights</code> 📊</h2>
+<p>Skill que analisa o histórico de sessões e gera um relatório personalizado de uso</p>
+<p><br></p>
+<div class="fragment">
+<p>O que o relatório traz:</p>
+<ul>
+<li>Áreas de projeto e padrão de interação</li>
+<li>O que está funcionando – e o que gera atrito</li>
+<li>Sugestões de adições ao <code>CLAUDE.md</code> e de skills a criar</li>
+<li>Workflows mais ambiciosos a explorar</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p><em>“Claude confidently blamed an ‘expired’ Gemini API key — the real culprit was just a wrong model name”</em></p>
+</blockquote>
+</div>
+</section>
 <section id="recursos-úteis" class="slide level2">
 <h2>Recursos úteis 📖</h2>
 <p>Documentação oficial: <code>claude.ai/code</code></p>
@@ -621,27 +678,6 @@ Muitas iterações depois
 <li><em>How Claude Code uses memory</em></li>
 <li><em>Claude Code hooks</em></li>
 <li><em>Model Context Protocol (MCP)</em></li>
-</ul>
-</section>
-<section id="os-limites-da-delegação" class="slide level2">
-<h2>Os limites da delegação ⚠️</h2>
-<ul>
-<li>O agente comete erros; a revisão é parte do <em>workflow</em>, não exceção</li>
-<li>Sessões longas degradam qualidade – à medida que o contexto enche, as respostas perdem coerência</li>
-<li>Reprodutibilidade depende de documentar decisões analíticas, não apenas o código gerado</li>
-<li>O uso de IA na pesquisa científica ainda está sendo estudado – há literatura nova saindo com frequência</li>
-</ul>
-<div class="fragment">
-<p>Em última instância, o pesquisador responde por tudo que assina – inclusive pelo que o agente produziu.</p>
-</div>
-</section>
-<section id="quando-a-supervisão-é-insubstituível" class="slide level2">
-<h2>Quando a supervisão é insubstituível 🔑</h2>
-<ul>
-<li>A interpretação substantiva dos achados</li>
-<li>As decisões de design: o que medir, como operacionalizar, quais hipóteses testar</li>
-<li>A validação: o agente sabe se o código roda; você verifica se o achado faz sentido</li>
-<li>O controle da ferramenta: entender o que foi feito, passo a passo, antes de confiar no resultado</li>
 </ul>
 </section>
 <section id="obrigado" class="slide level2" data-background-color="#1e293b">
