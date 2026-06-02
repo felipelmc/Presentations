@@ -1,6 +1,6 @@
 ---
 title: "Agentes de IA para pesquisa em ciências sociais"
-subtitle: "Dia 1 — do zero ao agente"
+subtitle: "Dia 1"
 author: "Felipe Lamarca"
 institute: "IESP-UERJ · MAPE · DOXA · NECON"
 date: 2026-06-02
@@ -25,7 +25,7 @@ format:
           if (title) {
             var badge = document.createElement('div');
             badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
-            badge.innerHTML = '<img src="logo-labiia.png" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
+            badge.innerHTML = '<img src="logo-labiia.png" style="height:1.8em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
             title.insertBefore(badge, title.firstChild);
 
             var el = document.createElement('div');
@@ -42,7 +42,7 @@ lang: pt-BR
 
 <br>
 
-[01]{.agenda-num} &nbsp; **O que é Claude Code:** do chat ao agente
+[01]{.agenda-num} &nbsp; **Chats e agentes**
 
 <br>
 
@@ -58,11 +58,11 @@ lang: pt-BR
 
 <br>
 
-[05]{.agenda-num} &nbsp; **Demo:** do currículo ao site pessoal
+[05]{.agenda-num} &nbsp; **Sites de projeto e sites pessoais**
 
 ---
 
-# O que é Claude Code {background-color="#2563eb"}
+# Chats e agentes {background-color="#2563eb"}
 
 ---
 
@@ -151,10 +151,7 @@ Meu plano é o Pro — mais ou menos suficiente para uso intensivo. Quando tenho
 
 ## Acompanhando o gasto 📊
 
-<!-- Screenshot: adicionar arquivo screenshot-gasto.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do dashboard de uso</em>
-</div>
+<img src="dia1_prints/acompanhamento_uso.png" style="margin-top:0.6em; max-height:380px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
 
 . . .
 
@@ -268,6 +265,9 @@ Baixar em **claude.com/download** → instalar o app → abrir a aba **Code**
 
 ## Verificando que funcionou ✅
 
+:::: {.columns style="align-items:center;"}
+
+::: {.column width="55%"}
 ```bash
 claude --version
 ```
@@ -281,13 +281,16 @@ claude   # abre o REPL interativo
 Na primeira sessão, experimente:
 
 ```
-> olá! qual é o seu nome e o que você consegue fazer aqui?
+> olá! qual é o seu nome e
+  o que você consegue fazer aqui?
 ```
+:::
 
-<!-- Screenshot: adicionar arquivo screenshot-primeiro-uso.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot da primeira conversa no terminal</em>
-</div>
+::: {.column width="45%"}
+<img src="dia1_prints/claudecode_primeira_conversa.png" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
+:::
+
+::::
 
 ---
 
@@ -304,11 +307,7 @@ cd meu-projeto/
 claude
 ```
 
-. . .
-
-- Sem instalação extra além do CLI
-- Ideal para tarefas longas ou quando você não precisa de uma IDE aberta
-- O agente tem acesso a todos os arquivos do diretório atual
+<img src="dia1_prints/claudecode_terminal.png" style="margin-top:0.4em; max-height:320px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
 
 ---
 
@@ -318,37 +317,18 @@ claude
 2. Buscar **"Claude Code"** e instalar
 3. Ícone aparece na barra lateral
 
-. . .
-
-Atalhos principais:
-
-| Ação | Mac | Windows |
-|------|-----|---------|
-| Abrir/fechar painel | `Cmd+Esc` | `Ctrl+Esc` |
-| Nova conversa | `/clear` | `/clear` |
-
-<!-- Screenshot: adicionar arquivo screenshot-vscode.png -->
-<div style="margin-top:0.4em; background:#f1f5f9; border-radius:10px; padding:0.8em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do painel Claude Code no VSCode</em>
-</div>
+<img src="dia1_prints/claudecode_no_vscode.png" style="margin-top:0.5em; max-height:360px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
 
 ---
 
 ## Positron 🟣
 
-Para quem usa **R** — o Positron é baseado no VSCode, então o mecanismo é o mesmo
+Para quem usa **R** — baseado no VSCode, o mecanismo é o mesmo
 
-1. Instalar a extensão **"Claude Code"** (mesma do VSCode)
+1. Instalar a extensão **"Claude Code"**
 2. Abrir o painel lateral
 
-. . .
-
-O agente enxerga os arquivos abertos no workspace — útil para scripts `.R`, notebooks e projetos Quarto
-
-<!-- Screenshot: adicionar arquivo screenshot-positron.png -->
-<div style="margin-top:0.4em; background:#f1f5f9; border-radius:10px; padding:0.8em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do Positron com Claude Code integrado</em>
-</div>
+<img src="dia1_prints/claudecode_no_positron.png" style="margin-top:0.5em; max-height:360px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
 
 ---
 
@@ -367,30 +347,6 @@ Com o Claude Code instalado e integrado ao VSCode, voltemos ao exemplo da demo i
 ---
 
 # Configurando o ambiente {background-color="#2563eb"}
-
----
-
-## A pasta `.claude` 📁
-
-```
-projeto/
-├── CLAUDE.md              ← instruções permanentes do projeto
-└── .claude/
-    ├── commands/          ← suas skills customizadas
-    │   ├── voice.md
-    │   └── summarize.md
-    └── settings.json      ← permissões e configurações
-```
-
-. . .
-
-E na sua máquina, fora de qualquer projeto:
-
-```
-~/.claude/
-└── commands/              ← skills globais, disponíveis em todo projeto
-    └── voice.md
-```
 
 ---
 
@@ -532,6 +488,29 @@ Uso: `/summarize` — cole o abstract ou o artigo inteiro
 
 `/referee-2` e `/blindspot` são do workflow de Scott Cunningham (`github.com/scunning1975/MixtapeTools`)
 
+---
+
+## A pasta `.claude` 📁
+
+```
+projeto/
+├── CLAUDE.md              ← instruções permanentes do projeto
+└── .claude/
+    ├── commands/          ← suas skills customizadas
+    │   ├── voice.md
+    │   └── summarize.md
+    └── settings.json      ← permissões e configurações
+```
+
+. . .
+
+E na sua máquina, fora de qualquer projeto:
+
+```
+~/.claude/
+└── commands/              ← skills globais, disponíveis em todo projeto
+    └── voice.md
+```
 
 ---
 
@@ -575,7 +554,7 @@ Como dois acadêmicos configuram seus ambientes — os repositórios são públi
 
 ---
 
-# Demo: do currículo ao site pessoal {background-color="#2563eb"}
+# Sites de projeto e sites pessoais {background-color="#2563eb"}
 
 ---
 
@@ -587,22 +566,14 @@ Dois exemplos de páginas de projeto geradas com Claude Code:
 
 <div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
 <div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">📦 Documentação de pacote R</div>
-<div style="color:#475569; line-height:1.6;">Get Started · Reference · funções por categoria · exemplos de código</div>
-<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">antrologos.github.io/PNADCperiods/</div>
-<!-- Screenshot: adicionar arquivo screenshot-pnadcperiods.png -->
-<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
-📸 <em>screenshot da página</em>
-</div>
+<div style="color:#2563eb; font-family:monospace; font-size:0.85em; margin-bottom:0.4em;">antrologos.github.io/PNADCperiods/</div>
+<img src="dia1_prints/pnadcperiods.png" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);"/>
 </div>
 
 <div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
 <div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">🚀 Landing page de projeto</div>
-<div style="color:#475569; line-height:1.6;">Hero · comparação sem/com · tutorial em 4 passos · FAQ</div>
-<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">antrologos.github.io/Transcritorio/pt/</div>
-<!-- Screenshot: adicionar arquivo screenshot-transcritorio.png -->
-<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
-📸 <em>screenshot da página</em>
-</div>
+<div style="color:#2563eb; font-family:monospace; font-size:0.85em; margin-bottom:0.4em;">antrologos.github.io/Transcritorio/pt/</div>
+<img src="dia1_prints/transcritorio.png" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);"/>
 </div>
 
 </div>

@@ -25,7 +25,7 @@ format:
           if (title) {
             var badge = document.createElement('div');
             badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
-            badge.innerHTML = '<img src="logo-labiia.png" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
+            badge.innerHTML = '<img src="logo-labiia.png" style="height:1.8em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
             title.insertBefore(badge, title.firstChild);
 
             var el = document.createElement('div');
