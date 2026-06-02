@@ -234,13 +234,13 @@ Felipe Lamarca
 <section id="section" class="slide level2" data-background-color="#1e293b">
 <h2></h2>
 <p><br></p>
-<p><span class="agenda-num">01</span> &nbsp; <strong>Recap + CLAUDE.md na prática</strong></p>
+<p><span class="agenda-num">01</span> &nbsp; <strong>Recap + boas práticas</strong></p>
 <p><br></p>
-<p><span class="agenda-num">02</span> &nbsp; <strong>Skills customizadas</strong></p>
+<p><span class="agenda-num">02</span> &nbsp; <strong>Demo:</strong> análise da Cota Parlamentar (CEAP)</p>
 <p><br></p>
-<p><span class="agenda-num">03</span> &nbsp; <strong>Demo:</strong> análise da Cota Parlamentar (CEAP)</p>
+<p><span class="agenda-num">03</span> &nbsp; <strong>Demo:</strong> API da Câmara dos Deputados</p>
 <p><br></p>
-<p><span class="agenda-num">04</span> &nbsp; <strong>Demo:</strong> API da Câmara dos Deputados</p>
+<p><span class="agenda-num">04</span> &nbsp; <strong>Limites e ética</strong></p>
 </section>
 <section class="slide level2">
 
@@ -253,9 +253,10 @@ Felipe Lamarca
 <section id="o-que-vimos-no-dia-1" class="slide level2">
 <h2>O que vimos no Dia 1</h2>
 <ul>
-<li>Claude Code é um agente que age no seu ambiente: lê arquivos, executa código, acessa o git</li>
-<li>Instalação via npm ou app desktop; integra ao VSCode, Positron e terminal</li>
-<li><strong>CLAUDE.md</strong> é a memória permanente do agente — contexto, convenções, decisões</li>
+<li>Claude Code age no seu ambiente: lê arquivos, executa código, acessa o git</li>
+<li>Instalação e integração ao VSCode, Positron e terminal</li>
+<li><strong>Pasta <code>.claude</code></strong>: CLAUDE.md, skills (<code>/voice</code>, <code>/summarize</code>, <code>/referee-2</code>), settings.json</li>
+<li>Skills encapsulam seu vocabulário — <code>/nome</code> chama qualquer uma delas</li>
 </ul>
 <div class="fragment">
 <blockquote>
@@ -314,66 +315,6 @@ Felipe Lamarca
 
 </section></section>
 <section>
-<section id="skills-customizadas" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>Skills customizadas</h1>
-
-</section>
-<section id="o-que-são-skills" class="slide level2">
-<h2>O que são skills ⚡</h2>
-<p>Arquivos de prompt reutilizáveis, invocados com <code>/nome-da-skill</code></p>
-<pre><code>.claude/
-└── commands/
-    ├── voice.md
-    ├── summarize.md
-    └── review.md</code></pre>
-<div class="fragment">
-<ul>
-<li>Portáveis entre projetos</li>
-<li>Encapsulam o seu vocabulário e as suas convenções</li>
-<li>Funcionam como atalhos para tarefas recorrentes</li>
-</ul>
-</div>
-</section>
-<section id="como-criar-uma-skill" class="slide level2">
-<h2>Como criar uma skill</h2>
-<p>Criar o arquivo <code>.claude/commands/summarize.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a>Você vai receber um texto acadêmico em português.</span>
-<span id="cb3-2"><a href=""></a>Produza um resumo estruturado com:</span>
-<span id="cb3-3"><a href=""></a><span class="ss">1. </span>Pergunta de pesquisa (1 frase)</span>
-<span id="cb3-4"><a href=""></a><span class="ss">2. </span>Método principal (1 frase)</span>
-<span id="cb3-5"><a href=""></a><span class="ss">3. </span>Resultado central (2 frases)</span>
-<span id="cb3-6"><a href=""></a><span class="ss">4. </span>Limitações reconhecidas pelos autores (bullet points)</span>
-<span id="cb3-7"><a href=""></a></span>
-<span id="cb3-8"><a href=""></a>Escreva de forma direta, sem jargão desnecessário.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<p>Uso: <code>/summarize</code> — cole o abstract ou o artigo inteiro</p>
-</div>
-</section>
-<section id="skills-úteis-para-pesquisa" class="slide level2">
-<h2>Skills úteis para pesquisa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href=""></a><span class="ex">/voice</span>        <span class="co"># reescreve texto no seu estilo de escrita</span></span>
-<span id="cb4-2"><a href=""></a><span class="ex">/summarize</span>    <span class="co"># resume artigos acadêmicos</span></span>
-<span id="cb4-3"><a href=""></a><span class="ex">/review</span>       <span class="co"># revisa argumento ou código</span></span>
-<span id="cb4-4"><a href=""></a><span class="ex">/lit-map</span>      <span class="co"># extrai conceitos e autores-chave de um texto</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<p>Na prática, é o mecanismo de <strong>ensinar o agente a trabalhar no seu vocabulário</strong></p>
-</div>
-</section>
-<section id="demo-rápida-criando-uma-skill-ao-vivo" class="slide level2">
-<h2>Demo rápida: criando uma skill ao vivo 🎬</h2>
-<p>Vamos criar juntos a skill <code>/summarize</code> e testá-la num abstract real</p>
-<div class="fragment">
-<ol type="1">
-<li>Criar <code>.claude/commands/summarize.md</code> com as instruções</li>
-<li>Invocar <code>/summarize</code> com um artigo da área</li>
-<li>Ajustar as instruções ao vivo</li>
-</ol>
-</div>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
 <section id="demo-1-análise-da-cota-parlamentar" class="title-slide slide level1 center" data-background-color="#2563eb">
 <h1>Demo 1: análise da Cota Parlamentar</h1>
 
@@ -407,11 +348,11 @@ Felipe Lamarca
 <p>Acesso direto no Portal da Câmara:</p>
 <pre><code>https://dadosabertos.camara.leg.br/swagger/api.html</code></pre>
 <p>Ou baixar o CSV diretamente:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href=""></a></span>
-<span id="cb6-3"><a href=""></a>url <span class="op">=</span> <span class="st">"https://www.camara.leg.br/cotas/Ano-2023.csv.zip"</span></span>
-<span id="cb6-4"><a href=""></a>df <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">";"</span>, encoding<span class="op">=</span><span class="st">"latin-1"</span>, compression<span class="op">=</span><span class="st">"zip"</span>)</span>
-<span id="cb6-5"><a href=""></a>df.head()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>url <span class="op">=</span> <span class="st">"https://www.camara.leg.br/cotas/Ano-2023.csv.zip"</span></span>
+<span id="cb3-4"><a href=""></a>df <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">";"</span>, encoding<span class="op">=</span><span class="st">"latin-1"</span>, compression<span class="op">=</span><span class="st">"zip"</span>)</span>
+<span id="cb3-5"><a href=""></a>df.head()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Sem autenticação, sem cadastro — <strong>dados abertos de verdade</strong></p>
 </div>
@@ -479,14 +420,14 @@ Felipe Lamarca
 <section id="api-da-câmara-dos-deputados" class="slide level2">
 <h2>API da Câmara dos Deputados</h2>
 <p>Base URL: <code>https://dadosabertos.camara.leg.br/api/v2</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="im">import</span> requests</span>
-<span id="cb7-2"><a href=""></a></span>
-<span id="cb7-3"><a href=""></a><span class="co"># Listar deputados da legislatura atual</span></span>
-<span id="cb7-4"><a href=""></a>resp <span class="op">=</span> requests.get(</span>
-<span id="cb7-5"><a href=""></a>    <span class="st">"https://dadosabertos.camara.leg.br/api/v2/deputados"</span>,</span>
-<span id="cb7-6"><a href=""></a>    params<span class="op">=</span>{<span class="st">"idLegislatura"</span>: <span class="dv">57</span>, <span class="st">"ordem"</span>: <span class="st">"ASC"</span>, <span class="st">"ordenarPor"</span>: <span class="st">"nome"</span>}</span>
-<span id="cb7-7"><a href=""></a>)</span>
-<span id="cb7-8"><a href=""></a>deputados <span class="op">=</span> resp.json()[<span class="st">"dados"</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> requests</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a><span class="co"># Listar deputados da legislatura atual</span></span>
+<span id="cb4-4"><a href=""></a>resp <span class="op">=</span> requests.get(</span>
+<span id="cb4-5"><a href=""></a>    <span class="st">"https://dadosabertos.camara.leg.br/api/v2/deputados"</span>,</span>
+<span id="cb4-6"><a href=""></a>    params<span class="op">=</span>{<span class="st">"idLegislatura"</span>: <span class="dv">57</span>, <span class="st">"ordem"</span>: <span class="st">"ASC"</span>, <span class="st">"ordenarPor"</span>: <span class="st">"nome"</span>}</span>
+<span id="cb4-7"><a href=""></a>)</span>
+<span id="cb4-8"><a href=""></a>deputados <span class="op">=</span> resp.json()[<span class="st">"dados"</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Retorna JSON bem estruturado — fácil de transformar em DataFrame com <code>pd.json_normalize()</code></p>
 </div>

@@ -243,7 +243,9 @@ Felipe Lamarca
 <p><br></p>
 <p><span class="agenda-num">03</span> &nbsp; <strong>Integrações:</strong> VSCode, Positron e terminal</p>
 <p><br></p>
-<p><span class="agenda-num">04</span> &nbsp; <strong>Demo:</strong> do currículo ao site pessoal</p>
+<p><span class="agenda-num">04</span> &nbsp; <strong>Configurando o ambiente:</strong> <code>.claude</code>, CLAUDE.md, skills e rules</p>
+<p><br></p>
+<p><span class="agenda-num">05</span> &nbsp; <strong>Demo:</strong> do currículo ao site pessoal</p>
 </section>
 <section class="slide level2">
 
@@ -338,6 +340,108 @@ Felipe Lamarca
 <div class="fragment">
 <blockquote>
 <p>Roda o script, encontra o erro, corrige e re-executa — sem você abrir o terminal.</p>
+</blockquote>
+</div>
+</section>
+<section id="quanto-custa" class="slide level2">
+<h2>Quanto custa? 💰</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Plano</th>
+<th>Preço</th>
+<th>O que inclui</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pro</strong></td>
+<td>US$ 20/mês</td>
+<td>Acesso ao Claude Code</td>
+</tr>
+<tr class="even">
+<td><strong>Max 5×</strong></td>
+<td>US$ 100/mês</td>
+<td>5× mais uso que o Pro</td>
+</tr>
+<tr class="odd">
+<td><strong>Max 20×</strong></td>
+<td>US$ 200/mês</td>
+<td>20× mais uso que o Pro</td>
+</tr>
+<tr class="even">
+<td><strong>API</strong></td>
+<td>Por token</td>
+<td>Para automação e uso intenso</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>Meu plano é o Pro — mais ou menos suficiente para uso intensivo. Quando tenho mais pressa, deixo um valor para uso via API</p>
+</div>
+</section>
+<section id="acompanhando-o-gasto" class="slide level2">
+<h2>Acompanhando o gasto 📊</h2>
+<!-- Screenshot: adicionar arquivo screenshot-gasto.png -->
+<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
+<p>📸 <em>screenshot do dashboard de uso</em></p>
+</div>
+<div class="fragment">
+<p>No dashboard da Anthropic: uso de tokens, gastos por período e alertas de limite — tudo em tempo real</p>
+</div>
+</section>
+<section id="outros-agentes-de-ia" class="slide level2">
+<h2>Outros agentes de IA 🌐</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Ferramenta</th>
+<th>Empresa</th>
+<th>Diferencial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Claude Code</strong></td>
+<td>Anthropic</td>
+<td>CLI + IDE; forte em raciocínio e texto</td>
+</tr>
+<tr class="even">
+<td><strong>Codex</strong></td>
+<td>OpenAI</td>
+<td>Equivalente da OpenAI para terminal</td>
+</tr>
+<tr class="odd">
+<td><strong>Cursor</strong></td>
+<td>Cursor AI</td>
+<td>IDE própria centrada em IA</td>
+</tr>
+<tr class="even">
+<td><strong>Cline</strong></td>
+<td>Open-source</td>
+<td>Extensão VSCode; suporta vários modelos</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>A escolha depende do modelo que você prefere e de como você trabalha — <strong>o raciocínio que vamos aprender hoje vale para todos</strong></p>
+</div>
+</section>
+<section id="chat-vs.-agente-vamos-ver-na-prática" class="slide level2">
+<h2>Chat vs.&nbsp;agente: vamos ver na prática 🎬</h2>
+<p>Antes de instalar, uma demonstração concreta da diferença</p>
+<div class="fragment">
+<p><strong>Tarefa:</strong> gerar código que plota uma distribuição normal em Python</p>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>No chat:</strong> você recebe o código, copia, cola no script, roda, corrige erros manualmente…</li>
+<li><strong>No Claude Code:</strong> o agente cria o arquivo, roda, detecta erros, corrige — tudo na mesma sessão</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>Vamos voltar a essa pasta depois de instalar e configurar o VSCode</p>
 </blockquote>
 </div>
 </section>
@@ -480,46 +584,43 @@ Felipe Lamarca
 </div>
 </div>
 </section>
-<section id="quando-usar-cada-um" class="slide level2">
-<h2>Quando usar cada um?</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Situação</th>
-<th>Melhor opção</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Tarefa longa, sem IDE aberta</td>
-<td>Terminal puro</td>
-</tr>
-<tr class="even">
-<td>Editando código ou análise</td>
-<td>VSCode ou Positron</td>
-</tr>
-<tr class="odd">
-<td>Projeto R / notebook Quarto</td>
-<td>Positron</td>
-</tr>
-<tr class="even">
-<td>Quero ver o diff em tempo real</td>
-<td>VSCode ou Positron</td>
-</tr>
-<tr class="odd">
-<td>Tarefa rápida e isolada</td>
-<td>Terminal puro</td>
-</tr>
-</tbody>
-</table>
+<section id="de-volta-à-distribuição-normal" class="slide level2">
+<h2>De volta à distribuição normal 📊</h2>
+<p>Com o Claude Code instalado e integrado ao VSCode, voltemos ao exemplo da demo inicial:</p>
+<ul>
+<li>Abrir a pasta com o script gerado antes da instalação</li>
+<li>Usar o painel do VSCode para pedir modificações: ajustar parâmetros, adicionar labels, exportar a figura</li>
+<li>O agente edita o arquivo real, roda no terminal integrado, você acompanha o diff em tempo real</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>A diferença em relação ao chat: o agente está <em>dentro</em> do seu ambiente de trabalho</p>
+</blockquote>
+</div>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="claude.md-e-primeiros-passos" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>CLAUDE.md e primeiros passos</h1>
+<section id="configurando-o-ambiente" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Configurando o ambiente</h1>
 
+</section>
+<section id="a-pasta-.claude" class="slide level2">
+<h2>A pasta <code>.claude</code> 📁</h2>
+<pre><code>projeto/
+├── CLAUDE.md              ← instruções permanentes do projeto
+└── .claude/
+    ├── commands/          ← suas skills customizadas
+    │   ├── voice.md
+    │   └── summarize.md
+    └── settings.json      ← permissões e configurações</code></pre>
+<div class="fragment">
+<p>E na sua máquina, fora de qualquer projeto:</p>
+<pre><code>~/.claude/
+└── commands/              ← skills globais, disponíveis em todo projeto
+    └── voice.md</code></pre>
+</div>
 </section>
 <section id="claude.md-as-regras-do-jogo" class="slide level2">
 <h2>CLAUDE.md: as regras do jogo 📋</h2>
@@ -528,8 +629,8 @@ Felipe Lamarca
 <p>O que colocar:</p>
 <ul>
 <li>Contexto do projeto e objetivos</li>
-<li>Convenções e restrições analíticas</li>
-<li>Decisões já tomadas — e por quê</li>
+<li>Convenções técnicas (linguagem, estrutura de pastas)</li>
+<li><strong>Decisões analíticas já tomadas</strong> — e por quê</li>
 </ul>
 <div class="fragment">
 <p>É a <strong>memória permanente</strong> do agente no projeto: o que sobrevive ao <code>/clear</code></p>
@@ -537,21 +638,22 @@ Felipe Lamarca
 </section>
 <section id="um-claude.md-para-pesquisa" class="slide level2">
 <h2>Um CLAUDE.md para pesquisa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="fu"># CLAUDE.md</span></span>
-<span id="cb8-2"><a href=""></a></span>
-<span id="cb8-3"><a href=""></a><span class="fu">## Contexto</span></span>
-<span id="cb8-4"><a href=""></a>Projeto de análise de gastos parlamentares (CEAP 2023).</span>
-<span id="cb8-5"><a href=""></a>Dataset: <span class="in">`data/ceap_2023.csv`</span> — não modificar o arquivo original.</span>
-<span id="cb8-6"><a href=""></a></span>
-<span id="cb8-7"><a href=""></a><span class="fu">## Convenções</span></span>
-<span id="cb8-8"><a href=""></a><span class="ss">- </span>Usar Python 3.11+ com pandas e matplotlib</span>
-<span id="cb8-9"><a href=""></a><span class="ss">- </span>Salvar gráficos em <span class="in">`output/figures/`</span></span>
-<span id="cb8-10"><a href=""></a><span class="ss">- </span>Cada análise em script separado</span>
-<span id="cb8-11"><a href=""></a></span>
-<span id="cb8-12"><a href=""></a><span class="fu">## Decisões já tomadas</span></span>
-<span id="cb8-13"><a href=""></a><span class="ss">- </span>Filtrar somente despesas do exercício corrente</span>
-<span id="cb8-14"><a href=""></a><span class="ss">- </span>Unidade de análise: deputado × categoria de gasto</span>
-<span id="cb8-15"><a href=""></a><span class="ss">- </span>Excluir valores negativos (estornos)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href=""></a><span class="fu"># CLAUDE.md</span></span>
+<span id="cb10-2"><a href=""></a></span>
+<span id="cb10-3"><a href=""></a><span class="fu">## Contexto</span></span>
+<span id="cb10-4"><a href=""></a>Projeto de análise de gastos parlamentares (CEAP 2023).</span>
+<span id="cb10-5"><a href=""></a>Dataset: <span class="in">`data/ceap_2023.csv`</span> — não modificar o arquivo original.</span>
+<span id="cb10-6"><a href=""></a></span>
+<span id="cb10-7"><a href=""></a><span class="fu">## Convenções</span></span>
+<span id="cb10-8"><a href=""></a><span class="ss">- </span>Usar Python 3.11+ com pandas e matplotlib</span>
+<span id="cb10-9"><a href=""></a><span class="ss">- </span>Salvar gráficos em <span class="in">`output/figures/`</span></span>
+<span id="cb10-10"><a href=""></a><span class="ss">- </span>Cada análise em script separado</span>
+<span id="cb10-11"><a href=""></a></span>
+<span id="cb10-12"><a href=""></a><span class="fu">## Decisões analíticas</span></span>
+<span id="cb10-13"><a href=""></a><span class="ss">- </span>Hipótese: deputados de partidos menores gastam mais em passagens</span>
+<span id="cb10-14"><a href=""></a><span class="ss">- </span>Filtrar somente despesas do exercício corrente</span>
+<span id="cb10-15"><a href=""></a><span class="ss">- </span>Unidade de análise: deputado × categoria de gasto</span>
+<span id="cb10-16"><a href=""></a><span class="ss">- </span>Excluir valores negativos (estornos)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="a-janela-de-contexto" class="slide level2">
 <h2>A janela de contexto 🧠</h2>
@@ -638,6 +740,99 @@ Muitas iterações depois
 </blockquote>
 </div>
 </section>
+<section id="skills-comandos-customizados" class="slide level2">
+<h2>Skills: comandos customizados ⚡</h2>
+<p><code>/nome-da-skill</code> executa um <em>prompt</em> reutilizável, definido num arquivo <code>.md</code></p>
+<p><br></p>
+<ul>
+<li>Arquivo em <code>.claude/commands/</code> (projeto) ou <code>~/.claude/commands/</code> (global)</li>
+<li>Portáveis entre projetos: copie a pasta e as skills vão junto</li>
+<li>Encapsulam o seu vocabulário e as suas convenções analíticas</li>
+</ul>
+<div class="fragment">
+<p>Na prática: é o mecanismo de <strong>ensinar o agente a trabalhar do jeito que você trabalha</strong></p>
+</div>
+</section>
+<section id="criando-uma-skill" class="slide level2">
+<h2>Criando uma skill</h2>
+<p>Criar o arquivo <code>.claude/commands/summarize.md</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href=""></a>Você vai receber um texto acadêmico em português.</span>
+<span id="cb11-2"><a href=""></a>Produza um resumo estruturado com:</span>
+<span id="cb11-3"><a href=""></a><span class="ss">1. </span>Pergunta de pesquisa (1 frase)</span>
+<span id="cb11-4"><a href=""></a><span class="ss">2. </span>Método principal (1 frase)</span>
+<span id="cb11-5"><a href=""></a><span class="ss">3. </span>Resultado central (2 frases)</span>
+<span id="cb11-6"><a href=""></a><span class="ss">4. </span>Limitações reconhecidas pelos autores (bullet points)</span>
+<span id="cb11-7"><a href=""></a></span>
+<span id="cb11-8"><a href=""></a>Escreva de forma direta, sem jargão desnecessário.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Uso: <code>/summarize</code> — cole o abstract ou o artigo inteiro</p>
+</div>
+</section>
+<section id="skills-de-pesquisa" class="slide level2">
+<h2>Skills de pesquisa 🔬</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Skill</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/voice</code></td>
+<td>Reescreve texto no seu estilo de escrita</td>
+</tr>
+<tr class="even">
+<td><code>/summarize</code></td>
+<td>Resume artigos: pergunta, método, achado, limites</td>
+</tr>
+<tr class="odd">
+<td><code>/referee-2</code></td>
+<td>Revisão em instância nova do terminal — “não peça ao mesmo Claude que escreveu o código para revisá-lo”</td>
+</tr>
+<tr class="even">
+<td><code>/blindspot</code></td>
+<td>Identifica análises que você não pensou em fazer</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><code>/referee-2</code> e <code>/blindspot</code> são do workflow de Scott Cunningham (<code>github.com/scunning1975/MixtapeTools</code>)</p>
+</div>
+</section>
+<section id="demo-ao-vivo-claude.md-num-repositório-real" class="slide level2">
+<h2>Demo ao vivo: CLAUDE.md num repositório real 🎬</h2>
+<p>Um repositório existente que <strong>nunca teve Claude Code</strong> — o agente vai inferir o contexto:</p>
+<ol type="1">
+<li>Abrir Claude Code na raiz do projeto</li>
+<li>Pedir: <em>“leia os arquivos deste repositório e crie um CLAUDE.md adequado”</em></li>
+<li>Revisar o que o agente inferiu sobre o projeto</li>
+</ol>
+</section>
+<section id="demo-ao-vivo-criando-uma-skill" class="slide level2">
+<h2>Demo ao vivo: criando uma skill 🎬</h2>
+<p>Em outro repositório, criar <code>.claude/commands/summarize.md</code> ao vivo</p>
+<div class="fragment">
+<p>Depois: <code>/summarize</code> + colar um abstract da área para testar imediatamente</p>
+</div>
+</section>
+<section id="workflows-de-pesquisadores" class="slide level2">
+<h2>Workflows de pesquisadores 🔗</h2>
+<p>Como dois acadêmicos configuram seus ambientes — os repositórios são públicos:</p>
+<p><br></p>
+<p><strong>Scott Cunningham</strong> <code>github.com/scunning1975/MixtapeTools</code></p>
+<p><br></p>
+<p><strong>Manoel Galdino</strong> <code>github.com/mgaldino/agents-workflow</code></p>
+<div class="fragment">
+<blockquote>
+<p>A pasta <code>.claude</code> deles é pública — você pode copiar, adaptar e construir em cima</p>
+</blockquote>
+</div>
+</section>
 <section class="slide level2">
 
 </section></section>
@@ -646,8 +841,47 @@ Muitas iterações depois
 <h1>Demo: do currículo ao site pessoal</h1>
 
 </section>
-<section id="o-que-vamos-fazer" class="slide level2">
-<h2>O que vamos fazer 🌐</h2>
+<section id="o-que-é-possível-criar" class="slide level2">
+<h2>O que é possível criar 🌐</h2>
+<p>Dois exemplos de páginas de projeto geradas com Claude Code:</p>
+<div style="display:flex; gap:1.2em; margin-top:0.6em;">
+<div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">
+📦 Documentação de pacote R
+</div>
+<div style="color:#475569; line-height:1.6;">
+Get Started · Reference · funções por categoria · exemplos de código
+</div>
+<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">
+antrologos.github.io/PNADCperiods/
+</div>
+<!-- Screenshot: adicionar arquivo screenshot-pnadcperiods.png -->
+<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
+<p>📸 <em>screenshot da página</em></p>
+</div>
+</div>
+<div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">
+🚀 Landing page de projeto
+</div>
+<div style="color:#475569; line-height:1.6;">
+Hero · comparação sem/com · tutorial em 4 passos · FAQ
+</div>
+<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">
+antrologos.github.io/Transcritorio/pt/
+</div>
+<!-- Screenshot: adicionar arquivo screenshot-transcritorio.png -->
+<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
+<p>📸 <em>screenshot da página</em></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Páginas do Rogério Barbosa (IESP-UERJ) — feitas com Claude Code</p>
+</div>
+</section>
+<section id="hoje-do-currículo-ao-site-pessoal" class="slide level2">
+<h2>Hoje: do currículo ao site pessoal</h2>
 <div class="columns">
 <div class="column" style="width:48%;">
 <p><strong>Input</strong></p>
@@ -664,7 +898,7 @@ Muitas iterações depois
 </div></div>
 <div class="fragment">
 <p><br></p>
-<p>O raciocínio vale para qualquer material: artigo, projeto, lab — o gap entre “tenho o conteúdo” e “tenho um site” é menor do que parece</p>
+<p>O mesmo raciocínio vale para qualquer material: artigo, pacote, projeto de lab — o gap entre “tenho o conteúdo” e “tenho um site” é menor do que parece</p>
 </div>
 </section>
 <section id="roteiro-da-demo-ao-vivo" class="slide level2">
@@ -682,6 +916,16 @@ Muitas iterações depois
 </blockquote>
 </div>
 </section>
+<section id="o-que-vem-no-dia-2" class="slide level2">
+<h2>O que vem no Dia 2 🔭</h2>
+<p>Amanhã vamos usar o Claude Code para pesquisa empírica de verdade:</p>
+<p><br></p>
+<ul>
+<li><strong>Análise de dados:</strong> CEAP — a cota parlamentar dos deputados federais</li>
+<li><strong>Uso de APIs:</strong> Câmara dos Deputados, dados abertos, sem autenticação</li>
+<li><strong>Boas práticas:</strong> reprodutibilidade, o que não delegar, limites e ética</li>
+</ul>
+</section>
 <section class="slide level2">
 
 </section></section>
@@ -693,14 +937,13 @@ Muitas iterações depois
 <section id="o-que-levar-pra-casa" class="slide level2">
 <h2>O que levar pra casa</h2>
 <ul>
-<li><strong>CLAUDE.md sempre</strong>: antes de começar qualquer projeto novo, escreva o contexto</li>
+<li><strong>CLAUDE.md sempre</strong>: antes de começar qualquer projeto novo, escreva o contexto e as decisões analíticas</li>
+<li><strong>Skills para tarefas recorrentes</strong>: <code>/voice</code>, <code>/summarize</code> — o investimento se paga na segunda vez</li>
 <li><strong>Sessões focadas</strong>: uma tarefa por sessão rende mais do que uma sessão para tudo</li>
-<li><strong>Revisar o output</strong>: o agente executa, você valida</li>
 </ul>
 <p><br></p>
 <div class="fragment">
-<p>Recursos: <strong>claude.ai/code</strong></p>
-<p>Seções recomendadas: <em>How Claude Code uses memory</em> · <em>Claude Code hooks</em> · <em>MCP</em></p>
+<p>Recursos: <strong>claude.ai/code</strong> · Workflows: Cunningham (<code>scunning1975/MixtapeTools</code>) · Galdino (<code>mgaldino/agents-workflow</code>)</p>
 <p><br></p>
 <p>Material do curso: <strong>github.com/felipelmc/Presentations</strong></p>
 

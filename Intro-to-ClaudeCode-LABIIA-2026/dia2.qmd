@@ -42,19 +42,19 @@ lang: pt-BR
 
 <br>
 
-[01]{.agenda-num} &nbsp; **Recap + CLAUDE.md na prática**
+[01]{.agenda-num} &nbsp; **Recap + boas práticas**
 
 <br>
 
-[02]{.agenda-num} &nbsp; **Skills customizadas**
+[02]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
 
 <br>
 
-[03]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
+[03]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
 
 <br>
 
-[04]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
+[04]{.agenda-num} &nbsp; **Limites e ética**
 
 ---
 
@@ -64,9 +64,10 @@ lang: pt-BR
 
 ## O que vimos no Dia 1
 
-- Claude Code é um agente que age no seu ambiente: lê arquivos, executa código, acessa o git
-- Instalação via npm ou app desktop; integra ao VSCode, Positron e terminal
-- **CLAUDE.md** é a memória permanente do agente — contexto, convenções, decisões
+- Claude Code age no seu ambiente: lê arquivos, executa código, acessa o git
+- Instalação e integração ao VSCode, Positron e terminal
+- **Pasta `.claude`**: CLAUDE.md, skills (`/voice`, `/summarize`, `/referee-2`), settings.json
+- Skills encapsulam seu vocabulário — `/nome` chama qualquer uma delas
 
 . . .
 
@@ -105,78 +106,6 @@ Isso evita que o agente tome atalhos que contradizem suas escolhas metodológica
 . . .
 
 > Não delegue a interpretação — só a execução
-
----
-
-# Skills customizadas {background-color="#2563eb"}
-
----
-
-## O que são skills ⚡
-
-Arquivos de prompt reutilizáveis, invocados com `/nome-da-skill`
-
-```
-.claude/
-└── commands/
-    ├── voice.md
-    ├── summarize.md
-    └── review.md
-```
-
-. . .
-
-- Portáveis entre projetos
-- Encapsulam o seu vocabulário e as suas convenções
-- Funcionam como atalhos para tarefas recorrentes
-
----
-
-## Como criar uma skill
-
-Criar o arquivo `.claude/commands/summarize.md`:
-
-```markdown
-Você vai receber um texto acadêmico em português.
-Produza um resumo estruturado com:
-1. Pergunta de pesquisa (1 frase)
-2. Método principal (1 frase)
-3. Resultado central (2 frases)
-4. Limitações reconhecidas pelos autores (bullet points)
-
-Escreva de forma direta, sem jargão desnecessário.
-```
-
-. . .
-
-Uso: `/summarize` — cole o abstract ou o artigo inteiro
-
----
-
-## Skills úteis para pesquisa
-
-```bash
-/voice        # reescreve texto no seu estilo de escrita
-/summarize    # resume artigos acadêmicos
-/review       # revisa argumento ou código
-/lit-map      # extrai conceitos e autores-chave de um texto
-```
-
-. . .
-
-Na prática, é o mecanismo de **ensinar o agente a trabalhar no seu vocabulário**
-
----
-
-## Demo rápida: criando uma skill ao vivo 🎬
-
-Vamos criar juntos a skill `/summarize` e testá-la num abstract real
-
-. . .
-
-1. Criar `.claude/commands/summarize.md` com as instruções
-2. Invocar `/summarize` com um artigo da área
-3. Ajustar as instruções ao vivo
 
 ---
 

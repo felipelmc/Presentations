@@ -54,7 +54,11 @@ lang: pt-BR
 
 <br>
 
-[04]{.agenda-num} &nbsp; **Demo:** do currículo ao site pessoal
+[04]{.agenda-num} &nbsp; **Configurando o ambiente:** `.claude`, CLAUDE.md, skills e rules
+
+<br>
+
+[05]{.agenda-num} &nbsp; **Demo:** do currículo ao site pessoal
 
 ---
 
@@ -127,6 +131,68 @@ flowchart LR
 . . .
 
 > Roda o script, encontra o erro, corrige e re-executa — sem você abrir o terminal.
+
+---
+
+## Quanto custa? 💰
+
+| Plano | Preço | O que inclui |
+|---|---|---|
+| **Pro** | US$ 20/mês | Acesso ao Claude Code |
+| **Max 5×** | US$ 100/mês | 5× mais uso que o Pro |
+| **Max 20×** | US$ 200/mês | 20× mais uso que o Pro |
+| **API** | Por token | Para automação e uso intenso |
+
+. . .
+
+Meu plano é o Pro — mais ou menos suficiente para uso intensivo. Quando tenho mais pressa, deixo um valor para uso via API
+
+---
+
+## Acompanhando o gasto 📊
+
+<!-- Screenshot: adicionar arquivo screenshot-gasto.png -->
+<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
+📸 <em>screenshot do dashboard de uso</em>
+</div>
+
+. . .
+
+No dashboard da Anthropic: uso de tokens, gastos por período e alertas de limite — tudo em tempo real
+
+---
+
+## Outros agentes de IA 🌐
+
+| Ferramenta | Empresa | Diferencial |
+|---|---|---|
+| **Claude Code** | Anthropic | CLI + IDE; forte em raciocínio e texto |
+| **Codex** | OpenAI | Equivalente da OpenAI para terminal |
+| **Cursor** | Cursor AI | IDE própria centrada em IA |
+| **Cline** | Open-source | Extensão VSCode; suporta vários modelos |
+
+. . .
+
+A escolha depende do modelo que você prefere e de como você trabalha — **o raciocínio que vamos aprender hoje vale para todos**
+
+---
+
+## Chat vs. agente: vamos ver na prática 🎬
+
+Antes de instalar, uma demonstração concreta da diferença
+
+. . .
+
+**Tarefa:** gerar código que plota uma distribuição normal em Python
+
+. . .
+
+- **No chat:** você recebe o código, copia, cola no script, roda, corrige erros manualmente...
+- **No Claude Code:** o agente cria o arquivo, roda, detecta erros, corrige — tudo na mesma sessão
+
+. . .
+
+> Vamos voltar a essa pasta depois de instalar e configurar o VSCode
 
 ---
 
@@ -286,19 +352,45 @@ O agente enxerga os arquivos abertos no workspace — útil para scripts `.R`, n
 
 ---
 
-## Quando usar cada um?
+## De volta à distribuição normal 📊
 
-| Situação | Melhor opção |
-|---|---|
-| Tarefa longa, sem IDE aberta | Terminal puro |
-| Editando código ou análise | VSCode ou Positron |
-| Projeto R / notebook Quarto | Positron |
-| Quero ver o diff em tempo real | VSCode ou Positron |
-| Tarefa rápida e isolada | Terminal puro |
+Com o Claude Code instalado e integrado ao VSCode, voltemos ao exemplo da demo inicial:
+
+- Abrir a pasta com o script gerado antes da instalação
+- Usar o painel do VSCode para pedir modificações: ajustar parâmetros, adicionar labels, exportar a figura
+- O agente edita o arquivo real, roda no terminal integrado, você acompanha o diff em tempo real
+
+. . .
+
+> A diferença em relação ao chat: o agente está *dentro* do seu ambiente de trabalho
 
 ---
 
-# CLAUDE.md e primeiros passos {background-color="#2563eb"}
+# Configurando o ambiente {background-color="#2563eb"}
+
+---
+
+## A pasta `.claude` 📁
+
+```
+projeto/
+├── CLAUDE.md              ← instruções permanentes do projeto
+└── .claude/
+    ├── commands/          ← suas skills customizadas
+    │   ├── voice.md
+    │   └── summarize.md
+    └── settings.json      ← permissões e configurações
+```
+
+. . .
+
+E na sua máquina, fora de qualquer projeto:
+
+```
+~/.claude/
+└── commands/              ← skills globais, disponíveis em todo projeto
+    └── voice.md
+```
 
 ---
 
@@ -311,8 +403,8 @@ Arquivo de instruções persistentes, lido automaticamente pelo agente a cada no
 O que colocar:
 
 - Contexto do projeto e objetivos
-- Convenções e restrições analíticas
-- Decisões já tomadas — e por quê
+- Convenções técnicas (linguagem, estrutura de pastas)
+- **Decisões analíticas já tomadas** — e por quê
 
 . . .
 
@@ -334,7 +426,8 @@ Dataset: `data/ceap_2023.csv` — não modificar o arquivo original.
 - Salvar gráficos em `output/figures/`
 - Cada análise em script separado
 
-## Decisões já tomadas
+## Decisões analíticas
+- Hipótese: deputados de partidos menores gastam mais em passagens
 - Filtrar somente despesas do exercício corrente
 - Unidade de análise: deputado × categoria de gasto
 - Excluir valores negativos (estornos)
@@ -389,11 +482,138 @@ Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
 ---
 
+## Skills: comandos customizados ⚡
+
+`/nome-da-skill` executa um *prompt* reutilizável, definido num arquivo `.md`
+
+<br>
+
+- Arquivo em `.claude/commands/` (projeto) ou `~/.claude/commands/` (global)
+- Portáveis entre projetos: copie a pasta e as skills vão junto
+- Encapsulam o seu vocabulário e as suas convenções analíticas
+
+. . .
+
+Na prática: é o mecanismo de **ensinar o agente a trabalhar do jeito que você trabalha**
+
+---
+
+## Criando uma skill
+
+Criar o arquivo `.claude/commands/summarize.md`:
+
+```markdown
+Você vai receber um texto acadêmico em português.
+Produza um resumo estruturado com:
+1. Pergunta de pesquisa (1 frase)
+2. Método principal (1 frase)
+3. Resultado central (2 frases)
+4. Limitações reconhecidas pelos autores (bullet points)
+
+Escreva de forma direta, sem jargão desnecessário.
+```
+
+. . .
+
+Uso: `/summarize` — cole o abstract ou o artigo inteiro
+
+---
+
+## Skills de pesquisa 🔬
+
+| Skill | O que faz |
+|---|---|
+| `/voice` | Reescreve texto no seu estilo de escrita |
+| `/summarize` | Resume artigos: pergunta, método, achado, limites |
+| `/referee-2` | Revisão em instância nova do terminal — "não peça ao mesmo Claude que escreveu o código para revisá-lo" |
+| `/blindspot` | Identifica análises que você não pensou em fazer |
+
+. . .
+
+`/referee-2` e `/blindspot` são do workflow de Scott Cunningham (`github.com/scunning1975/MixtapeTools`)
+
+
+---
+
+## Demo ao vivo: CLAUDE.md num repositório real 🎬
+
+Um repositório existente que **nunca teve Claude Code** — o agente vai inferir o contexto:
+
+1. Abrir Claude Code na raiz do projeto
+2. Pedir: *"leia os arquivos deste repositório e crie um CLAUDE.md adequado"*
+3. Revisar o que o agente inferiu sobre o projeto
+
+---
+
+## Demo ao vivo: criando uma skill 🎬
+
+Em outro repositório, criar `.claude/commands/summarize.md` ao vivo
+
+. . .
+
+Depois: `/summarize` + colar um abstract da área para testar imediatamente
+
+---
+
+## Workflows de pesquisadores 🔗
+
+Como dois acadêmicos configuram seus ambientes — os repositórios são públicos:
+
+<br>
+
+**Scott Cunningham**
+`github.com/scunning1975/MixtapeTools`
+
+<br>
+
+**Manoel Galdino**
+`github.com/mgaldino/agents-workflow`
+
+. . .
+
+> A pasta `.claude` deles é pública — você pode copiar, adaptar e construir em cima
+
+---
+
 # Demo: do currículo ao site pessoal {background-color="#2563eb"}
 
 ---
 
-## O que vamos fazer 🌐
+## O que é possível criar 🌐
+
+Dois exemplos de páginas de projeto geradas com Claude Code:
+
+<div style="display:flex; gap:1.2em; margin-top:0.6em;">
+
+<div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">📦 Documentação de pacote R</div>
+<div style="color:#475569; line-height:1.6;">Get Started · Reference · funções por categoria · exemplos de código</div>
+<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">antrologos.github.io/PNADCperiods/</div>
+<!-- Screenshot: adicionar arquivo screenshot-pnadcperiods.png -->
+<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
+📸 <em>screenshot da página</em>
+</div>
+</div>
+
+<div style="flex:1; background:#f1f5f9; border-radius:10px; padding:1em; font-size:0.62em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.4em;">🚀 Landing page de projeto</div>
+<div style="color:#475569; line-height:1.6;">Hero · comparação sem/com · tutorial em 4 passos · FAQ</div>
+<div style="margin-top:0.6em; color:#2563eb; font-family:monospace; font-size:0.9em;">antrologos.github.io/Transcritorio/pt/</div>
+<!-- Screenshot: adicionar arquivo screenshot-transcritorio.png -->
+<div style="margin-top:0.5em; background:white; border-radius:6px; padding:0.6em; text-align:center; color:#94a3b8; border:2px dashed #cbd5e1; font-size:0.9em;">
+📸 <em>screenshot da página</em>
+</div>
+</div>
+
+</div>
+
+. . .
+
+Páginas do Rogério Barbosa (IESP-UERJ) — feitas com Claude Code
+
+---
+
+## Hoje: do currículo ao site pessoal
 
 :::: {.columns}
 
@@ -417,7 +637,7 @@ Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
 <br>
 
-O raciocínio vale para qualquer material: artigo, projeto, lab — o gap entre "tenho o conteúdo" e "tenho um site" é menor do que parece
+O mesmo raciocínio vale para qualquer material: artigo, pacote, projeto de lab — o gap entre "tenho o conteúdo" e "tenho um site" é menor do que parece
 
 ---
 
@@ -435,23 +655,33 @@ O raciocínio vale para qualquer material: artigo, projeto, lab — o gap entre 
 
 ---
 
+## O que vem no Dia 2 🔭
+
+Amanhã vamos usar o Claude Code para pesquisa empírica de verdade:
+
+<br>
+
+- **Análise de dados:** CEAP — a cota parlamentar dos deputados federais
+- **Uso de APIs:** Câmara dos Deputados, dados abertos, sem autenticação
+- **Boas práticas:** reprodutibilidade, o que não delegar, limites e ética
+
+---
+
 # Até amanhã 👋 {background-color="#1e293b"}
 
 ---
 
 ## O que levar pra casa
 
-- **CLAUDE.md sempre**: antes de começar qualquer projeto novo, escreva o contexto
+- **CLAUDE.md sempre**: antes de começar qualquer projeto novo, escreva o contexto e as decisões analíticas
+- **Skills para tarefas recorrentes**: `/voice`, `/summarize` — o investimento se paga na segunda vez
 - **Sessões focadas**: uma tarefa por sessão rende mais do que uma sessão para tudo
-- **Revisar o output**: o agente executa, você valida
 
 <br>
 
 . . .
 
-Recursos: **claude.ai/code**
-
-Seções recomendadas: *How Claude Code uses memory* · *Claude Code hooks* · *MCP*
+Recursos: **claude.ai/code** · Workflows: Cunningham (`scunning1975/MixtapeTools`) · Galdino (`mgaldino/agents-workflow`)
 
 <br>
 
