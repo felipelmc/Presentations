@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.35">
 
   <meta name="author" content="Felipe Lamarca">
-  <title>Agentes de IA para pesquisa em ciências sociais</title>
+  <title>Introdução aos agentes de IA na pesquisa acadêmica</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -218,7 +218,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Agentes de IA para pesquisa em ciências sociais</h1>
+  <h1 class="title">Introdução aos agentes de IA na pesquisa acadêmica</h1>
   <p class="subtitle">Dia 1</p>
 
 <div class="quarto-title-authors">
@@ -450,65 +450,18 @@ Felipe Lamarca
 <h1>Instalação</h1>
 
 </section>
-<section id="pré-requisitos" class="slide level2">
-<h2>Pré-requisitos</h2>
-<p><strong>Node.js 18+</strong> — necessário para instalar via npm</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="ex">node</span> <span class="at">--version</span>   <span class="co"># deve mostrar v18 ou superior</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Git</strong> — necessário para integração com repositórios</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="instalação-1" class="slide level2">
+<h2>Instalação 💻</h2>
+<p>Baixar o app em <strong>claude.com/download</strong> — disponível para Mac e Windows</p>
 <div class="fragment">
-<p>Se não tiver: baixar em <strong>nodejs.org</strong> e <strong>git-scm.com</strong></p>
+<p>Depois, abrir o Claude e pedir:</p>
+<blockquote>
+<p><em>“Me ajude a instalar o Claude Code no meu computador”</em></p>
+</blockquote>
 </div>
-</section>
-<section id="mac-opção-1-via-npm" class="slide level2">
-<h2>Mac — opção 1: via npm 🍎</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href=""></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span>
-<span id="cb3-2"><a href=""></a><span class="ex">claude</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<p>Na primeira execução, o Claude Code vai pedir autenticação com a conta da Anthropic</p>
-<!-- Screenshot: adicionar arquivo screenshot-mac-npm.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-<p>📸 <em>screenshot do terminal após instalação bem-sucedida</em></p>
+<p>O próprio Claude guia a instalação — detecta o sistema operacional, instala as dependências e verifica que funcionou</p>
 </div>
-</div>
-</section>
-<section id="mac-opção-2-app-desktop" class="slide level2">
-<h2>Mac — opção 2: app desktop 🍎</h2>
-<p>Baixar em <strong>claude.com/download</strong> → instalar o app → abrir a aba <strong>Code</strong></p>
-<div class="fragment">
-<!-- Screenshot: adicionar arquivo screenshot-mac-app.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-<p>📸 <em>screenshot do app desktop com a aba Code aberta</em></p>
-</div>
-</div>
-</section>
-<section id="windows" class="slide level2">
-<h2>Windows 🪟</h2>
-<ol type="1">
-<li>Baixar o app em <strong>claude.com/download</strong></li>
-<li>Instalar <strong>Git for Windows</strong> em <strong>git-scm.com</strong> (se ainda não tiver)</li>
-<li>Abrir o app Claude → aba <strong>Code</strong></li>
-</ol>
-<div class="fragment">
-<!-- Screenshot: adicionar arquivo screenshot-windows-app.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-<p>📸 <em>screenshot do app no Windows com aba Code</em></p>
-</div>
-</div>
-</section>
-<section id="verificando-que-funcionou" class="slide level2">
-<h2>Verificando que funcionou ✅</h2>
-<div class="columns" style="align-items:center;">
-<div class="column" style="width:55%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href=""></a><span class="ex">claude</span> <span class="at">--version</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href=""></a><span class="ex">claude</span>   <span class="co"># abre o REPL interativo</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>. . .</p>
-<p>Na primeira sessão, experimente:</p>
-<pre><code>&gt; olá! qual é o seu nome e
-  o que você consegue fazer aqui?</code></pre>
-</div><div class="column" style="width:45%;">
-<p><img src="dia1_prints/claudecode_primeira_conversa.png" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"></p>
-</div></div>
 </section>
 <section class="slide level2">
 
@@ -521,8 +474,8 @@ Felipe Lamarca
 <section id="terminal-puro" class="slide level2">
 <h2>Terminal puro 💻</h2>
 <p>O modo mais direto: abra o terminal, navegue até o projeto e execute <code>claude</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href=""></a><span class="bu">cd</span> meu-projeto/</span>
-<span id="cb7-2"><a href=""></a><span class="ex">claude</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="bu">cd</span> meu-projeto/</span>
+<span id="cb1-2"><a href=""></a><span class="ex">claude</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="dia1_prints/claudecode_terminal.png" style="margin-top:0.4em; max-height:320px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"></p>
 </section>
 <section id="vscode" class="slide level2">
@@ -581,22 +534,22 @@ Felipe Lamarca
 </section>
 <section id="um-claude.md-para-pesquisa" class="slide level2">
 <h2>Um CLAUDE.md para pesquisa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="fu"># CLAUDE.md</span></span>
-<span id="cb8-2"><a href=""></a></span>
-<span id="cb8-3"><a href=""></a><span class="fu">## Contexto</span></span>
-<span id="cb8-4"><a href=""></a>Projeto de análise de gastos parlamentares (CEAP 2023).</span>
-<span id="cb8-5"><a href=""></a>Dataset: <span class="in">`data/ceap_2023.csv`</span> — não modificar o arquivo original.</span>
-<span id="cb8-6"><a href=""></a></span>
-<span id="cb8-7"><a href=""></a><span class="fu">## Convenções</span></span>
-<span id="cb8-8"><a href=""></a><span class="ss">- </span>Usar Python 3.11+ com pandas e matplotlib</span>
-<span id="cb8-9"><a href=""></a><span class="ss">- </span>Salvar gráficos em <span class="in">`output/figures/`</span></span>
-<span id="cb8-10"><a href=""></a><span class="ss">- </span>Cada análise em script separado</span>
-<span id="cb8-11"><a href=""></a></span>
-<span id="cb8-12"><a href=""></a><span class="fu">## Decisões analíticas</span></span>
-<span id="cb8-13"><a href=""></a><span class="ss">- </span>Hipótese: deputados de partidos menores gastam mais em passagens</span>
-<span id="cb8-14"><a href=""></a><span class="ss">- </span>Filtrar somente despesas do exercício corrente</span>
-<span id="cb8-15"><a href=""></a><span class="ss">- </span>Unidade de análise: deputado × categoria de gasto</span>
-<span id="cb8-16"><a href=""></a><span class="ss">- </span>Excluir valores negativos (estornos)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href=""></a><span class="fu"># CLAUDE.md</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a><span class="fu">## Contexto</span></span>
+<span id="cb2-4"><a href=""></a>Projeto de análise de gastos parlamentares (CEAP 2023).</span>
+<span id="cb2-5"><a href=""></a>Dataset: <span class="in">`data/ceap_2023.csv`</span> — não modificar o arquivo original.</span>
+<span id="cb2-6"><a href=""></a></span>
+<span id="cb2-7"><a href=""></a><span class="fu">## Convenções</span></span>
+<span id="cb2-8"><a href=""></a><span class="ss">- </span>Usar Python 3.11+ com pandas e matplotlib</span>
+<span id="cb2-9"><a href=""></a><span class="ss">- </span>Salvar gráficos em <span class="in">`output/figures/`</span></span>
+<span id="cb2-10"><a href=""></a><span class="ss">- </span>Cada análise em script separado</span>
+<span id="cb2-11"><a href=""></a></span>
+<span id="cb2-12"><a href=""></a><span class="fu">## Decisões analíticas</span></span>
+<span id="cb2-13"><a href=""></a><span class="ss">- </span>Hipótese: deputados de partidos menores gastam mais em passagens</span>
+<span id="cb2-14"><a href=""></a><span class="ss">- </span>Filtrar somente despesas do exercício corrente</span>
+<span id="cb2-15"><a href=""></a><span class="ss">- </span>Unidade de análise: deputado × categoria de gasto</span>
+<span id="cb2-16"><a href=""></a><span class="ss">- </span>Excluir valores negativos (estornos)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="a-janela-de-contexto" class="slide level2">
 <h2>A janela de contexto 🧠</h2>
@@ -699,14 +652,14 @@ Muitas iterações depois
 <section id="criando-uma-skill" class="slide level2">
 <h2>Criando uma skill</h2>
 <p>Criar o arquivo <code>.claude/commands/summarize.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a>Você vai receber um texto acadêmico em português.</span>
-<span id="cb9-2"><a href=""></a>Produza um resumo estruturado com:</span>
-<span id="cb9-3"><a href=""></a><span class="ss">1. </span>Pergunta de pesquisa (1 frase)</span>
-<span id="cb9-4"><a href=""></a><span class="ss">2. </span>Método principal (1 frase)</span>
-<span id="cb9-5"><a href=""></a><span class="ss">3. </span>Resultado central (2 frases)</span>
-<span id="cb9-6"><a href=""></a><span class="ss">4. </span>Limitações reconhecidas pelos autores (bullet points)</span>
-<span id="cb9-7"><a href=""></a></span>
-<span id="cb9-8"><a href=""></a>Escreva de forma direta, sem jargão desnecessário.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a>Você vai receber um texto acadêmico em português.</span>
+<span id="cb3-2"><a href=""></a>Produza um resumo estruturado com:</span>
+<span id="cb3-3"><a href=""></a><span class="ss">1. </span>Pergunta de pesquisa (1 frase)</span>
+<span id="cb3-4"><a href=""></a><span class="ss">2. </span>Método principal (1 frase)</span>
+<span id="cb3-5"><a href=""></a><span class="ss">3. </span>Resultado central (2 frases)</span>
+<span id="cb3-6"><a href=""></a><span class="ss">4. </span>Limitações reconhecidas pelos autores (bullet points)</span>
+<span id="cb3-7"><a href=""></a></span>
+<span id="cb3-8"><a href=""></a>Escreva de forma direta, sem jargão desnecessário.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Uso: <code>/summarize</code> — cole o abstract ou o artigo inteiro</p>
 </div>

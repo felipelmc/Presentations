@@ -1,5 +1,5 @@
 ---
-title: "Agentes de IA para pesquisa em ciências sociais"
+title: "Introdução aos agentes de IA na pesquisa acadêmica"
 subtitle: "Dia 1"
 author: "Felipe Lamarca"
 institute: "IESP-UERJ · MAPE · DOXA · NECON"
@@ -197,100 +197,19 @@ Antes de instalar, uma demonstração concreta da diferença
 
 ---
 
-## Pré-requisitos
+## Instalação 💻
 
-**Node.js 18+** — necessário para instalar via npm
-
-```bash
-node --version   # deve mostrar v18 ou superior
-```
-
-**Git** — necessário para integração com repositórios
-
-```bash
-git --version
-```
+Baixar o app em **claude.com/download** — disponível para Mac e Windows
 
 . . .
 
-Se não tiver: baixar em **nodejs.org** e **git-scm.com**
+Depois, abrir o Claude e pedir:
 
----
-
-## Mac — opção 1: via npm 🍎
-
-```bash
-npm install -g @anthropic-ai/claude-code
-claude
-```
+> *"Me ajude a instalar o Claude Code no meu computador"*
 
 . . .
 
-Na primeira execução, o Claude Code vai pedir autenticação com a conta da Anthropic
-
-<!-- Screenshot: adicionar arquivo screenshot-mac-npm.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do terminal após instalação bem-sucedida</em>
-</div>
-
----
-
-## Mac — opção 2: app desktop 🍎
-
-Baixar em **claude.com/download** → instalar o app → abrir a aba **Code**
-
-. . .
-
-<!-- Screenshot: adicionar arquivo screenshot-mac-app.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do app desktop com a aba Code aberta</em>
-</div>
-
----
-
-## Windows 🪟
-
-1. Baixar o app em **claude.com/download**
-2. Instalar **Git for Windows** em **git-scm.com** (se ainda não tiver)
-3. Abrir o app Claude → aba **Code**
-
-. . .
-
-<!-- Screenshot: adicionar arquivo screenshot-windows-app.png -->
-<div style="margin-top:0.6em; background:#f1f5f9; border-radius:10px; padding:1.2em; text-align:center; color:#94a3b8; font-size:0.65em; border:2px dashed #cbd5e1;">
-📸 <em>screenshot do app no Windows com aba Code</em>
-</div>
-
----
-
-## Verificando que funcionou ✅
-
-:::: {.columns style="align-items:center;"}
-
-::: {.column width="55%"}
-```bash
-claude --version
-```
-
-```bash
-claude   # abre o REPL interativo
-```
-
-. . .
-
-Na primeira sessão, experimente:
-
-```
-> olá! qual é o seu nome e
-  o que você consegue fazer aqui?
-```
-:::
-
-::: {.column width="45%"}
-<img src="dia1_prints/claudecode_primeira_conversa.png" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"/>
-:::
-
-::::
+O próprio Claude guia a instalação — detecta o sistema operacional, instala as dependências e verifica que funcionou
 
 ---
 

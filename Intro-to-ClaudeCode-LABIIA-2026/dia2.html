@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.35">
 
   <meta name="author" content="Felipe Lamarca">
-  <title>Agentes de IA para pesquisa em ciências sociais</title>
+  <title>Introdução aos agentes de IA na pesquisa acadêmica</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -215,8 +215,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Agentes de IA para pesquisa em ciências sociais</h1>
-  <p class="subtitle">Dia 2 — Claude Code na pesquisa</p>
+  <h1 class="title">Introdução aos agentes de IA na pesquisa acadêmica</h1>
+  <p class="subtitle">Dia 2</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -234,20 +234,22 @@ Felipe Lamarca
 <section id="section" class="slide level2" data-background-color="#1e293b">
 <h2></h2>
 <p><br></p>
-<p><span class="agenda-num">01</span> &nbsp; <strong>Recap + boas práticas</strong></p>
+<p><span class="agenda-num">01</span> &nbsp; <strong>Recap</strong></p>
 <p><br></p>
-<p><span class="agenda-num">02</span> &nbsp; <strong>Demo:</strong> análise da Cota Parlamentar (CEAP)</p>
+<p><span class="agenda-num">02</span> &nbsp; <strong>Demo:</strong> fichamento sistemático de literatura</p>
 <p><br></p>
-<p><span class="agenda-num">03</span> &nbsp; <strong>Demo:</strong> API da Câmara dos Deputados</p>
+<p><span class="agenda-num">03</span> &nbsp; <strong>Demo:</strong> análise da Cota Parlamentar (CEAP)</p>
 <p><br></p>
-<p><span class="agenda-num">04</span> &nbsp; <strong>Limites e ética</strong></p>
+<p><span class="agenda-num">04</span> &nbsp; <strong>Demo:</strong> API da Câmara dos Deputados</p>
+<p><br></p>
+<p><span class="agenda-num">05</span> &nbsp; <strong>Limites e ética</strong></p>
 </section>
 <section class="slide level2">
 
 </section>
 <section>
-<section id="recap-claude.md-na-prática" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>Recap + CLAUDE.md na prática</h1>
+<section id="recap" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Recap</h1>
 
 </section>
 <section id="o-que-vimos-no-dia-1" class="slide level2">
@@ -264,50 +266,91 @@ Felipe Lamarca
 </blockquote>
 </div>
 </section>
-<section id="claude.md-avançado" class="slide level2">
-<h2>CLAUDE.md avançado</h2>
-<p>Além de convenções técnicas, documente as <strong>decisões analíticas</strong> do projeto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="fu">## Decisões de design da pesquisa</span></span>
-<span id="cb1-2"><a href=""></a><span class="ss">- </span>Hipótese principal: deputados de partidos menores</span>
-<span id="cb1-3"><a href=""></a>  gastam proporcionalmente mais em passagens aéreas</span>
-<span id="cb1-4"><a href=""></a><span class="ss">- </span>Variável dependente: gasto per capita por categoria</span>
-<span id="cb1-5"><a href=""></a><span class="ss">- </span>Período de análise: 2019–2023 (legislatura completa)</span>
-<span id="cb1-6"><a href=""></a><span class="ss">- </span>Excluímos deputados com menos de 6 meses de mandato</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="demo-1-fichamento-sistemático-de-literatura" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Demo 1: fichamento sistemático de literatura</h1>
+
+</section>
+<section id="o-problema" class="slide level2">
+<h2>O problema</h2>
+<p>Mapeamento de literatura é custoso: horas de leitura para identificar o que é relevante, o que conversa com o quê, o que ainda não foi feito</p>
 <div class="fragment">
-<p>Isso evita que o agente tome atalhos que contradizem suas escolhas metodológicas</p>
+<p>A <strong>OpenAlex</strong> indexa ~250 milhões de trabalhos acadêmicos com API gratuita e sem autenticação</p>
+</div>
+<div class="fragment">
+<p>Hoje: IA no setor público brasileiro — <code>"inteligência artificial" "setor público"</code> · idioma: pt · 2019–2025</p>
 </div>
 </section>
-<section id="boas-práticas-de-sessão" class="slide level2">
-<h2>Boas práticas de sessão</h2>
+<section id="o-pipeline" class="slide level2">
+<h2>O pipeline</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Prática</th>
-<th>Por quê</th>
+<th>Etapa</th>
+<th>Ferramenta</th>
+<th>Output</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Uma tarefa por sessão</td>
-<td>Contexto focado, menos deriva</td>
+<td>Busca</td>
+<td>OpenAlex API</td>
+<td>lista de papers + metadados</td>
 </tr>
 <tr class="even">
-<td>Começar com <code>/clear</code></td>
-<td>Sessão limpa, CLAUDE.md recarregado</td>
+<td>Filtragem</td>
+<td>citações, ano, idioma</td>
+<td>subset relevante</td>
 </tr>
 <tr class="odd">
-<td>Revisar antes de salvar</td>
-<td>O agente executa; você valida</td>
+<td>Download</td>
+<td>PDFs em acesso aberto</td>
+<td>arquivos locais</td>
 </tr>
 <tr class="even">
-<td>Documentar decisões no CLAUDE.md</td>
-<td>Persistência entre sessões</td>
+<td>Sumarização</td>
+<td>Claude Code</td>
+<td><code>autor_ano.md</code> por paper</td>
+</tr>
+<tr class="odd">
+<td>Geração</td>
+<td>metadados OpenAlex</td>
+<td><code>bibliography.bib</code></td>
 </tr>
 </tbody>
 </table>
 <div class="fragment">
+<p>Para papers sem PDF disponível: Claude sumariza a partir do abstract</p>
+</div>
+</section>
+<section id="a-query" class="slide level2">
+<h2>A query</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>params <span class="op">=</span> {</span>
+<span id="cb1-4"><a href=""></a>    <span class="st">"search"</span>: <span class="st">'"inteligência artificial" "setor público"'</span>,</span>
+<span id="cb1-5"><a href=""></a>    <span class="st">"filter"</span>: <span class="st">"language:pt,publication_year:2019-2025"</span>,</span>
+<span id="cb1-6"><a href=""></a>    <span class="st">"sort"</span>: <span class="st">"cited_by_count:desc"</span>,</span>
+<span id="cb1-7"><a href=""></a>    <span class="st">"per_page"</span>: <span class="dv">25</span></span>
+<span id="cb1-8"><a href=""></a>}</span>
+<span id="cb1-9"><a href=""></a>resp <span class="op">=</span> requests.get(<span class="st">"https://api.openalex.org/works"</span>, params<span class="op">=</span>params)</span>
+<span id="cb1-10"><a href=""></a>works <span class="op">=</span> resp.json()[<span class="st">"results"</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="roteiro-da-demo-ao-vivo" class="slide level2">
+<h2>Roteiro da demo ao vivo 🎬</h2>
+<ol type="1">
+<li>Query OpenAlex → inspecionar os 50 papers retornados</li>
+<li>Filtrar: manter os 20 mais citados com abstract disponível</li>
+<li>Claude Code lê cada abstract e gera fichamento estruturado</li>
+<li>Para papers com PDF: Claude expande o fichamento</li>
+<li>Salvar em <code>/fichamentos/</code> + gerar <code>bibliography.bib</code></li>
+</ol>
+<div class="fragment">
 <blockquote>
-<p>Não delegue a interpretação — só a execução</p>
+<p>O CLAUDE.md do projeto vai estar no repositório — vocês acompanham no próprio computador</p>
 </blockquote>
 </div>
 </section>
@@ -315,8 +358,8 @@ Felipe Lamarca
 
 </section></section>
 <section>
-<section id="demo-1-análise-da-cota-parlamentar" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>Demo 1: análise da Cota Parlamentar</h1>
+<section id="demo-2-análise-da-cota-parlamentar" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Demo 2: análise da Cota Parlamentar</h1>
 
 </section>
 <section id="o-que-é-a-cota-parlamentar" class="slide level2">
@@ -331,18 +374,6 @@ Felipe Lamarca
 <p>Em 2023: mais de <strong>R$ 220 milhões</strong> em gastos totais</p>
 </div>
 </section>
-<section id="por-que-interessa-ao-labiia" class="slide level2">
-<h2>Por que interessa ao LABIIA? 🔍</h2>
-<p>Em 2016, a equipe do projeto <strong>Serenata de Amor</strong> usou machine learning para detectar gastos suspeitos nesse mesmo dataset</p>
-<div class="fragment">
-<blockquote>
-<p>A Rosie — a IA do projeto — identificou automaticamente reembolsos para restaurantes fechados, gastos acima do limite e outras irregularidades</p>
-</blockquote>
-</div>
-<div class="fragment">
-<p>É um caso real de IA para <strong>transparência, accountability e dados abertos</strong> — exatamente o escopo do LABIIA</p>
-</div>
-</section>
 <section id="como-baixar-os-dados" class="slide level2">
 <h2>Como baixar os dados 📥</h2>
 <p>Acesso direto no Portal da Câmara:</p>
@@ -353,11 +384,8 @@ Felipe Lamarca
 <span id="cb3-3"><a href=""></a>url <span class="op">=</span> <span class="st">"https://www.camara.leg.br/cotas/Ano-2023.csv.zip"</span></span>
 <span id="cb3-4"><a href=""></a>df <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">";"</span>, encoding<span class="op">=</span><span class="st">"latin-1"</span>, compression<span class="op">=</span><span class="st">"zip"</span>)</span>
 <span id="cb3-5"><a href=""></a>df.head()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<p>Sem autenticação, sem cadastro — <strong>dados abertos de verdade</strong></p>
-</div>
 </section>
-<section id="roteiro-da-demo-ao-vivo" class="slide level2">
+<section id="roteiro-da-demo-ao-vivo-1" class="slide level2">
 <h2>Roteiro da demo ao vivo 🎬</h2>
 <p>Com o Claude Code + dataset CEAP 2023:</p>
 <ol type="1">
@@ -377,8 +405,8 @@ Felipe Lamarca
 
 </section></section>
 <section>
-<section id="demo-2-api-da-câmara-dos-deputados" class="title-slide slide level1 center" data-background-color="#2563eb">
-<h1>Demo 2: API da Câmara dos Deputados</h1>
+<section id="demo-3-api-da-câmara-dos-deputados" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Demo 3: API da Câmara dos Deputados</h1>
 
 </section>
 <section id="apis-de-dados-abertos-no-brasil" class="slide level2">
@@ -413,9 +441,6 @@ Felipe Lamarca
 </tr>
 </tbody>
 </table>
-<div class="fragment">
-<p>Todas gratuitas, sem autenticação obrigatória, com documentação pública</p>
-</div>
 </section>
 <section id="api-da-câmara-dos-deputados" class="slide level2">
 <h2>API da Câmara dos Deputados</h2>
@@ -465,7 +490,7 @@ Felipe Lamarca
 </tbody>
 </table>
 </section>
-<section id="roteiro-da-demo-ao-vivo-1" class="slide level2">
+<section id="roteiro-da-demo-ao-vivo-2" class="slide level2">
 <h2>Roteiro da demo ao vivo 🎬</h2>
 <p>Conectando a API com o que já analisamos no CEAP:</p>
 <ol type="1">
@@ -474,11 +499,6 @@ Felipe Lamarca
 <li>Cruzar padrão de gastos com padrão de votação</li>
 <li>Gerar visualização integrada</li>
 </ol>
-<div class="fragment">
-<blockquote>
-<p>O agente escreve o código de coleta, tratamento e análise — você orienta o que quer descobrir</p>
-</blockquote>
-</div>
 </section>
 <section class="slide level2">
 
@@ -546,6 +566,25 @@ Felipe Lamarca
 <li>Tratar o repositório como um diário de pesquisa, não só como um arquivo de scripts</li>
 </ul>
 </div>
+</section>
+<section id="o-que-dizem-os-periódicos-internacionais" class="slide level2">
+<h2>O que dizem os periódicos (internacionais)</h2>
+<p>Padrão dominante: <strong>disclosure obrigatório</strong> + IA não pode ser autora + responsabilidade é do pesquisador</p>
+<p><br></p>
+<ul>
+<li><a href="https://ajps.org/ajps-ai-policy/">AJPS</a> — proíbe uso para redigir o manuscrito ou seções substanciais</li>
+<li><a href="https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials">APSR</a> — disclosure obrigatório; alinhado à política Cambridge</li>
+<li><a href="https://www.journals.uchicago.edu/journals/jop/instruct">Journal of Politics</a> — proíbe uso na redação; revisores não podem usar IA para avaliar</li>
+<li><a href="https://www.cambridge.org/core/journals/political-analysis/information/author-instructions/preparing-your-materials">Political Analysis</a> — disclosure com ferramenta, versão, data e descrição do uso</li>
+</ul>
+</section>
+<section id="o-que-dizem-os-periódicos-brasileiros" class="slide level2">
+<h2>O que dizem os periódicos (brasileiros)</h2>
+<p><br></p>
+<ul>
+<li><a href="https://dados.iesp.uerj.br/en/recomendacoes-para-editores-de-periodicos-cientificos-sobre-o-uso-de-genais/">Dados (IESP-UERJ)</a> — disclosure na submissão; proíbe upload do manuscrito em plataformas abertas</li>
+<li><a href="https://periodicos.sbu.unicamp.br/ojs/index.php/index/diretrizes">Opinião Pública / Unicamp</a> — nota de rodapé especificando ferramentas, fases e seções</li>
+</ul>
 </section>
 <section class="slide level2">
 

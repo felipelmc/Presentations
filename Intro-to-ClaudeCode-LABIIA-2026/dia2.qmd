@@ -1,6 +1,6 @@
 ---
-title: "Agentes de IA para pesquisa em ciências sociais"
-subtitle: "Dia 2 — Claude Code na pesquisa"
+title: "Introdução aos agentes de IA na pesquisa acadêmica"
+subtitle: "Dia 2"
 author: "Felipe Lamarca"
 institute: "IESP-UERJ · MAPE · DOXA · NECON"
 date: 2026-06-03
@@ -42,23 +42,27 @@ lang: pt-BR
 
 <br>
 
-[01]{.agenda-num} &nbsp; **Recap + boas práticas**
+[01]{.agenda-num} &nbsp; **Recap**
 
 <br>
 
-[02]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
+[02]{.agenda-num} &nbsp; **Demo:** fichamento sistemático de literatura
 
 <br>
 
-[03]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
+[03]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
 
 <br>
 
-[04]{.agenda-num} &nbsp; **Limites e ética**
+[04]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
+
+<br>
+
+[05]{.agenda-num} &nbsp; **Limites e ética**
 
 ---
 
-# Recap + CLAUDE.md na prática {background-color="#2563eb"}
+# Recap {background-color="#2563eb"}
 
 ---
 
@@ -75,41 +79,72 @@ lang: pt-BR
 
 ---
 
-## CLAUDE.md avançado
+# Demo 1: fichamento sistemático de literatura {background-color="#2563eb"}
 
-Além de convenções técnicas, documente as **decisões analíticas** do projeto:
+---
 
-```markdown
-## Decisões de design da pesquisa
-- Hipótese principal: deputados de partidos menores
-  gastam proporcionalmente mais em passagens aéreas
-- Variável dependente: gasto per capita por categoria
-- Período de análise: 2019–2023 (legislatura completa)
-- Excluímos deputados com menos de 6 meses de mandato
+## O problema
+
+Mapeamento de literatura é custoso: horas de leitura para identificar o que é relevante, o que conversa com o quê, o que ainda não foi feito
+
+. . .
+
+A **OpenAlex** indexa ~250 milhões de trabalhos acadêmicos com API gratuita e sem autenticação
+
+. . .
+
+Hoje: IA no setor público brasileiro — `"inteligência artificial" "setor público"` · idioma: pt · 2019–2025
+
+---
+
+## O pipeline
+
+| Etapa | Ferramenta | Output |
+|---|---|---|
+| Busca | OpenAlex API | lista de papers + metadados |
+| Filtragem | citações, ano, idioma | subset relevante |
+| Download | PDFs em acesso aberto | arquivos locais |
+| Sumarização | Claude Code | `autor_ano.md` por paper |
+| Geração | metadados OpenAlex | `bibliography.bib` |
+
+. . .
+
+Para papers sem PDF disponível: Claude sumariza a partir do abstract
+
+---
+
+## A query
+
+```python
+import requests
+
+params = {
+    "search": '"inteligência artificial" "setor público"',
+    "filter": "language:pt,publication_year:2019-2025",
+    "sort": "cited_by_count:desc",
+    "per_page": 25
+}
+resp = requests.get("https://api.openalex.org/works", params=params)
+works = resp.json()["results"]
 ```
 
-. . .
-
-Isso evita que o agente tome atalhos que contradizem suas escolhas metodológicas
-
 ---
 
-## Boas práticas de sessão
+## Roteiro da demo ao vivo 🎬
 
-| Prática | Por quê |
-|---|---|
-| Uma tarefa por sessão | Contexto focado, menos deriva |
-| Começar com `/clear` | Sessão limpa, CLAUDE.md recarregado |
-| Revisar antes de salvar | O agente executa; você valida |
-| Documentar decisões no CLAUDE.md | Persistência entre sessões |
+1. Query OpenAlex → inspecionar os 50 papers retornados
+2. Filtrar: manter os 20 mais citados com abstract disponível
+3. Claude Code lê cada abstract e gera fichamento estruturado
+4. Para papers com PDF: Claude expande o fichamento
+5. Salvar em `/fichamentos/` + gerar `bibliography.bib`
 
 . . .
 
-> Não delegue a interpretação — só a execução
+> O CLAUDE.md do projeto vai estar no repositório — vocês acompanham no próprio computador
 
 ---
 
-# Demo 1: análise da Cota Parlamentar {background-color="#2563eb"}
+# Demo 2: análise da Cota Parlamentar {background-color="#2563eb"}
 
 ---
 
@@ -124,20 +159,6 @@ A **CEAP** (Cota para o Exercício da Atividade Parlamentar) é a verba de gabin
 . . .
 
 Em 2023: mais de **R$ 220 milhões** em gastos totais
-
----
-
-## Por que interessa ao LABIIA? 🔍
-
-Em 2016, a equipe do projeto **Serenata de Amor** usou machine learning para detectar gastos suspeitos nesse mesmo dataset
-
-. . .
-
-> A Rosie — a IA do projeto — identificou automaticamente reembolsos para restaurantes fechados, gastos acima do limite e outras irregularidades
-
-. . .
-
-É um caso real de IA para **transparência, accountability e dados abertos** — exatamente o escopo do LABIIA
 
 ---
 
@@ -159,10 +180,6 @@ df = pd.read_csv(url, sep=";", encoding="latin-1", compression="zip")
 df.head()
 ```
 
-. . .
-
-Sem autenticação, sem cadastro — **dados abertos de verdade**
-
 ---
 
 ## Roteiro da demo ao vivo 🎬
@@ -181,7 +198,7 @@ Com o Claude Code + dataset CEAP 2023:
 
 ---
 
-# Demo 2: API da Câmara dos Deputados {background-color="#2563eb"}
+# Demo 3: API da Câmara dos Deputados {background-color="#2563eb"}
 
 ---
 
@@ -193,10 +210,6 @@ Com o Claude Code + dataset CEAP 2023:
 | **Portal da Transparência** | Gastos do governo federal, contratos, servidores |
 | **IBGE** | PNAD, censo, indicadores socioeconômicos |
 | **TSE** | Resultados eleitorais, candidatos, financiamento |
-
-. . .
-
-Todas gratuitas, sem autenticação obrigatória, com documentação pública
 
 ---
 
@@ -242,10 +255,6 @@ Conectando a API com o que já analisamos no CEAP:
 3. Cruzar padrão de gastos com padrão de votação
 4. Gerar visualização integrada
 
-. . .
-
-> O agente escreve o código de coleta, tratamento e análise — você orienta o que quer descobrir
-
 ---
 
 # Limites e ética {background-color="#2563eb"}
@@ -287,6 +296,28 @@ Boas práticas:
 - Registrar no CLAUDE.md as decisões analíticas e suas justificativas
 - Comentar no código as escolhas não óbvias
 - Tratar o repositório como um diário de pesquisa, não só como um arquivo de scripts
+
+---
+
+## O que dizem os periódicos (internacionais)
+
+Padrão dominante: **disclosure obrigatório** + IA não pode ser autora + responsabilidade é do pesquisador
+
+<br>
+
+- [AJPS](https://ajps.org/ajps-ai-policy/) — proíbe uso para redigir o manuscrito ou seções substanciais
+- [APSR](https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials) — disclosure obrigatório; alinhado à política Cambridge
+- [Journal of Politics](https://www.journals.uchicago.edu/journals/jop/instruct) — proíbe uso na redação; revisores não podem usar IA para avaliar
+- [Political Analysis](https://www.cambridge.org/core/journals/political-analysis/information/author-instructions/preparing-your-materials) — disclosure com ferramenta, versão, data e descrição do uso
+
+---
+
+## O que dizem os periódicos (brasileiros)
+
+<br>
+
+- [Dados (IESP-UERJ)](https://dados.iesp.uerj.br/en/recomendacoes-para-editores-de-periodicos-cientificos-sobre-o-uso-de-genais/) — disclosure na submissão; proíbe upload do manuscrito em plataformas abertas
+- [Opinião Pública / Unicamp](https://periodicos.sbu.unicamp.br/ojs/index.php/index/diretrizes) — nota de rodapé especificando ferramentas, fases e seções
 
 ---
 
