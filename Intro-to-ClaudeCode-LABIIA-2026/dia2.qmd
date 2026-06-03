@@ -46,7 +46,7 @@ lang: pt-BR
 
 <br>
 
-[02]{.agenda-num} &nbsp; **Demo:** fichamento sistemático de literatura
+[02]{.agenda-num} &nbsp; **Demo:** fichamento de literatura
 
 <br>
 
@@ -79,7 +79,25 @@ lang: pt-BR
 
 ---
 
-# Demo 1: fichamento sistemático de literatura {background-color="#2563eb"}
+## Skills para pesquisa acadêmica
+
+Repositório com skills prontas para download: [github.com/Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)
+
+![](dia2_prints/research_skills.png){width="85%" fig-align="center"}
+
+---
+
+## Plan mode
+
+Antes de executar qualquer tarefa não-trivial: entre em **plan mode** com `Shift+Tab`
+
+![](dia2_prints/claudecode_planmode.png){width="85%" fig-align="center"}
+
+O agente apresenta o plano — você aprova, ajusta ou cancela antes de qualquer arquivo ser tocado
+
+---
+
+# Demo 1: fichamento de literatura {background-color="#2563eb"}
 
 ---
 
@@ -316,7 +334,7 @@ Padrão dominante: **disclosure obrigatório** + IA não pode ser autora + respo
 
 <br>
 
-- [Dados (IESP-UERJ)](https://dados.iesp.uerj.br/en/recomendacoes-para-editores-de-periodicos-cientificos-sobre-o-uso-de-genais/) — disclosure na submissão; proíbe upload do manuscrito em plataformas abertas
+- [CNPq — Portaria nº 2.664/2026](https://www.gov.br/cnpq/pt-br/assuntos/noticias/cnpq-em-acao/cnpq-publica-portaria-que-institui-politica-de-integridade-na-atividade-cientifica) — disclosure obrigatório em todas as fases; IA não pode ser autora; pesquisador é integralmente responsável pelo conteúdo final
 - [Opinião Pública / Unicamp](https://periodicos.sbu.unicamp.br/ojs/index.php/index/diretrizes) — nota de rodapé especificando ferramentas, fases e seções
 
 ---
