@@ -15,3 +15,5 @@ This repository contains the presentations I have given.
 [2026-05-13] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. Workshop CERES 2026.1, IESP-UERJ. [[files]](Intro-to-ClaudeCode-CERES-2026/)
 
 [2026-06-02] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. LABIIA Lab (curso de 2 dias). [[files]](Intro-to-ClaudeCode-LABIIA-2026/)
+
+[2026-08-17] _Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code_. Formação Metodológica do MAPE, o Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ. [[files]](AgentesIA-FMMAPE-2026/)

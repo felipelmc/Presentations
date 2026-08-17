@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-3f230b53dc93e4a04bf4a3505d77a42a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.35">
+
+  <meta name="author" content="Felipe Lamarca">
+  <title>Agentes de IA para pesquisa em ciências sociais</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-e3e4076e3d6d8e5d1f3a9b811321aa1a.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="slides_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="slides_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="slides_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('#title-slide');
+    if (title) {
+      var badge = document.createElement('div');
+      badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
+      badge.innerHTML = '<img src="logo-mape.svg" style="height:1.8em; border-radius:20%;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">Formação Metodológica do MAPE</span>';
+      title.insertBefore(badge, title.firstChild);
+    }
+  });
+  </script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Agentes de IA para pesquisa em ciências sociais</h1>
+  <p class="subtitle">uma introdução ao Claude Code</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Felipe Lamarca 
+</div>
+        <p class="quarto-title-affiliation">
+            IESP-UERJ · MAPE · DOXA · NECON
+          </p>
+    </div>
+</div>
+
+  <p class="date">17 de agosto de 2026</p>
+</section>
+<section id="section" class="slide level2" data-background-color="#1e293b">
+<h2></h2>
+<p><br></p>
+<p><span class="agenda-num">01</span> &nbsp; <strong>Do chat ao agente:</strong> o que muda na prática</p>
+<p><br></p>
+<p><span class="agenda-num">02</span> &nbsp; <strong>Claude Code na prática:</strong> instalação, CLAUDE.md e skills</p>
+<p><br></p>
+<p><span class="agenda-num">03</span> &nbsp; <strong>Gerenciamento de contexto</strong></p>
+<p><br></p>
+<p><span class="agenda-num">04</span> &nbsp; <strong>Aplicações práticas:</strong> demos ao vivo</p>
+<p><br></p>
+<p><span class="agenda-num">05</span> &nbsp; <strong>Para além do curso:</strong> limites, ética e recursos</p>
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="do-chat-ao-agente" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Do chat ao agente</h1>
+
+</section>
+<section id="você-provavelmente-já-usa-ia" class="slide level2">
+<h2>Você provavelmente já usa IA 💬</h2>
+<ul>
+<li>Interface de chat: você digita, o modelo responde</li>
+<li>Cada conversa começa do zero: sem memória de sessões anteriores, sem acesso ao seu ambiente de trabalho</li>
+<li>Interações <strong>transacionais</strong>: úteis para tarefas pontuais, mas sem continuidade</li>
+</ul>
+</section>
+<section id="o-chat-tem-limites-para-pesquisa" class="slide level2">
+<h2>O chat tem limites para pesquisa</h2>
+<ul>
+<li>Sem acesso ao seu ambiente de trabalho (arquivos, código, terminal)</li>
+<li>Sem memória entre sessões</li>
+<li>Cada etapa do ciclo de pesquisa (coleta, análise, documentação, comunicação) exige sua coordenação manual</li>
+</ul>
+</section>
+<section id="o-que-é-um-agente-de-ia" class="slide level2">
+<h2>O que é um agente de IA? 🤖</h2>
+<blockquote>
+<p>O agente decide o próximo passo, roda o código e corrige sozinho quando dá erro. Você entra só pra revisar.</p>
+</blockquote>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Chat</th>
+<th>Agente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Responde</td>
+<td>Age</td>
+</tr>
+<tr class="even">
+<td>Uma troca</td>
+<td>Múltiplas etapas</td>
+</tr>
+<tr class="odd">
+<td>Você executa</td>
+<td>Ele executa</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="anatomia-de-um-agente" class="slide level2">
+<h2>Anatomia de um agente 🔬</h2>
+<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  H(["👤  Pesquisador"]) --&gt;|instrução| L(["🧠  LLM"])
+  M(["💾  Memória"]) &lt;--&gt; L
+  L --&gt; T(["🛠️  Ferramentas"])
+  T --&gt;|executa| E(["🌍  Ambiente"])
+  E --&gt;|"resultado / erro"| L
+
+  style H fill:#475569,color:white,stroke:none
+  style L fill:#2563eb,color:white,stroke:none
+  style M fill:#1e293b,color:#94a3b8,stroke:#475569
+  style T fill:#1e293b,color:#94a3b8,stroke:#475569
+  style E fill:#475569,color:white,stroke:none
+  linkStyle default stroke:#64748b,stroke-width:2px
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div style="display:flex; justify-content:center; gap:2.5em; font-size:0.52em; color:#64748b; margin-top:0.4em;">
+<p><span>💾 contexto da sessão + CLAUDE.md</span> <span>🛠️ terminal · arquivos · APIs · web</span></p>
+</div>
+</section>
+<section id="claude-code" class="slide level2">
+<h2>Claude Code 🖥️</h2>
+<ul>
+<li>CLI que roda no terminal, ou integrado ao VSCode e ao Positron</li>
+<li>Lê e escreve arquivos, executa código, acessa o <code>git</code> e o shell</li>
+<li>É, hoje, o agente de IA mais maduro para uso em pesquisa</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>Roda o script, encontra o erro, corrige e re-executa. Você nem chega a abrir o terminal.</p>
+</blockquote>
+</div>
+</section>
+<section id="outros-agentes-de-ia" class="slide level2">
+<h2>Outros agentes de IA 🌐</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Ferramenta</th>
+<th>Empresa</th>
+<th>Diferencial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Claude Code</strong></td>
+<td>Anthropic</td>
+<td>CLI + IDE; forte em raciocínio e texto</td>
+</tr>
+<tr class="even">
+<td><strong>Codex</strong></td>
+<td>OpenAI</td>
+<td>Equivalente da OpenAI para terminal</td>
+</tr>
+<tr class="odd">
+<td><strong>Cursor</strong></td>
+<td>Cursor AI</td>
+<td>IDE própria centrada em IA</td>
+</tr>
+<tr class="even">
+<td><strong>Cline</strong></td>
+<td>Open-source</td>
+<td>Extensão VSCode; suporta vários modelos</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>A escolha depende do modelo que você prefere e de como trabalha. <strong>O raciocínio de hoje vale pra qualquer uma delas</strong></p>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="claude-code-na-prática" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Claude Code na prática</h1>
+
+</section>
+<section id="instalação" class="slide level2">
+<h2>Instalação 💻</h2>
+<p>Baixar o app em <strong>claude.com/download</strong>, disponível para Mac e Windows</p>
+<div class="fragment">
+<p>Depois, abrir o Claude e pedir:</p>
+<blockquote>
+<p><em>“Me ajude a instalar o Claude Code no meu computador”</em></p>
+</blockquote>
+</div>
+<div class="fragment">
+<p>O próprio Claude guia a instalação: detecta o sistema operacional e resolve as dependências sozinho</p>
+</div>
+</section>
+<section id="integrações-no-dia-a-dia" class="slide level2">
+<h2>Integrações no dia a dia 🖥️</h2>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5em; margin-top:0.3em;">
+<div style="background:#f1f5f9; border-radius:10px; padding:0.65em; font-size:0.52em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.5em;">
+💻 Terminal
+</div>
+<img src="prints/claudecode_terminal.png" style="width:100%; max-height:150px; object-fit:cover; object-position:top; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+<div style="color:#475569; margin-top:0.5em;">
+<code>cd projeto/ &amp;&amp; claude</code>
+</div>
+</div>
+<div style="background:#f1f5f9; border-radius:10px; padding:0.65em; font-size:0.52em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.5em;">
+🟦 VSCode
+</div>
+<img src="prints/claudecode_no_vscode.png" style="width:100%; max-height:150px; object-fit:cover; object-position:top; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+<div style="color:#475569; margin-top:0.5em;">
+Extensão “Claude Code” na barra lateral
+</div>
+</div>
+<div style="background:#f1f5f9; border-radius:10px; padding:0.65em; font-size:0.52em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.5em;">
+🟣 Positron
+</div>
+<img src="prints/claudecode_no_positron.png" style="width:100%; max-height:150px; object-fit:cover; object-position:top; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+<div style="color:#475569; margin-top:0.5em;">
+Para quem usa R: mesmo mecanismo
+</div>
+</div>
+<div style="background:#f1f5f9; border-radius:10px; padding:0.65em; font-size:0.52em;">
+<div style="font-weight:600; color:#1e293b; margin-bottom:0.5em;">
+📱 App desktop
+</div>
+<img src="prints/claudecode_app.png" style="width:100%; max-height:150px; object-fit:cover; object-position:top; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+<div style="color:#475569; margin-top:0.5em;">
+Aba “Code”: sessões organizadas por projeto
+</div>
+</div>
+</div>
+</section>
+<section id="quanto-custa" class="slide level2">
+<h2>Quanto custa? 💰</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Plano</th>
+<th>Preço</th>
+<th>Para quem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pro</strong></td>
+<td>US$ 20/mês</td>
+<td>Uso individual</td>
+</tr>
+<tr class="even">
+<td><strong>Max 5×</strong></td>
+<td>US$ 100/mês</td>
+<td>Uso intensivo</td>
+</tr>
+<tr class="odd">
+<td><strong>Max 20×</strong></td>
+<td>US$ 200/mês</td>
+<td>Uso muito intensivo</td>
+</tr>
+<tr class="even">
+<td><strong>API</strong></td>
+<td>Por token</td>
+<td>Automação e uso programático</td>
+</tr>
+<tr class="odd">
+<td><strong>Team / Enterprise</strong></td>
+<td>A partir de US$ 30/usuário</td>
+<td>Organizações</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>O plano Pro tem limite de uso, mas dá pra render bem numa rotina de pesquisa acadêmica</p>
+</div>
+</section>
+<section id="acompanhando-o-gasto" class="slide level2">
+<h2>Acompanhando o gasto 📊</h2>
+<p><img src="prints/acompanhamento_uso.png" style="margin-top:0.6em; max-height:380px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"></p>
+<div class="fragment">
+<p>No dashboard da Anthropic, em tempo real: uso de tokens e gasto por período, com alerta quando bate o limite</p>
+</div>
+</section>
+<section id="claude.md-instruções-persistentes" class="slide level2">
+<h2>CLAUDE.md: instruções persistentes 📋</h2>
+<p>Arquivo de instruções persistentes, lido automaticamente pelo agente a cada nova sessão</p>
+<p><br></p>
+<p>O que colocar:</p>
+<ul>
+<li>Contexto do projeto e objetivos</li>
+<li>Convenções técnicas (linguagem, estrutura de pastas)</li>
+<li><strong>Decisões analíticas já tomadas</strong>, e por quê</li>
+</ul>
+<div class="fragment">
+<p>É a <strong>memória permanente</strong> do agente no projeto: o que sobrevive ao <code>/clear</code></p>
+</div>
+</section>
+<section id="um-claude.md-para-pesquisa" class="slide level2">
+<h2>Um CLAUDE.md para pesquisa</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="fu"># CLAUDE.md</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="fu">## Contexto</span></span>
+<span id="cb1-4"><a href=""></a>Projeto de monitoramento de votações nominais na Câmara dos Deputados.</span>
+<span id="cb1-5"><a href=""></a>Fonte: API de Dados Abertos da Câmara -- não usar scraping do site.</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="fu">## Convenções</span></span>
+<span id="cb1-8"><a href=""></a><span class="ss">- </span>Usar R 4.3+ com tidyverse e ggplot2</span>
+<span id="cb1-9"><a href=""></a><span class="ss">- </span>Salvar gráficos em <span class="in">`output/figures/`</span></span>
+<span id="cb1-10"><a href=""></a><span class="ss">- </span>Cada análise em script separado</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a><span class="fu">## Decisões analíticas</span></span>
+<span id="cb1-13"><a href=""></a><span class="ss">- </span>Unidade de análise: deputado × votação nominal</span>
+<span id="cb1-14"><a href=""></a><span class="ss">- </span>Hipótese: alinhamento ao governo varia por bloco partidário</span>
+<span id="cb1-15"><a href=""></a><span class="ss">- </span>Considerar só a legislatura atual (57ª)</span>
+<span id="cb1-16"><a href=""></a><span class="ss">- </span>Excluir votações simbólicas (sem registro nominal)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="a-pasta-.claude" class="slide level2">
+<h2>A pasta <code>.claude</code> 📁</h2>
+<pre><code>projeto/
+├── CLAUDE.md              ← instruções permanentes do projeto
+└── .claude/
+    ├── commands/          ← suas skills customizadas
+    │   ├── voice.md
+    │   └── summarize.md
+    └── settings.json      ← permissões e configurações</code></pre>
+<div class="fragment">
+<p>E na sua máquina, fora de qualquer projeto:</p>
+<pre><code>~/.claude/
+└── commands/              ← skills globais, disponíveis em todo projeto
+    └── voice.md</code></pre>
+</div>
+</section>
+<section id="skills-comandos-customizados" class="slide level2">
+<h2>Skills: comandos customizados ⚡</h2>
+<p><code>/nome-da-skill</code> executa um <em>prompt</em> reutilizável, definido num arquivo <code>.md</code> em <code>.claude/commands/</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href=""></a>Você vai receber um texto acadêmico em português.</span>
+<span id="cb4-2"><a href=""></a>Produza um resumo estruturado com:</span>
+<span id="cb4-3"><a href=""></a><span class="ss">1. </span>Pergunta de pesquisa (1 frase)</span>
+<span id="cb4-4"><a href=""></a><span class="ss">2. </span>Método principal (1 frase)</span>
+<span id="cb4-5"><a href=""></a><span class="ss">3. </span>Resultado central (2 frases)</span>
+<span id="cb4-6"><a href=""></a><span class="ss">4. </span>Limitações reconhecidas pelos autores (bullet points)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Para usar: chame <code>/summarize</code> e cole o abstract ou o artigo inteiro. É portátil entre projetos: copie a pasta e as skills vão junto</p>
+</div>
+</section>
+<section id="skills-de-pesquisa" class="slide level2">
+<h2>Skills de pesquisa 🔬</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Skill</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/voice</code></td>
+<td>Reescreve texto no seu estilo de escrita</td>
+</tr>
+<tr class="even">
+<td><code>/summarize</code></td>
+<td>Resume artigos: pergunta, método, achado, limites</td>
+</tr>
+<tr class="odd">
+<td><code>/referee-2</code></td>
+<td>Revisão em instância nova do terminal: “não peça ao mesmo Claude que escreveu o código para revisá-lo”</td>
+</tr>
+<tr class="even">
+<td><code>/blindspot</code></td>
+<td>Identifica análises que você não pensou em fazer</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><code>/referee-2</code> e <code>/blindspot</code> são do workflow de Scott Cunningham (<code>github.com/scunning1975/MixtapeTools</code>)</p>
+</div>
+</section>
+<section id="plan-mode-revise-antes-de-executar" class="slide level2">
+<h2>Plan mode: revise antes de executar 🛡️</h2>
+<p>Antes de qualquer tarefa não-trivial: entrar em <strong>plan mode</strong> com <code>Shift+Tab</code></p>
+<p><img src="prints/claudecode_planmode.png" style="margin-top:0.4em; max-height:340px; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.12);"></p>
+<div class="fragment">
+<p>O agente mostra o plano antes de tocar em qualquer arquivo. Você aprova, ajusta ou cancela</p>
+</div>
+</section>
+<section id="section-1" class="slide level2" data-background-color="#0f172a">
+<h2></h2>
+<div class="r-fit-text">
+<p>Gerenciamento de contexto</p>
+</div>
+</section>
+<section id="a-janela-de-contexto" class="slide level2">
+<h2>A janela de contexto 🧠</h2>
+<p>Tudo que o modelo “vê” ao mesmo tempo cresce a cada iteração</p>
+<div style="display:flex; gap:1.4em; align-items:flex-start; justify-content:center; font-size:0.4em; margin-top:0.8em;">
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Início
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ carregue e explore os dados
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+</div>
+<div style="background:#e2e8f0; border-radius:999px; height:0.5em; margin-top:0.8em; overflow:hidden;">
+<div style="background:#2563eb; width:15%; height:100%;">
+
+</div>
+</div>
+<div style="text-align:center; color:#64748b; margin-top:0.3em; font-family:sans-serif;">
+~15% da janela
+</div>
+</div>
+<div style="color:#475569; font-size:1.8em; padding-top:2.2em;">
+→
+</div>
+<div style="flex:1; max-width:200px;">
+<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Algumas trocas depois
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ carregue e explore os dados
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+💻 erro na linha 12
+</div>
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ corrija o erro
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 [versão corrigida]
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+📄 dados.csv
+</div>
+</div>
+<div style="background:#e2e8f0; border-radius:999px; height:0.5em; margin-top:0.8em; overflow:hidden;">
+<div style="background:#f59e0b; width:55%; height:100%;">
+
+</div>
+</div>
+<div style="text-align:center; color:#64748b; margin-top:0.3em; font-family:sans-serif;">
+~55% da janela
+</div>
+</div>
+<div style="color:#475569; font-size:1.8em; padding-top:2.2em;">
+→
+</div>
+<div style="flex:1; max-width:200px;">
+<div style="color:#f87171; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">
+Muitas iterações depois
+</div>
+<div style="display:flex; flex-direction:column; gap:0.5em;">
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ carregue e explore os dados
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 aqui está o código
+</div>
+<div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">
+💻 erro na linha 12
+</div>
+<div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">
+🗨️ corrija o erro
+</div>
+<div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">
+🤖 [versão corrigida]
+</div>
+<div style="background:#7f1d1d; color:#fca5a5; border-radius:6px; padding:0.45em 0.9em; font-family:monospace; font-weight:bold;">
+⚠️ LIMITE DA JANELA
+</div>
+</div>
+<div style="background:#e2e8f0; border-radius:999px; height:0.5em; margin-top:0.8em; overflow:hidden;">
+<div style="background:#dc2626; width:95%; height:100%;">
+
+</div>
+</div>
+<div style="text-align:center; color:#dc2626; margin-top:0.3em; font-family:sans-serif; font-weight:bold;">
+~95% da janela
+</div>
+</div>
+</div>
+</section>
+<section id="estratégias-de-gerenciamento" class="slide level2">
+<h2>Estratégias de gerenciamento 🎯</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estratégia</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/clear</code></td>
+<td>Reinicia a sessão, preserva o CLAUDE.md</td>
+</tr>
+<tr class="even">
+<td>Compaction automática</td>
+<td>O Claude resume o contexto sozinho quando necessário</td>
+</tr>
+<tr class="odd">
+<td>Sessões focadas</td>
+<td>Uma tarefa por sessão</td>
+</tr>
+<tr class="even">
+<td><strong>CLAUDE.md</strong></td>
+<td>Memória que sobrevive ao <code>/clear</code></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<blockquote>
+<p>Tarefas grandes = múltiplas sessões pequenas e focadas</p>
+</blockquote>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="aplicações-práticas" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Aplicações práticas</h1>
+
+</section>
+<section id="as-demos-de-hoje" class="slide level2">
+<h2>As demos de hoje</h2>
+<div style="display:flex; gap:1em; margin-top:0.8em;">
+<div style="flex:1; background:#1e293b; border-radius:12px; padding:1.1em; text-align:center;">
+<div style="font-size:1.8em; margin-bottom:0.3em;">
+🌳
+</div>
+<div style="color:white; font-weight:600; font-size:0.68em;">
+Pesquisa em paralelo
+</div>
+<div style="color:#94a3b8; font-size:0.55em; margin-top:0.3em;">
+Bancada ambientalista: literatura e votações no Congresso
+</div>
+</div>
+<div style="flex:1; background:#1e293b; border-radius:12px; padding:1.1em; text-align:center;">
+<div style="font-size:1.8em; margin-bottom:0.3em;">
+🌐
+</div>
+<div style="color:white; font-weight:600; font-size:0.68em;">
+Site pessoal
+</div>
+<div style="color:#94a3b8; font-size:0.55em; margin-top:0.3em;">
+Do currículo ao deploy
+</div>
+</div>
+</div>
+</section>
+<section id="demo-bancada-ambientalista-literatura-e-dados" class="slide level2" data-background-color="#2563eb">
+<h2>Demo: bancada ambientalista, literatura e dados</h2>
+</section>
+<section id="o-problema" class="slide level2">
+<h2>O problema</h2>
+<p>Revisão de literatura e coleta de dados legislativos normalmente rodam em processos separados – primeiro se lê, depois, semanas depois, se coleta</p>
+<div class="fragment">
+<p>Hoje as duas rodam sobre o mesmo tema: como a bancada ambientalista vota no Congresso</p>
+</div>
+</section>
+<section id="o-pipeline" class="slide level2">
+<h2>O pipeline</h2>
+<div class="cell" data-reveal="true" data-fig-width="9" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(["🔍  OpenAlex&lt;br/&gt;literatura sobre voto ambiental"]) --&gt; C(["✍️  Fichamentos&lt;br/&gt;Claude Code"])
+  B(["🏛️  Câmara API&lt;br/&gt;votações ambientais"]) --&gt; D(["📊  Análise exploratória&lt;br/&gt;Claude Code"])
+
+  style A fill:#475569,color:white,stroke:none
+  style B fill:#475569,color:white,stroke:none
+  style C fill:#2563eb,color:white,stroke:none
+  style D fill:#2563eb,color:white,stroke:none
+  linkStyle default stroke:#64748b,stroke-width:2px
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="buscando-a-literatura" class="slide level2">
+<h2>Buscando a literatura</h2>
+<p>A <strong>OpenAlex</strong> indexa ~250 milhões de trabalhos acadêmicos com API gratuita e sem autenticação</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">import</span> requests</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a>params <span class="op">=</span> {</span>
+<span id="cb5-4"><a href=""></a>    <span class="st">"search"</span>: <span class="st">'"bancada ambientalista" OR "voto ambiental" Congresso'</span>,</span>
+<span id="cb5-5"><a href=""></a>    <span class="st">"filter"</span>: <span class="st">"publication_year:2015-2025"</span>,</span>
+<span id="cb5-6"><a href=""></a>    <span class="st">"sort"</span>: <span class="st">"cited_by_count:desc"</span>,</span>
+<span id="cb5-7"><a href=""></a>    <span class="st">"per_page"</span>: <span class="dv">25</span></span>
+<span id="cb5-8"><a href=""></a>}</span>
+<span id="cb5-9"><a href=""></a>resp <span class="op">=</span> requests.get(<span class="st">"https://api.openalex.org/works"</span>, params<span class="op">=</span>params)</span>
+<span id="cb5-10"><a href=""></a>works <span class="op">=</span> resp.json()[<span class="st">"results"</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Claude Code lê os abstracts retornados e gera um fichamento estruturado de cada um</p>
+</div>
+</section>
+<section id="apis-de-dados-abertos-no-brasil" class="slide level2">
+<h2>APIs de dados abertos no Brasil 🇧🇷</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>API</th>
+<th>O que oferece</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Câmara dos Deputados</strong></td>
+<td>Deputados, votações, proposições, despesas</td>
+</tr>
+<tr class="even">
+<td><strong>Portal da Transparência</strong></td>
+<td>Gastos do governo federal, contratos, servidores</td>
+</tr>
+<tr class="odd">
+<td><strong>IBGE</strong></td>
+<td>PNAD, censo, indicadores socioeconômicos</td>
+</tr>
+<tr class="even">
+<td><strong>TSE</strong></td>
+<td>Resultados eleitorais, candidatos, financiamento</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-api-da-câmara-dos-deputados" class="slide level2">
+<h2>A API da Câmara dos Deputados</h2>
+<p>Base URL: <code>dadosabertos.camara.leg.br/api/v2</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(httr2)</span>
+<span id="cb6-2"><a href=""></a><span class="fu">library</span>(purrr)</span>
+<span id="cb6-3"><a href=""></a></span>
+<span id="cb6-4"><a href=""></a>deputados <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://dadosabertos.camara.leg.br/api/v2/deputados"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">req_url_query</span>(<span class="at">idLegislatura =</span> <span class="dv">57</span>, <span class="at">ordem =</span> <span class="st">"ASC"</span>, <span class="at">ordenarPor =</span> <span class="st">"nome"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href=""></a>  <span class="fu">req_perform</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="fu">resp_body_json</span>(<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href=""></a>  <span class="fu">pluck</span>(<span class="st">"dados"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Retorna JSON. Com <code>simplifyVector = TRUE</code>, o <code>httr2</code> já entrega um data frame pronto</p>
+</div>
+</section>
+<section id="achando-as-votações-ambientais" class="slide level2">
+<h2>Achando as votações ambientais</h2>
+<p>Proposições têm um código de tema – meio ambiente é <code>codTema = 48</code>, e a lista completa está em <code>/referencias/proposicoes/codTema</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>proposicoes <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://dadosabertos.camara.leg.br/api/v2/proposicoes"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">req_url_query</span>(<span class="at">codTema =</span> <span class="dv">48</span>, <span class="at">itens =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href=""></a>  <span class="fu">req_perform</span>() <span class="sc">|&gt;</span> <span class="fu">resp_body_json</span>(<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="st">"dados"</span>)</span>
+<span id="cb7-4"><a href=""></a></span>
+<span id="cb7-5"><a href=""></a><span class="co"># ex.: PL 2159/2021, a Lei do Licenciamento Ambiental (id 257161)</span></span>
+<span id="cb7-6"><a href=""></a>votacoes <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://dadosabertos.camara.leg.br/api/v2/proposicoes/257161/votacoes"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href=""></a>  <span class="fu">req_perform</span>() <span class="sc">|&gt;</span> <span class="fu">resp_body_json</span>(<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="st">"dados"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>Cada proposição pode ter várias votações – de emendas, destaques, do texto principal. Escolher qual votação usar é decisão da pesquisa, não do código</p>
+</div>
+</section>
+<section id="endpoints-úteis" class="slide level2">
+<h2>Endpoints úteis</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Endpoint</th>
+<th>Traz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/proposicoes?codTema=48</code></td>
+<td>Proposições sobre meio ambiente</td>
+</tr>
+<tr class="even">
+<td><code>/proposicoes/{id}/votacoes</code></td>
+<td>Votações de uma proposição específica</td>
+</tr>
+<tr class="odd">
+<td><code>/votacoes/{id}/votos</code></td>
+<td>Como cada deputado votou</td>
+</tr>
+<tr class="even">
+<td><code>/deputados</code></td>
+<td>Partido, estado, foto</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="duas-saídas-mesmo-tema" class="slide level2">
+<h2>Duas saídas, mesmo tema</h2>
+<ul>
+<li>Da literatura: fichamentos estruturados, um por trabalho, salvos em <code>/fichamentos/</code></li>
+<li>Dos dados: um pedido direto – “faça uma análise exploratória dessas votações” – que vira um relatório simples de pesquisa: quem votou o quê, por partido e por estado</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>Não é redação automática de um paper. O Claude Code ajuda a explorar os dados; o que vira achado é decisão sua</p>
+</blockquote>
+</div>
+</section>
+<section id="demo-site-pessoal-a-partir-do-currículo" class="slide level2" data-background-color="#2563eb">
+<h2>Demo: site pessoal a partir do currículo</h2>
+</section>
+<section id="do-currículo-ao-site-pessoal" class="slide level2">
+<h2>Do currículo ao site pessoal 🌐</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>Input</strong></p>
+<ul>
+<li>Currículo em texto simples ou PDF</li>
+<li>Uma instrução ao agente</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<p><strong>Output</strong></p>
+<ul>
+<li>Página HTML/CSS completa e responsiva</li>
+<li>Publicável no GitHub Pages sem configuração manual</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><br></p>
+<p>O mesmo raciocínio vale para páginas de projeto: o gap entre ter um artigo com código e ter uma página sobre ele é menor do que parece</p>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="para-além-do-curso" class="title-slide slide level1 center" data-background-color="#2563eb">
+<h1>Para além do curso</h1>
+
+</section>
+<section id="problemas-parcialmente-contornáveis" class="slide level2">
+<h2>Problemas parcialmente contornáveis 🔧</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problema</th>
+<th>Mitigação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Erros e alucinações</td>
+<td>Revisão sistemática; agentes paralelos para verificação cruzada</td>
+</tr>
+<tr class="even">
+<td>Degradação do contexto</td>
+<td>Sessões focadas por tarefa; compactação automática</td>
+</tr>
+<tr class="odd">
+<td>Deriva de escopo</td>
+<td>CLAUDE.md com restrições analíticas explícitas</td>
+</tr>
+<tr class="even">
+<td>Reprodutibilidade</td>
+<td>Documentar decisões, não apenas o código gerado</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="o-que-não-delegar" class="slide level2">
+<h2>O que não delegar ⚠️</h2>
+<ul>
+<li>A <strong>interpretação substantiva</strong> dos achados é do pesquisador</li>
+<li>As <strong>decisões de design</strong>: o que medir, como operacionalizar, quais hipóteses testar</li>
+<li>A <strong>validação</strong>: o agente sabe se o código roda; você verifica se o achado faz sentido</li>
+<li>A <strong>responsabilidade autoral</strong>: o pesquisador assina, inclusive pelo que o agente produziu</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>O Claude Code acelera a parte mecânica da pesquisa. O raciocínio científico continua sendo seu trabalho</p>
+</blockquote>
+</div>
+</section>
+<section id="o-que-dizem-os-periódicos" class="slide level2">
+<h2>O que dizem os periódicos 📚</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>Internacionais</strong></p>
+<p>Padrão dominante: disclosure obrigatório + IA não pode ser autora</p>
+<ul>
+<li><a href="https://ajps.org/ajps-ai-policy/">AJPS</a>: proíbe usar IA para redigir o manuscrito</li>
+<li><a href="https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials">APSR</a>: exige disclosure</li>
+<li><a href="https://www.journals.uchicago.edu/journals/jop/instruct">Journal of Politics</a>: proíbe uso na redação</li>
+<li><a href="https://www.cambridge.org/core/journals/political-analysis/information/author-instructions/preparing-your-materials">Political Analysis</a>: disclosure com ferramenta, versão e uso</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<p><strong>Brasileiros</strong></p>
+<ul>
+<li><a href="https://www.gov.br/cnpq/pt-br/assuntos/noticias/cnpq-em-acao/cnpq-publica-portaria-que-institui-politica-de-integridade-na-atividade-cientifica">CNPq – Portaria nº 2.664/2026</a>: disclosure obrigatório em todas as fases; pesquisador é integralmente responsável</li>
+<li><a href="https://periodicos.sbu.unicamp.br/ojs/index.php/index/diretrizes">Opinião Pública / Unicamp</a>: nota de rodapé com ferramentas, fases e seções</li>
+</ul>
+</div></div>
+</section>
+<section id="recursos-úteis" class="slide level2">
+<h2>Recursos úteis 📖</h2>
+<p>Workflows de pesquisadores que valem a visita. Os repositórios são públicos:</p>
+<p><br></p>
+<p><strong>Scott Cunningham</strong> <code>github.com/scunning1975/MixtapeTools</code></p>
+<p><strong>Manoel Galdino</strong> <code>github.com/mgaldino/agents-workflow</code></p>
+<p><strong>Pedro Sant’Anna</strong> <code>github.com/pedrohcgs/claude-code-my-workflow</code></p>
+<div class="fragment">
+<blockquote>
+<p>A pasta <code>.claude</code> deles é pública: dá pra copiar, adaptar e construir em cima</p>
+</blockquote>
+</div>
+</section>
+<section id="obrigado" class="slide level2" data-background-color="#1e293b">
+<h2>Obrigado!</h2>
+<div style="text-align:center; margin-top:1.2em;">
+<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">
+Felipe Lamarca
+</div>
+<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">
+IESP-UERJ · MAPE · DOXA · NECON
+</div>
+<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
+<p>📧 &nbsp;felipe.lamarca@hotmail.com<br> 🌐 &nbsp;felipelamarca.com</p>
+</div>
+<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
+<p>📂 &nbsp;github.com/felipelmc/Presentations/tree/main/AgentesIA-FMMAPE-2026</p>
+</div>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Formação Metodológica do MAPE · Felipe Lamarca</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiada");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiada");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
