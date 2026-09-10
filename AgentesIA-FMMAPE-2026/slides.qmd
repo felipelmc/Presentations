@@ -478,7 +478,7 @@ A **OpenAlex** indexa ~250 milhões de trabalhos acadêmicos com API gratuita e 
 import requests
 
 params = {
-    "search": '"bancada ambientalista" OR "voto ambiental" Congresso',
+    "search": "bancada ambientalista Congresso Nacional votação",
     "filter": "publication_year:2015-2025",
     "sort": "cited_by_count:desc",
     "per_page": 25
