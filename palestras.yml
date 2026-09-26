@@ -1,0 +1,104 @@
+# Galeria de felipelamarca.com/Presentations/ (gerada por _extensions/felipelmc/plenario/tools/galeria.py).
+# Uma entrada por apresentação; a ordem na página é por data, da mais recente para a mais antiga.
+# Campos: pasta, titulo, subtitulo, data, detalhe, evento, secao (pesquisa|curso), formato (revealjs|beamer),
+#         slides, pdf, partes [{rotulo, slides, pdf}], extras [{rotulo, href}], idioma, capa.
+
+site:
+  titulo: "Slides"
+  eyebrow: "Apresentações"
+  subtitulo: 'Palestras, aulas e workshops desde 2025. Os decks em revealjs usam o <a href="https://felipelamarca.com/Slides-Template/">Plenário Slides</a> e têm versão em PDF; os decks em Beamer estão como foram apresentados.'
+  titulo-pagina: "Slides · Felipe Lamarca"
+  descricao: "Slides de palestras, aulas e workshops de Felipe Lamarca."
+  url: https://felipelamarca.com/Presentations/
+  repo: https://github.com/felipelmc/Presentations
+
+secoes:
+  - id: pesquisa
+    titulo: Pesquisa
+  - id: curso
+    titulo: Cursos e workshops
+
+palestras:
+  - pasta: AgentesIA-FMMAPE-2026
+    titulo: "Agentes de IA para pesquisa em ciências sociais"
+    subtitulo: "Uma introdução ao Claude Code"
+    data: 2026-08-17
+    detalhe: "IESP-UERJ"
+    evento: "Formação Metodológica do MAPE"
+    secao: curso
+    slides: slides.html
+    pdf: slides.pdf
+
+  - pasta: Intro-to-ClaudeCode-LABIIA-2026
+    titulo: "Introdução aos agentes de IA na pesquisa acadêmica"
+    subtitulo: "Curso de dois dias"
+    data: 2026-06-02
+    evento: "LABIIA Lab"
+    secao: curso
+    partes:
+      - {rotulo: "Dia 1", slides: dia1.html, pdf: dia1.pdf}
+      - {rotulo: "Dia 2", slides: dia2.html, pdf: dia2.pdf}
+
+  - pasta: Intro-to-ClaudeCode-CERES-2026
+    titulo: "Agentes de IA para pesquisa em ciências sociais"
+    subtitulo: "Uma introdução ao Claude Code"
+    data: 2026-05-13
+    detalhe: "IESP-UERJ"
+    evento: "Workshop CERES 2026.1"
+    secao: curso
+    slides: slides.html
+    pdf: slides.pdf
+
+  - pasta: Minicurso-DL-Jornada-Discente-IESP-2025
+    titulo: "Deep Learning e Text-as-Data"
+    subtitulo: "Minicurso"
+    data: 2025-11-12
+    detalhe: "IESP-UERJ"
+    evento: "10ª Jornada Discente dos Programas de Pós-Graduação"
+    secao: curso
+    formato: beamer
+    pdf: minicurso-dl-jornada-discente-2025.pdf
+    extras:
+      - {rotulo: "Notebooks", href: "https://github.com/felipelmc/Presentations/tree/main/Minicurso-DL-Jornada-Discente-IESP-2025/notebooks"}
+
+  - pasta: GT-Jornada-Discente-IESP-2025
+    titulo: "Quantos votos meu partido vai fazer?"
+    subtitulo: "Prevendo o vote share nos municípios fluminenses"
+    data: 2025-11-10
+    detalhe: "IESP-UERJ"
+    evento: "10ª Jornada Discente dos Programas de Pós-Graduação"
+    secao: pesquisa
+    formato: beamer
+    pdf: jornada-discente-2025.pdf
+
+  - pasta: ML-FMMAPE-2025
+    titulo: "Machine Learning"
+    data: 2025-09-19
+    detalhe: "IESP-UERJ"
+    evento: "Formação Metodológica do MAPE"
+    secao: curso
+    formato: beamer
+    pdf: ml-fmmape.pdf
+    extras:
+      - {rotulo: "Código e dados", href: "https://github.com/felipelmc/Presentations/tree/main/ML-FMMAPE-2025/code-and-data"}
+
+  - pasta: BIEN-2025
+    titulo: "Fatores explicativos do apoio ou rejeição à criação de uma política municipal de renda básica"
+    subtitulo: "Modelando a percepção dos cariocas"
+    data: 2025-08-29
+    evento: "BIEN 2025, 24º Congresso da Rede Mundial da Renda Básica. Com Jimmy Medeiros, José Antônio Perez Rojas Mariano de Azevedo e Philippe Chaves Guedon (FGV CPDOC)."
+    secao: pesquisa
+    formato: beamer
+    pdf: bien2025.pdf
+
+  - pasta: SICSS-2025
+    titulo: "Automated Text Analysis"
+    data: 2025-07-02
+    detalhe: "FGV ECMI"
+    evento: "Summer Institute in Computational Social Science (SICSS) 2025"
+    secao: curso
+    formato: beamer
+    idioma: en
+    pdf: sicss2025.pdf
+    extras:
+      - {rotulo: "Notebook", href: "https://github.com/felipelmc/Presentations/blob/main/SICSS-2025/Automated_Text_Analysis_SICSS_2025.ipynb"}

@@ -1,0 +1,19 @@
+# Coleção de apresentações publicada em felipelamarca.com/Presentations/.
+# Renderiza só os decks revealjs (os Beamer entram como PDF), gera os PDFs e a galeria.
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*/slides.qmd"
+    - "*/dia*.qmd"
+  resources:
+    - "/*/*.pdf"
+  post-render:
+    - _extensions/felipelmc/plenario/tools/pdf.py
+    - _extensions/felipelmc/plenario/tools/galeria.py
+
+website:
+  title: "Apresentações · Felipe Lamarca"
+  site-url: https://felipelamarca.com/Presentations/
+
+lang: pt-BR

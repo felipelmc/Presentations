@@ -1,0 +1,429 @@
+/*-- scss:defaults --*/
+// Plenário Slides · tema revealjs com os tokens de felipelamarca.com (modo claro).
+// O que muda entre os estilos (curso, academico) fica em estilos/*.css, carregado pelo plenario.lua.
+
+$pl-bg: #F6F6F3;
+$pl-surface: #FFFFFF;
+$pl-sunken: #EDEDE8;
+$pl-line: #DEDED8;
+$pl-line-strong: #C9C9C1;
+$pl-ink: #0E1116;
+$pl-ink-2: #444A54;
+$pl-ink-3: #5F656E;
+$pl-accent: #0A6F69;
+$pl-award: #8A5A00;
+$pl-danger: #A63D32;
+$pl-d1: #5AC0AB;
+$pl-d2: #2E9D8E;
+$pl-d3: #187970;
+$pl-d4: #0E5652;
+$pl-d5: #053535;
+
+$pl-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+$pl-serif: "Newsreader", Georgia, "Times New Roman", serif;
+$pl-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+
+$body-bg: $pl-bg;
+$body-color: $pl-ink;
+$text-muted: $pl-ink-3;
+$primary: $pl-accent;
+$link-color: $pl-accent;
+$link-color-hover: $pl-d4;
+$selection-bg: rgba($pl-accent, 0.18);
+$selection-color: $pl-ink;
+$border-color: $pl-line;
+$border-radius: 8px;
+
+$font-family-sans-serif: $pl-sans;
+$font-family-monospace: $pl-mono;
+
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.4;
+$presentation-font-smaller: 0.75;
+$presentation-heading-font: $pl-sans;
+$presentation-heading-color: $pl-ink;
+$presentation-heading-font-weight: 600;
+$presentation-heading-letter-spacing: -0.02em;
+$presentation-heading-line-height: 1.15;
+$presentation-h1-font-size: 2.1em;
+$presentation-h2-font-size: 1.35em;
+$presentation-h3-font-size: 1.05em;
+$presentation-h4-font-size: 0.95em;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+$presentation-list-bullet-color: $pl-accent;
+$presentation-block-margin: 14px;
+
+$code-block-bg: $pl-surface;
+$code-block-border-color: $pl-line;
+$code-block-font-size: 0.72em;
+$code-block-height: 520px;
+$code-inline-font-size: 0.85em;
+$code-color: $pl-d4;
+$code-bg: $pl-sunken;
+$table-border-color: $pl-line-strong;
+$input-panel-bg: $pl-sunken;
+$kbd-bg: $pl-sunken;
+$kbd-color: $pl-ink;
+
+$light-bg-text-color: $pl-ink;
+$light-bg-link-color: $pl-accent;
+$light-bg-code-color: $pl-d4;
+$dark-bg-text-color: $pl-bg;
+$dark-bg-link-color: $pl-d1;
+$dark-bg-code-color: $pl-d1;
+
+$callout-color-note: $pl-accent;
+$callout-color-tip: $pl-d3;
+$callout-color-important: $pl-danger;
+$callout-color-caution: $pl-award;
+$callout-color-warning: $pl-award;
+$callout-border-width: 3px;
+
+/*-- scss:rules --*/
+
+// Variáveis com os mesmos nomes das notas: palette() do ojs/notes.js lê daqui.
+:root {
+  --cn-bg: #{$pl-bg};
+  --cn-surface: #{$pl-surface};
+  --cn-sunken: #{$pl-sunken};
+  --cn-line: #{$pl-line};
+  --cn-line-strong: #{$pl-line-strong};
+  --cn-ink: #{$pl-ink};
+  --cn-ink-2: #{$pl-ink-2};
+  --cn-ink-3: #{$pl-ink-3};
+  --cn-accent: #{$pl-accent};
+  --cn-link: #{$pl-accent};
+  --cn-award: #{$pl-award};
+  --cn-danger: #{$pl-danger};
+  --cn-d1: #{$pl-d1};
+  --cn-d2: #{$pl-d2};
+  --cn-d3: #{$pl-d3};
+  --cn-d4: #{$pl-d4};
+  --cn-d5: #{$pl-d5};
+  --pl-sans: #{$pl-sans};
+  --pl-serif: #{$pl-serif};
+  --pl-mono: #{$pl-mono};
+  --pl-escuro: #{$pl-ink};
+}
+
+$marca: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle fill='%235AC0AB' cx='4' cy='4' r='3.3'/%3E%3Ccircle fill='%232E9D8E' cx='12' cy='4' r='3.3'/%3E%3Ccircle fill='%23187970' cx='20' cy='4' r='3.3'/%3E%3Ccircle fill='%232E9D8E' cx='4' cy='12' r='3.3'/%3E%3Ccircle fill='%23187970' cx='12' cy='12' r='3.3'/%3E%3Ccircle fill='%230E5652' cx='20' cy='12' r='3.3'/%3E%3Ccircle fill='%23187970' cx='4' cy='20' r='3.3'/%3E%3Ccircle fill='%230E5652' cx='12' cy='20' r='3.3'/%3E%3Ccircle fill='%23053535' cx='20' cy='20' r='3.3'/%3E%3C/svg%3E";
+
+.reveal {
+  font-feature-settings: "ss01", "cv11";
+}
+
+.reveal .slides section {
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal strong { font-weight: 600; }
+
+.reveal a {
+  text-decoration: underline;
+  text-decoration-color: rgba($pl-accent, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.reveal a:hover { text-decoration-color: $pl-accent; }
+
+.reveal .slides section h2 { margin-bottom: 0.6em; }
+
+.reveal .slides section .eyebrow,
+.reveal .eyebrow {
+  font-family: $pl-mono;
+  font-size: 0.45em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $pl-accent;
+  margin: 0 0 0.4em;
+}
+
+.reveal .slides section .meta,
+.reveal .meta {
+  font-family: $pl-mono;
+  font-size: 0.5em;
+  color: $pl-ink-3;
+}
+
+.reveal .slides section .fragment.semi-fade-out.visible { opacity: 0.35; }
+
+// ── Rodapé e número do slide ───────────────────────────────────────────────
+// O plugin de rodapé do Quarto controla `display` por JS (estilo inline);
+// por isso aqui só posição, tipografia e a marca, e a capa usa `visibility`.
+body .reveal .footer {
+  left: 44px;
+  right: auto;
+  bottom: 16px;
+  max-width: 70%;
+  text-align: left;
+  font-family: $pl-mono;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $pl-ink-3;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 0.7em;
+    vertical-align: -2px;
+    background: url($marca) center / contain no-repeat;
+  }
+
+  > p { display: inline; margin: 0; }
+}
+
+body .reveal .slide-number {
+  font-family: $pl-mono;
+  font-size: 14px;
+  right: 28px;
+  bottom: 14px;
+  background: transparent;
+  color: $pl-ink-3;
+}
+
+.reveal:has(section.pl-capa.present) .footer,
+.reveal:has(section.pl-capa.present) .slide-number,
+.reveal:has(section.sem-rodape.present) .footer {
+  visibility: hidden;
+}
+
+.reveal .progress { color: $pl-accent; height: 3px; }
+
+// ── Capa ────────────────────────────────────────────────────────────────────
+.reveal .slides section.pl-capa {
+  text-align: left;
+}
+
+.reveal .pl-capa .pl-capa-grade {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 640px;
+  padding: 8px 0 0;
+}
+
+.reveal .pl-capa .pl-evento {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: $pl-mono;
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: $pl-ink-3;
+
+  img.pl-evento-logo {
+    height: 2.4em;
+    width: auto;
+    margin: 0;
+  }
+}
+
+.reveal .pl-capa .pl-kicker {
+  font-family: $pl-mono;
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $pl-accent;
+  margin: 0 0 0.9em;
+}
+
+.reveal .pl-capa h1.title {
+  font-size: 1.9em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0;
+  max-width: 88%;
+  text-wrap: balance;
+}
+
+.reveal .pl-capa .subtitle {
+  margin: 0.6em 0 0;
+  max-width: 80%;
+  font-size: 0.95em;
+  line-height: 1.35;
+  color: $pl-ink-2;
+  text-wrap: balance;
+}
+
+.reveal .pl-capa .pl-capa-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.4em 2.2em;
+  padding-top: 0.8em;
+  border-top: 1px solid $pl-line;
+  max-width: 88%;
+}
+
+.reveal .pl-capa .quarto-title-authors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em 2.2em;
+  margin: 0;
+}
+
+.reveal section.pl-capa .quarto-title-authors .quarto-title-author .quarto-title-author-name {
+  font-size: 0.62em;
+  font-weight: 600;
+  color: $pl-ink;
+  a { color: inherit; text-decoration: none; }
+}
+
+.reveal section.pl-capa .quarto-title-authors .quarto-title-author .quarto-title-author-email a,
+.reveal section.pl-capa .quarto-title-authors .quarto-title-author .quarto-title-affiliation {
+  font-family: $pl-mono;
+  font-size: 0.45em;
+  color: $pl-ink-3;
+  margin: 0.2em 0 0;
+}
+
+.reveal .pl-capa .date {
+  font-family: $pl-mono;
+  font-size: 0.45em;
+  color: $pl-ink-3;
+  margin: 0 0 0.15em auto;
+}
+
+.reveal .pl-capa .pl-nota {
+  font-family: $pl-mono;
+  font-size: 0.4em;
+  color: $pl-ink-3;
+  margin: 0.8em 0 0;
+}
+
+.reveal .pl-capa .pl-marca {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 56px;
+  height: 56px;
+  background: url($marca) center / contain no-repeat;
+}
+
+// ── Fundos por classe (a cor vem do plenario.lua; aqui só texto e detalhes) ─
+.reveal .slides section.escuro,
+.reveal .slides section.encerramento {
+  color: $pl-bg;
+  h1, h2, h3, h4 { color: #FFFFFF; }
+  a { color: $pl-d1; text-decoration-color: rgba($pl-d1, 0.4); }
+  code:not(.sourceCode) { background: rgba(255, 255, 255, 0.1); color: $pl-d1; }
+  .eyebrow { color: $pl-d1; }
+  blockquote { color: #E6E7E2; border-left-color: $pl-d2; }
+}
+
+// ── Citação ─────────────────────────────────────────────────────────────────
+.reveal blockquote,
+.reveal .citacao {
+  display: block;
+  width: 100%;
+  margin: 0.6em 0;
+  padding: 0.1em 0 0.1em 0.9em;
+  background: none;
+  box-shadow: none;
+  border-left: 3px solid $pl-accent;
+  font-family: $pl-serif;
+  font-style: normal;
+  font-size: 1.05em;
+  line-height: 1.4;
+  color: $pl-ink-2;
+
+  .fonte, p.fonte {
+    display: block;
+    margin-top: 0.5em;
+    font-family: $pl-mono;
+    font-size: 0.5em;
+    letter-spacing: 0.02em;
+    color: $pl-ink-3;
+  }
+}
+
+// ── Tabelas ─────────────────────────────────────────────────────────────────
+.reveal table {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  border-collapse: collapse;
+}
+.reveal table th {
+  font-weight: 600;
+  border-bottom: 1px solid $pl-ink;
+}
+.reveal table td, .reveal table th { padding: 0.35em 0.7em; }
+.reveal table caption, .reveal .table-caption {
+  font-size: 0.8em;
+  color: $pl-ink-3;
+}
+
+// ── Figuras ─────────────────────────────────────────────────────────────────
+.reveal .slide figure > figcaption,
+.reveal .slide .figure-caption {
+  font-size: 0.55em;
+  color: $pl-ink-3;
+  margin-top: 0.4em;
+}
+.reveal .slides section img { border-radius: 4px; }
+
+// ── Callouts ────────────────────────────────────────────────────────────────
+.reveal div.callout {
+  border-radius: 8px;
+  background: $pl-surface;
+  border: 1px solid $pl-line;
+  border-left-width: 3px;
+}
+
+// ── Mermaid: classes semânticas (class X destaque) ──────────────────────────
+.reveal .mermaid, .reveal .cell-output-display .mermaid { font-family: $pl-sans; }
+.reveal svg g.node.destaque :is(rect, polygon, path, circle, ellipse) {
+  fill: $pl-accent !important;
+  stroke: none !important;
+}
+.reveal svg g.node.destaque .nodeLabel,
+.reveal svg g.node.destaque .nodeLabel p,
+.reveal svg g.node.destaque text { color: #FFFFFF !important; fill: #FFFFFF !important; }
+.reveal svg g.node.apoio :is(rect, polygon, path, circle, ellipse) {
+  fill: $pl-ink !important;
+  stroke: none !important;
+}
+.reveal svg g.node.apoio .nodeLabel,
+.reveal svg g.node.apoio .nodeLabel p,
+.reveal svg g.node.apoio text { color: #FFFFFF !important; fill: #FFFFFF !important; }
+.reveal svg g.node.neutro :is(rect, polygon, path, circle, ellipse) {
+  fill: $pl-sunken !important;
+  stroke: $pl-line-strong !important;
+}
+
+// ── OJS ─────────────────────────────────────────────────────────────────────
+.reveal .observablehq {
+  font-family: $pl-sans;
+}
+.reveal form[class*="oi-"] {
+  --label-width: 240px;
+  --input-width: 380px;
+  margin-bottom: 4px;
+}
+.reveal .observablehq form,
+.reveal form.oi-3a86ea,
+.reveal .observablehq label {
+  font-family: $pl-mono;
+  font-size: 18px;
+}
+.reveal .observablehq input[type="range"] { accent-color: $pl-accent; }
+.reveal .observablehq figure { margin: 0; }
+.reveal .observablehq svg { max-width: 100%; }
+
+// ── Utilitários ─────────────────────────────────────────────────────────────
+.reveal .destaque-texto { color: $pl-accent; font-weight: 600; }
+.reveal .mudo { color: $pl-ink-3; }
+.reveal .centro { text-align: center; }
+
+.reveal .slide-number a,
+.reveal .slide-number a:hover { text-decoration: none; color: inherit; }

@@ -4,65 +4,28 @@ subtitle: "Dia 2"
 author: "Felipe Lamarca"
 institute: "IESP-UERJ · MAPE · DOXA · NECON"
 date: 2026-06-03
-date-format: "D [de] MMMM [de] YYYY"
-format:
-  revealjs:
-    theme: [default, custom.scss]
-    slide-number: c/t
-    progress: true
-    transition: slide
-    code-block-bg: true
-    highlight-style: github
-    footer: "LABIIA Lab · Felipe Lamarca"
-    include-in-header:
-      text: |
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-        <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var title = document.querySelector('#title-slide');
-          if (title) {
-            var badge = document.createElement('div');
-            badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
-            badge.innerHTML = '<img src="logo-labiia.png" style="height:1.8em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">LABIIA Lab</span>';
-            title.insertBefore(badge, title.firstChild);
-
-            var el = document.createElement('div');
-            el.style.cssText = 'font-size:0.45em; color:#94a3b8; margin-top:1.2em; font-style:italic;';
-            el.innerHTML = 'Feito com Claude Code 😉';
-            title.appendChild(el);
-          }
-        });
-        </script>
+format: plenario-revealjs
+estilo: curso
+evento: "LABIIA Lab"
+logo-evento: logo-labiia.png
+nota-titulo: "Feito com Claude Code 😉"
+footer: "LABIIA Lab · Felipe Lamarca"
+gerar-pdf: true
 lang: pt-BR
 ---
 
-## {background-color="#1e293b"}
+## {.escuro}
 
-<br>
+::: agenda
+1. **Recap**
+2. **Demo:** fichamento de literatura
+3. **Demo:** análise da Cota Parlamentar (CEAP)
+4. **Demo:** API da Câmara dos Deputados
+5. **Limites e ética**
+:::
 
-[01]{.agenda-num} &nbsp; **Recap**
 
-<br>
-
-[02]{.agenda-num} &nbsp; **Demo:** fichamento de literatura
-
-<br>
-
-[03]{.agenda-num} &nbsp; **Demo:** análise da Cota Parlamentar (CEAP)
-
-<br>
-
-[04]{.agenda-num} &nbsp; **Demo:** API da Câmara dos Deputados
-
-<br>
-
-[05]{.agenda-num} &nbsp; **Limites e ética**
-
----
-
-# Recap {background-color="#2563eb"}
+# Recap {.divisoria}
 
 ---
 
@@ -95,9 +58,8 @@ Antes de executar qualquer tarefa não-trivial: entre em **plan mode** com `Shif
 
 O agente apresenta o plano — você aprova, ajusta ou cancela antes de qualquer arquivo ser tocado
 
----
 
-# Demo 1: fichamento de literatura {background-color="#2563eb"}
+# Demo 1: fichamento de literatura {.divisoria}
 
 ---
 
@@ -160,9 +122,8 @@ works = resp.json()["results"]
 
 > O CLAUDE.md do projeto vai estar no repositório — vocês acompanham no próprio computador
 
----
 
-# Demo 2: análise da Cota Parlamentar {background-color="#2563eb"}
+# Demo 2: análise da Cota Parlamentar {.divisoria}
 
 ---
 
@@ -214,9 +175,8 @@ Com o Claude Code + dataset CEAP 2023:
 
 > Vocês acompanham no próprio computador — o CLAUDE.md do projeto vai estar no repositório
 
----
 
-# Demo 3: API da Câmara dos Deputados {background-color="#2563eb"}
+# Demo 3: API da Câmara dos Deputados {.divisoria}
 
 ---
 
@@ -273,9 +233,8 @@ Conectando a API com o que já analisamos no CEAP:
 3. Cruzar padrão de gastos com padrão de votação
 4. Gerar visualização integrada
 
----
 
-# Limites e ética {background-color="#2563eb"}
+# Limites e ética {.divisoria}
 
 ---
 
@@ -321,7 +280,6 @@ Boas práticas:
 
 Padrão dominante: **disclosure obrigatório** + IA não pode ser autora + responsabilidade é do pesquisador
 
-<br>
 
 - [AJPS](https://ajps.org/ajps-ai-policy/) — proíbe uso para redigir o manuscrito ou seções substanciais
 - [APSR](https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials) — disclosure obrigatório; alinhado à política Cambridge
@@ -332,14 +290,12 @@ Padrão dominante: **disclosure obrigatório** + IA não pode ser autora + respo
 
 ## O que dizem os periódicos (brasileiros)
 
-<br>
 
 - [CNPq — Portaria nº 2.664/2026](https://www.gov.br/cnpq/pt-br/assuntos/noticias/cnpq-em-acao/cnpq-publica-portaria-que-institui-politica-de-integridade-na-atividade-cientifica) — disclosure obrigatório em todas as fases; IA não pode ser autora; pesquisador é integralmente responsável pelo conteúdo final
 - [Opinião Pública / Unicamp](https://periodicos.sbu.unicamp.br/ojs/index.php/index/diretrizes) — nota de rodapé especificando ferramentas, fases e seções
 
----
 
-# Para além do workshop {background-color="#2563eb"}
+# Para além do workshop {.divisoria}
 
 ---
 
@@ -347,7 +303,6 @@ Padrão dominante: **disclosure obrigatório** + IA não pode ser autora + respo
 
 Documentação oficial: **claude.ai/code**
 
-<br>
 
 Seções recomendadas:
 
@@ -357,29 +312,27 @@ Seções recomendadas:
 
 ---
 
-## Obrigado! {background-color="#1e293b"}
+## Obrigado! {.encerramento}
 
-<div style="display:flex; align-items:center; gap:3em; margin-top:0.8em;">
+:::: {.columns .encerramento-grade}
+::: {.column width="60%"}
+::: contato
+[Felipe Lamarca]{.nome}
 
-<div style="flex:1;">
-<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">Felipe Lamarca</div>
-<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">IESP-UERJ · MAPE · DOXA · NECON</div>
+[IESP-UERJ · MAPE · DOXA · NECON]{.afiliacao}
 
-<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
-📧 &nbsp;felipe.lamarca@hotmail.com<br>
-🌐 &nbsp;felipelamarca.com
-</div>
+📧 felipe.lamarca@hotmail.com
 
-<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
-📂 &nbsp;github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-LABIIA-2026
-</div>
-</div>
+🌐 felipelamarca.com
 
-<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-<div style="background:white; display:inline-block; padding:16px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
-<img src="linkedin-qr.png" style="width:280px; display:block;"/>
-</div>
-<div style="font-size:0.52em; color:#64748b; margin-top:0.8em; letter-spacing:0.04em;">🔗 LinkedIn</div>
-</div>
+[📂 github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-LABIIA-2026]{.repo}
+:::
+:::
+::: {.column width="40%"}
+::: qr
+![](linkedin-qr.png)
 
-</div>
+[🔗 LinkedIn]{.legenda-qr}
+:::
+:::
+::::

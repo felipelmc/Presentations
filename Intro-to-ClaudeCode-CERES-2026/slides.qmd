@@ -4,61 +4,27 @@ subtitle: "uma introdução ao Claude Code"
 author: "Felipe Lamarca"
 institute: "IESP-UERJ · MAPE · DOXA · NECON"
 date: 2026-05-13
-date-format: "D [de] MMMM [de] YYYY"
-format:
-  revealjs:
-    theme: [default, custom.scss]
-    slide-number: c/t
-    progress: true
-    transition: slide
-    code-block-bg: true
-    highlight-style: github
-    footer: "Workshop CERES 2026.1 · Felipe Lamarca"
-    include-in-header:
-      text: |
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-        <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var title = document.querySelector('#title-slide');
-          if (title) {
-            var badge = document.createElement('div');
-            badge.style.cssText = 'display:flex; align-items:center; gap:0.5em; justify-content:center; margin-bottom:1em;';
-            badge.innerHTML = '<img src="logo-ceres.svg" style="height:3em;"> <span style="font-size:0.48em; color:#94a3b8; letter-spacing:0.07em; text-transform:uppercase; font-weight:500;">Workshop CERES 2026.1</span>';
-            title.insertBefore(badge, title.firstChild);
-
-            var el = document.createElement('div');
-            el.style.cssText = 'font-size:0.45em; color:#94a3b8; margin-top:1.2em; font-style:italic;';
-            el.innerHTML = 'Feito com Claude Code 😉';
-            title.appendChild(el);
-          }
-        });
-        </script>
+format: plenario-revealjs
+estilo: curso
+evento: "Workshop CERES 2026.1"
+logo-evento: logo-ceres.svg
+nota-titulo: "Feito com Claude Code 😉"
+footer: "Workshop CERES 2026.1 · Felipe Lamarca"
+gerar-pdf: true
 lang: pt-BR
 ---
 
-## {background-color="#1e293b"}
+## {.escuro}
 
-<br>
+::: agenda
+1. **Do chat ao agente:** o que muda na prática
+2. **Claude Code na prática:** CLAUDE.md, skills e contexto
+3. **Três aplicações:** demos ao vivo
+4. **Limites e recursos:** o que não delegar
+:::
 
-[01]{.agenda-num} &nbsp; **Do chat ao agente:** o que muda na prática
 
-<br>
-
-[02]{.agenda-num} &nbsp; **Claude Code na prática:** CLAUDE.md, skills e contexto
-
-<br>
-
-[03]{.agenda-num} &nbsp; **Três aplicações:** demos ao vivo
-
-<br>
-
-[04]{.agenda-num} &nbsp; **Limites e recursos:** o que não delegar
-
----
-
-# Do chat ao agente {background-color="#2563eb"}
+# Do chat ao agente {.divisoria}
 
 ---
 
@@ -82,7 +48,6 @@ lang: pt-BR
 
 > Em vez de responder a perguntas pontuais, o agente planeja ações, executa código e itera sobre tarefas complexas com supervisão mínima.
 
-<br>
 
 | Chat | Agente |
 |------|--------|
@@ -102,19 +67,14 @@ flowchart LR
   L --> T(["🛠️  Ferramentas"])
   T -->|executa| E(["🌍  Ambiente"])
   E -->|"resultado / erro"| L
-
-  style H fill:#475569,color:white,stroke:none
-  style L fill:#2563eb,color:white,stroke:none
-  style M fill:#1e293b,color:#94a3b8,stroke:#475569
-  style T fill:#1e293b,color:#94a3b8,stroke:#475569
-  style E fill:#475569,color:white,stroke:none
-  linkStyle default stroke:#64748b,stroke-width:2px
+  class L destaque
+  class H,E apoio
+  class M,T neutro
 ```
 
-<div style="display:flex; justify-content:center; gap:2.5em; font-size:0.52em; color:#64748b; margin-top:0.4em;">
-<span>💾 contexto da sessão + CLAUDE.md</span>
-<span>🛠️ terminal · arquivos · APIs · web</span>
-</div>
+::: legenda
+[💾 contexto da sessão + CLAUDE.md]{} [🛠️ terminal · arquivos · APIs · web]{}
+:::
 
 ---
 
@@ -128,9 +88,8 @@ flowchart LR
 
 > Roda o script, encontra o erro, corrige e re-executa -- sem você abrir o terminal.
 
----
 
-# Claude Code na prática {background-color="#2563eb"}
+# Claude Code na prática {.divisoria}
 
 ---
 
@@ -169,7 +128,6 @@ O plano Pro tem limites de uso, mas permite um bom aproveitamento para pesquisa 
 
 Arquivo de instruções persistentes, lido automaticamente a cada sessão
 
-<br>
 
 O que colocar:
 
@@ -199,7 +157,7 @@ Na prática, é o mecanismo de ensinar o agente a executar tarefas no seu vocabu
 
 ---
 
-## {background-color="#0f172a"}
+## {.escuro}
 
 ::: {.r-fit-text}
 Gerenciamento
@@ -212,48 +170,51 @@ de contexto
 
 Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
-<div style="display:flex; gap:1.4em; align-items:flex-end; justify-content:center; font-size:0.4em; margin-top:0.8em;">
+:::: janela
+::: etapa
+[Início]{.rotulo}
 
-<div style="flex:1; max-width:200px;">
-<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Início</div>
-<div style="display:flex; flex-direction:column; gap:0.5em;">
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
-</div>
-</div>
+[🗨️ como coletar os dados?]{.eu}
 
-<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">→</div>
+[🤖 aqui está o código]{.ia}
+:::
+::: etapa
+[Algumas trocas depois]{.rotulo}
 
-<div style="flex:1; max-width:200px;">
-<div style="color:#64748b; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Algumas trocas depois</div>
-<div style="display:flex; flex-direction:column; gap:0.5em;">
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
-  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">💻 erro na linha 12</div>
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ corrija o erro</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [versão corrigida]</div>
-  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">📄 dados.csv</div>
-</div>
-</div>
+[🗨️ como coletar os dados?]{.eu}
 
-<div style="color:#475569; font-size:1.8em; padding-bottom:2.5em;">→</div>
+[🤖 aqui está o código]{.ia}
 
-<div style="flex:1; max-width:200px;">
-<div style="color:#f87171; text-align:center; margin-bottom:0.6em; font-family:sans-serif;">Muitas iterações depois</div>
-<div style="display:flex; flex-direction:column; gap:0.5em;">
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ como coletar os dados?</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 aqui está o código</div>
-  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">💻 erro na linha 12</div>
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ corrija o erro</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [versão corrigida]</div>
-  <div style="background:#0f172a; color:#64748b; border-radius:6px; padding:0.45em 0.9em; font-family:monospace;">📄 dados.csv</div>
-  <div style="background:#2563eb; color:white; border-radius:14px 14px 4px 14px; padding:0.55em 0.9em; font-family:sans-serif;">🗨️ agora plote os dados</div>
-  <div style="background:#1e293b; color:#94a3b8; border-radius:4px 14px 14px 14px; padding:0.55em 0.9em; font-family:monospace;">🤖 [mais código...]</div>
-  <div style="background:#7f1d1d; color:#fca5a5; border-radius:6px; padding:0.45em 0.9em; font-family:monospace; font-weight:bold;">⚠️ LIMITE DA JANELA</div>
-</div>
-</div>
+[💻 erro na linha 12]{.sis}
 
-</div>
+[🗨️ corrija o erro]{.eu}
+
+[🤖 [versão corrigida]]{.ia}
+
+[📄 dados.csv]{.sis}
+:::
+::: {.etapa .alerta}
+[Muitas iterações depois]{.rotulo}
+
+[🗨️ como coletar os dados?]{.eu}
+
+[🤖 aqui está o código]{.ia}
+
+[💻 erro na linha 12]{.sis}
+
+[🗨️ corrija o erro]{.eu}
+
+[🤖 [versão corrigida]]{.ia}
+
+[📄 dados.csv]{.sis}
+
+[🗨️ agora plote os dados]{.eu}
+
+[🤖 [mais código...]]{.ia}
+
+[⚠️ LIMITE DA JANELA]{.alerta}
+:::
+::::
 
 ---
 
@@ -270,31 +231,35 @@ Tudo que o modelo "vê" ao mesmo tempo cresce a cada iteração
 
 > Tarefas grandes = múltiplas sessões pequenas e focadas
 
----
 
-# Três aplicações práticas {background-color="#2563eb"}
+# Três aplicações práticas {.divisoria}
 
 ---
 
 ## As demos de hoje
 
-:::: {.columns}
+:::: {.cards cols=3 .escuras .centro}
+::: card
+[🗳️]{.icone}
 
-::: {.column width="33%"}
-🗳️ &nbsp;**Dados eleitorais**
+**Dados eleitorais**
+
 Análise e modelagem
 :::
+::: card
+[🖊️]{.icone}
 
-::: {.column width="33%"}
-🖊️ &nbsp;**Skill de voz**
+**Skill de voz**
+
 Escreve como você
 :::
+::: card
+[🌐]{.icone}
 
-::: {.column width="33%"}
-🌐 &nbsp;**Site pessoal**
+**Site pessoal**
+
 Do currículo ao deploy
 :::
-
 ::::
 
 ---
@@ -318,11 +283,9 @@ Roteiro ao vivo:
 
 Você tem um estilo de escrita. O modelo pode aprendê-lo.
 
-<br>
 
 Como criar: (i) reunir *writing samples* seus (artigos, e-mails, textos); (ii) criar o arquivo de skill `/voice`
 
-<br>
 
 Uso: pedir ao Claude que revise ou reescreva textos no seu estilo
 
@@ -338,9 +301,8 @@ Uso: pedir ao Claude que revise ou reescreva textos no seu estilo
 
 O mesmo raciocínio vale para páginas de projeto: o gap entre ter um artigo com código e ter uma página sobre ele é menor do que parece -- o Claude Code lê o repositório e produz o HTML.
 
----
 
-# Para além do workshop {background-color="#2563eb"}
+# Para além do workshop {.divisoria}
 
 ---
 
@@ -372,7 +334,6 @@ Em última instância, o pesquisador responde por tudo que assina -- inclusive p
 
 Skill que analisa o histórico de sessões e gera um relatório personalizado de uso
 
-<br>
 
 . . .
 
@@ -393,7 +354,6 @@ O que o relatório traz:
 
 Documentação oficial: `claude.ai/code`
 
-<br>
 
 Seções recomendadas:
 
@@ -403,29 +363,27 @@ Seções recomendadas:
 
 ---
 
-## Obrigado! {background-color="#1e293b"}
+## Obrigado! {.encerramento}
 
-<div style="display:flex; align-items:center; gap:3em; margin-top:0.8em;">
+:::: {.columns .encerramento-grade}
+::: {.column width="60%"}
+::: contato
+[Felipe Lamarca]{.nome}
 
-<div style="flex:1;">
-<div style="font-size:1.2em; font-weight:700; color:white; margin-bottom:0.25em;">Felipe Lamarca</div>
-<div style="font-size:0.62em; color:#64748b; margin-bottom:1.4em; letter-spacing:0.02em;">IESP-UERJ · MAPE · DOXA · NECON</div>
+[IESP-UERJ · MAPE · DOXA · NECON]{.afiliacao}
 
-<div style="font-size:0.65em; color:#94a3b8; line-height:2.4;">
-📧 &nbsp;felipe.lamarca@hotmail.com<br>
-🌐 &nbsp;felipelamarca.com
-</div>
+📧 felipe.lamarca@hotmail.com
 
-<div style="font-size:0.5em; color:#475569; margin-top:1.8em;">
-📂 &nbsp;github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-2026
-</div>
-</div>
+🌐 felipelamarca.com
 
-<div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-<div style="background:white; display:inline-block; padding:16px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
-<img src="linkedin-qr.png" style="width:280px; display:block;"/>
-</div>
-<div style="font-size:0.52em; color:#64748b; margin-top:0.8em; letter-spacing:0.04em;">🔗 LinkedIn</div>
-</div>
+[📂 github.com/felipelmc/Presentations/tree/main/Intro-to-ClaudeCode-CERES-2026]{.repo}
+:::
+:::
+::: {.column width="40%"}
+::: qr
+![](linkedin-qr.png)
 
-</div>
+[🔗 LinkedIn]{.legenda-qr}
+:::
+:::
+::::

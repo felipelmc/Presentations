@@ -1,2 +1,14 @@
+# saída do Quarto (o CI gera de novo, com os PDFs dos decks revealjs)
 /.quarto/
+/_site/
+**/*_files/
+/*/*.html
+render.log
+**/*.quarto_ipynb
+
+# webR: instalado no CI quando algum deck usar (quarto add coatless/quarto-webr@0.4.3)
+/_extensions/coatless/
+
+# sistema
 .DS_Store
+/.claude/

@@ -1,0 +1,66 @@
+/* Plenário Slides · estilo acadêmico: títulos em Newsreader, fundo claro, tabelas booktabs. */
+
+html body .reveal h1,
+html body .reveal h2,
+html body .reveal h3,
+html body .reveal .pl-capa h1.title {
+  font-family: var(--pl-serif);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  letter-spacing: -0.012em;
+}
+
+html body .reveal .slides section h2 {
+  font-size: 1.5em;
+  line-height: 1.12;
+}
+
+html body .reveal .pl-capa h1.title {
+  font-size: 2.05em;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+html body .reveal .pl-capa .subtitle {
+  font-family: var(--pl-serif);
+  font-style: italic;
+  font-size: 1.02em;
+}
+
+/* Divisória clara: filete teal e título serifado grande. */
+html body .reveal .slides section.divisoria h1 {
+  font-size: 2.3em;
+  line-height: 1.05;
+  max-width: 85%;
+  padding-top: 0.45em;
+  border-top: 3px solid var(--cn-accent);
+}
+html body .reveal .slides section .divisoria-numero { color: var(--cn-accent); }
+
+
+/* Tabelas no estilo booktabs. */
+html body .reveal table {
+  border-top: 1.5px solid var(--cn-ink);
+  border-bottom: 1.5px solid var(--cn-ink);
+}
+html body .reveal table thead th { border-bottom: 1px solid var(--cn-ink); }
+html body .reveal table tbody tr:nth-child(odd),
+html body .reveal table tbody tr:nth-child(even) { background: none; }
+html body .reveal table td,
+html body .reveal table th { border-left: 0; border-right: 0; }
+html body .reveal table tr.destaque td,
+html body .reveal table td.destaque { background: rgba(10, 111, 105, 0.08); font-weight: 600; }
+
+/* Legendas em itálico serifado. */
+html body .reveal .slide figure > figcaption,
+html body .reveal .slide .figure-caption,
+html body .reveal table caption {
+  font-family: var(--pl-serif);
+  font-style: italic;
+  font-size: 0.62em;
+  color: var(--cn-ink-2);
+}
+
+html body .reveal .numeros > div,
+html body .reveal .numero { border-top-width: 1.5px; }
+html body .reveal .valor { font-family: var(--pl-serif); font-weight: 500; letter-spacing: -0.02em; }

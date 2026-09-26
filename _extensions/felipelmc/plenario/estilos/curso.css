@@ -1,0 +1,44 @@
+/* Plenário Slides · estilo curso: títulos em Geist, divisórias em teal, slides escuros. */
+
+html body .reveal h1,
+html body .reveal h2,
+html body .reveal h3 {
+  font-family: var(--pl-sans);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+html body .reveal .slides section h2 { font-size: 1.4em; }
+
+html body .reveal .pl-capa h1.title { font-weight: 650; }
+
+/* Divisória em teal (a cor vem do plenario.lua). */
+
+html body .reveal .slides section.divisoria h1,
+html body .reveal .slides section.divisoria h2 {
+  font-size: 2.6em;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: #FFFFFF;
+  max-width: 88%;
+}
+html body .reveal .slides section.divisoria,
+html body .reveal .slides section.divisoria p { color: rgba(255, 255, 255, 0.86); }
+html body .reveal .slides section .divisoria-numero { color: var(--cn-d1); }
+html body .reveal .slides section.divisoria a { color: #FFFFFF; }
+
+/* Agenda: números em círculos teal. */
+html body .reveal .agenda ol > li::before {
+  display: grid;
+  place-items: center;
+  top: 0.05em;
+  width: 2.1em;
+  height: 2.1em;
+  border-radius: 999px;
+  background: var(--cn-accent);
+  color: #FFFFFF;
+  font-size: 0.6em;
+}
+html body .reveal section.escuro .agenda ol > li::before { background: var(--cn-d2); color: #FFFFFF; }
+
+html body .reveal .cards > .card { border-radius: 12px; }

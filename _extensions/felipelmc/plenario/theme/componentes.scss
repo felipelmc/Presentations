@@ -1,0 +1,376 @@
+/*-- scss:defaults --*/
+// Plenário Slides · componentes em markdown (divs e spans com classe), comuns aos dois estilos.
+
+/*-- scss:rules --*/
+
+// ── Divisória: # Título {.divisoria numero="02"} ────────────────────────────
+.reveal .slides section .divisoria-numero {
+  display: block;
+  margin-bottom: 0.7em;
+  font-family: var(--pl-mono);
+  font-size: 0.28em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+// ── Rótulo do slide: ## Título {kicker="Passo 1"} ──────────────────────────
+.reveal .slides section h2 .slide-kicker,
+.reveal .slides section h3 .slide-kicker {
+  display: block;
+  margin-bottom: 0.55em;
+  font-family: var(--pl-mono);
+  font-size: 0.34em;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cn-accent);
+}
+.reveal .slides section.escuro h2 .slide-kicker { color: var(--cn-d1); }
+
+// ── Agenda: ::: agenda + lista numerada ─────────────────────────────────────
+.reveal .agenda ol {
+  list-style: none;
+  counter-reset: agenda;
+  margin: 0;
+  padding: 0;
+}
+.reveal .agenda ol > li {
+  counter-increment: agenda;
+  position: relative;
+  padding-left: 2.6em;
+  margin: 0 0 0.7em;
+}
+.reveal .agenda ol > li::before {
+  content: counter(agenda, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  font-family: var(--pl-mono);
+  font-size: 0.7em;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--cn-accent);
+}
+.reveal section.escuro .agenda ol > li::before { color: var(--cn-d1); }
+
+// ── Cards: :::: {.cards cols=2} + ::: card ──────────────────────────────────
+.reveal .cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0.4em 0;
+}
+.reveal .cards:is([data-cols="1"], [cols="1"]) { grid-template-columns: minmax(0, 1fr); }
+.reveal .cards:is([data-cols="2"], [cols="2"]) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.reveal .cards:is([data-cols="4"], [cols="4"]) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.reveal .cards > .card {
+  min-width: 0;
+  padding: 18px 20px;
+  background: var(--cn-surface);
+  border: 1px solid var(--cn-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(14, 17, 22, 0.06);
+  font-size: 0.76em;
+  line-height: 1.4;
+}
+.reveal .cards > .card.destaque {
+  border-color: var(--cn-accent);
+  box-shadow: inset 0 3px 0 var(--cn-accent);
+}
+.reveal .cards > .card .rotulo {
+  display: block;
+  margin-bottom: 0.4em;
+  font-family: var(--pl-mono);
+  font-size: 0.78em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cn-ink-3);
+}
+.reveal .cards > .card.destaque .rotulo { color: var(--cn-accent); }
+.reveal .cards > .card > :first-child { margin-top: 0; }
+.reveal .cards > .card > :last-child { margin-bottom: 0; }
+.reveal .cards > .card h3,
+.reveal .cards > .card h4,
+.reveal .cards > .card strong:first-child {
+  display: block;
+  margin: 0 0 0.35em;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--cn-ink);
+}
+.reveal .cards > .card p { margin: 0 0 0.5em; }
+// Cards escuros: tinta sobre o fundo claro; translúcidos dentro de um slide escuro.
+.reveal .cards.escuras > .card {
+  background: var(--cn-ink);
+  border-color: transparent;
+  color: #C9CCD1;
+}
+.reveal .cards.escuras > .card strong:first-child,
+.reveal .cards.escuras > .card h3 { color: #FFFFFF; }
+.reveal section.escuro .cards > .card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+  color: #E6E7E2;
+}
+.reveal section.escuro .cards > .card strong:first-child { color: #FFFFFF; }
+.reveal .cards.centro > .card { text-align: center; }
+.reveal .cards > .card .icone {
+  display: block;
+  margin-bottom: 0.3em;
+  font-size: 2.2em;
+  line-height: 1.1;
+}
+
+// ── Print de tela: ![](x.png){.tela} ────────────────────────────────────────
+.reveal .slides section img.tela {
+  display: block;
+  margin: 0.3em auto;
+  max-height: 440px;
+  width: auto;
+  border: 1px solid var(--cn-line);
+  border-radius: 10px;
+  box-shadow: 0 14px 30px -14px rgba(14, 17, 22, 0.28);
+}
+.reveal .slides section img.tela.recorte {
+  width: 100%;
+  height: 170px;
+  max-height: none;
+  object-fit: cover;
+  object-position: top;
+  margin: 0 0 0.6em;
+}
+
+// ── Chip de URL: [github.com/x]{.url} ───────────────────────────────────────
+.reveal .url {
+  display: inline-block;
+  padding: 0.12em 0.55em;
+  border: 1px solid var(--cn-line);
+  border-radius: 6px;
+  background: var(--cn-sunken);
+  font-family: var(--pl-mono);
+  font-size: 0.55em;
+  color: var(--cn-ink-2);
+  white-space: nowrap;
+}
+.reveal section.escuro .url {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #E6E7E2;
+}
+
+// ── Legenda: ::: legenda ────────────────────────────────────────────────────
+.reveal .legenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em 1.6em;
+  margin-top: 0.6em;
+  font-family: var(--pl-mono);
+  font-size: 0.5em;
+  color: var(--cn-ink-3);
+}
+.reveal .legenda p { margin: 0; }
+
+// ── Números grandes: :::: numeros + [95%]{.valor} texto ─────────────────────
+.reveal .numeros {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 28px;
+  margin: 0.6em 0;
+}
+.reveal .numero,
+.reveal .numeros > div {
+  padding-top: 14px;
+  border-top: 2px solid var(--cn-accent);
+  font-size: 0.72em;
+  line-height: 1.35;
+  color: var(--cn-ink-2);
+}
+.reveal .numero p,
+.reveal .numeros > div p { margin: 0; }
+.reveal .valor {
+  display: block;
+  margin-bottom: 0.18em;
+  font-size: 2.6em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--cn-ink);
+  font-variant-numeric: tabular-nums;
+}
+.reveal section.escuro .valor { color: #FFFFFF; }
+.reveal section.escuro .numeros > div { color: #D8DAD4; border-top-color: var(--cn-d1); }
+
+// ── Bloco: ::: bloco / ::: {.bloco .claro} ──────────────────────────────────
+.reveal .bloco {
+  margin: 0.6em 0;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: var(--cn-accent);
+  color: #FFFFFF;
+  font-size: 0.8em;
+}
+.reveal .bloco a { color: #FFFFFF; }
+.reveal .bloco code { background: rgba(255, 255, 255, 0.14); color: #FFFFFF; }
+.reveal .bloco > :first-child { margin-top: 0; }
+.reveal .bloco > :last-child { margin-bottom: 0; }
+.reveal .bloco.claro {
+  background: rgba(10, 111, 105, 0.08);
+  border: 1px solid rgba(10, 111, 105, 0.22);
+  color: var(--cn-ink);
+}
+.reveal .bloco.claro a { color: var(--cn-accent); }
+.reveal .bloco.claro code { background: var(--cn-sunken); color: var(--cn-d4); }
+
+// ── Figura + texto: :::: {.columns .figura-texto} ───────────────────────────
+.reveal .columns.figura-texto {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.reveal .columns.figura-texto > .column { margin: 0; }
+.reveal .columns.figura-texto img { max-height: 520px; }
+
+// ── Janela de contexto: :::: janela > ::: etapa ─────────────────────────────
+.reveal .janela {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 36px;
+  font-size: 0.55em;
+}
+.reveal .janela .etapa {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--cn-surface);
+  border: 1px solid var(--cn-line);
+  border-radius: 12px;
+}
+.reveal .janela .etapa > p { margin: 0; }
+.reveal .janela .etapa:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translate(50%, -50%);
+  font-size: 1.6em;
+  color: var(--cn-ink-3);
+}
+.reveal .janela .rotulo {
+  display: block;
+  font-family: var(--pl-mono);
+  font-size: 0.85em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cn-accent);
+}
+.reveal .janela .etapa.alerta .rotulo { color: var(--cn-danger); }
+.reveal .janela .eu,
+.reveal .janela .ia,
+.reveal .janela .sis,
+.reveal .janela .alerta:not(.etapa) {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 8px;
+  line-height: 1.35;
+}
+.reveal .janela .eu { background: var(--cn-sunken); color: var(--cn-ink); margin-left: 18%; }
+.reveal .janela .ia { background: rgba(10, 111, 105, 0.09); color: var(--cn-ink); margin-right: 18%; }
+.reveal .janela .sis { background: transparent; border: 1px dashed var(--cn-line-strong); color: var(--cn-ink-3); font-family: var(--pl-mono); font-size: 0.9em; }
+.reveal .janela .alerta:not(.etapa) { background: rgba(166, 61, 50, 0.1); color: var(--cn-danger); }
+.reveal section.escuro .janela .etapa { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); }
+.reveal section.escuro .janela .eu { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; }
+.reveal section.escuro .janela .ia { background: rgba(90, 192, 171, 0.18); color: #FFFFFF; }
+
+// ── Medidor: [~55% da janela]{.medidor uso=55} (barra gerada pelo plenario.lua)
+.reveal .medidor-barra {
+  display: block;
+  height: 8px;
+  margin: 6px 0 4px;
+  border-radius: 999px;
+  background: var(--cn-sunken);
+  overflow: hidden;
+}
+.reveal .medidor-barra > span {
+  display: block;
+  height: 100%;
+  width: var(--uso);
+  border-radius: inherit;
+  background: var(--cn-d2);
+}
+.reveal .medidor-barra.nivel-medio > span { background: var(--cn-award); }
+.reveal .medidor-barra.nivel-alto > span { background: var(--cn-danger); }
+.reveal .medidor-rotulo {
+  display: block;
+  font-family: var(--pl-mono);
+  font-size: 0.85em;
+  color: var(--cn-ink-3);
+}
+
+// ── Encerramento: ## Obrigado! {.encerramento} + ::: contato ────────────────
+.reveal .slides section.encerramento h2 {
+  font-size: 2.2em;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5em;
+}
+.reveal .contato {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  font-size: 0.7em;
+}
+.reveal .contato p { margin: 0; }
+.reveal .contato .nome { font-size: 1.25em; font-weight: 600; color: inherit; }
+.reveal .contato .afiliacao,
+.reveal .contato .repo {
+  font-family: var(--pl-mono);
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+.reveal .encerramento-grade,
+.reveal .columns.encerramento-grade { display: flex; align-items: flex-start; gap: 48px; }
+.reveal .qr img {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+.reveal .qr p { margin: 0; }
+.reveal .qr .legenda-qr {
+  display: block;
+  margin-top: 0.4em;
+  font-family: var(--pl-mono);
+  font-size: 0.45em;
+  text-align: center;
+  opacity: 0.8;
+}
+
+// ── Referências ─────────────────────────────────────────────────────────────
+.reveal #refs,
+.reveal .references {
+  font-size: 0.72em;
+  line-height: 1.4;
+}
+.reveal .csl-entry {
+  margin: 0 0 0.55em;
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+}
+
+// ── Nota sob um gráfico: [texto]{.legenda-grafico} ─────────────────────────
+.reveal .legenda-grafico {
+  display: block;
+  margin-top: 0.4em;
+  font-size: 0.55em;
+  line-height: 1.4;
+  color: var(--cn-ink-3);
+}
