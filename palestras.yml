@@ -19,6 +19,17 @@ secoes:
     titulo: Cursos e workshops
 
 palestras:
+  - pasta: Quantos-Votos-ANPOCS-2026
+    titulo: "Quantos votos meu partido vai fazer?"
+    subtitulo: "Um tutorial de validação preditiva com dados abertos (2016-2024)"
+    data: 2026-09-30
+    detalhe: "SPG 31"
+    evento: "50º Encontro Anual da ANPOCS. Com Tomás Paixão Borges."
+    secao: pesquisa
+    slides: slides.html
+    pdf: slides.pdf
+    interativo: true
+
   - pasta: AgentesIA-FMMAPE-2026
     titulo: "Agentes de IA para pesquisa em ciências sociais"
     subtitulo: "Uma introdução ao Claude Code"

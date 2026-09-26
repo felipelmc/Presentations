@@ -6,6 +6,7 @@ Os decks em revealjs usam o [Plenário Slides](https://felipelamarca.com/Slides-
 
 | Data | Apresentação | Evento | |
 |---|---|---|---|
+| 2026-09-30 | *Quantos votos meu partido vai fazer? Um tutorial de validação preditiva com dados abertos (2016-2024)*, com Tomás Paixão Borges | 50º Encontro Anual da ANPOCS, SPG 31 | [slides](https://felipelamarca.com/Presentations/Quantos-Votos-ANPOCS-2026/slides.html) · [pdf](https://felipelamarca.com/Presentations/Quantos-Votos-ANPOCS-2026/slides.pdf) · [arquivos](Quantos-Votos-ANPOCS-2026/) |
 | 2026-08-17 | *Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code* | Formação Metodológica do MAPE, IESP-UERJ | [slides](https://felipelamarca.com/Presentations/AgentesIA-FMMAPE-2026/slides.html) · [pdf](https://felipelamarca.com/Presentations/AgentesIA-FMMAPE-2026/slides.pdf) · [arquivos](AgentesIA-FMMAPE-2026/) |
 | 2026-06-02 | *Introdução aos agentes de IA na pesquisa acadêmica* (2 dias) | LABIIA Lab | [dia 1](https://felipelamarca.com/Presentations/Intro-to-ClaudeCode-LABIIA-2026/dia1.html) · [dia 2](https://felipelamarca.com/Presentations/Intro-to-ClaudeCode-LABIIA-2026/dia2.html) · [arquivos](Intro-to-ClaudeCode-LABIIA-2026/) |
 | 2026-05-13 | *Agentes de IA para pesquisa em ciências sociais: uma introdução ao Claude Code* | Workshop CERES 2026.1, IESP-UERJ | [slides](https://felipelamarca.com/Presentations/Intro-to-ClaudeCode-CERES-2026/slides.html) · [pdf](https://felipelamarca.com/Presentations/Intro-to-ClaudeCode-CERES-2026/slides.pdf) · [arquivos](Intro-to-ClaudeCode-CERES-2026/) |

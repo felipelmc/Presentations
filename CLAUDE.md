@@ -8,7 +8,7 @@ Felipe Lamarca's talks and workshops, one folder per presentation, published as 
 
 ## Two generations of decks
 
-- **revealjs (2026 onward):** `AgentesIA-FMMAPE-2026/slides.qmd`, `Intro-to-ClaudeCode-CERES-2026/slides.qmd`, `Intro-to-ClaudeCode-LABIIA-2026/dia{1,2}.qmd`.
+- **revealjs (2026 onward):** `AgentesIA-FMMAPE-2026/slides.qmd`, `Intro-to-ClaudeCode-CERES-2026/slides.qmd`, `Intro-to-ClaudeCode-LABIIA-2026/dia{1,2}.qmd` (course style) and `Quantos-Votos-ANPOCS-2026/slides.qmd` (academic style, with OJS charts).
   - They use the Plenário Slides extension (`_extensions/felipelmc/plenario/`, from [felipelmc/Slides-Template](https://github.com/felipelmc/Slides-Template)) with `format: plenario-revealjs`.
   - `estilo: curso` is for courses and workshops; `estilo: academico` is for papers.
   - Components, front matter and the PDF behaviour are documented in the Slides-Template README.
