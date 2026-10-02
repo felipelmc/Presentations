@@ -17,6 +17,17 @@ footer: "Lamarca e Borges · ANPOCS 2026"
 bibliography: referencias.bib
 ---
 
+## Sumário
+
+::: agenda
+1. **Por que prever:** as duas perguntas
+2. **Preparar:** dados, separação no tempo e vazamento
+3. **Modelar:** benchmarks e modelos
+4. **Resultados em 2024**
+5. **Onde o modelo falha** e um passo além
+6. **Cinco decisões**
+:::
+
 ## Duas perguntas
 
 :::: {.cards cols=2}
@@ -133,7 +144,7 @@ Treinar no passado e prever a eleição seguinte: a situação real de uma previ
 - **Validação:** escolhas de forma funcional com treino em 2016 e validação em 2020.
 - O erro é condicional ao partido lançar lista: 26,6% das combinações família-município de 2020 não disputam em 2024.
 
-## O que se sabe em agosto {kicker="Passos 3 e 4 · Vazamento e associações"}
+## O que sabemos antes da eleição {kicker="Passos 3 e 4 · Vazamento e associações"}
 
 :::: {.columns .figura-texto}
 ::: {.column width="42%"}
@@ -350,7 +361,7 @@ Em termos relativos, o modelo é pior nas cidades grandes e competitivas. Por pa
 :::
 ::: {.column width="45%"}
 ::: bloco
-**Sim, dá para prever.** Seis preditores conhecidos em agosto e a restrição de soma 1: 3,4 p.p. de erro em 2024, o mesmo na transição de 2016 para 2020.
+**Sim, dá para prever.** Seis preditores conhecidos antes da eleição e a restrição de soma 1: 3,4 p.p. de erro em 2024, o mesmo na transição de 2016 para 2020.
 :::
 
 Uma divisão proporcional ao tamanho das listas, sem parâmetros, erra 4,15 p.p. e supera a média histórica de cada legenda, que custa 36.
