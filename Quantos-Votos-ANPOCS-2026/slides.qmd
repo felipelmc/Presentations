@@ -394,6 +394,8 @@ O maior ganho isolado veio de impor ao modelo uma restrição que o problema já
 [Tomás Paixão Borges]{.nome}
 
 [IESP-UERJ]{.afiliacao}
+
+[tomaspborges.github.io](https://tomaspborges.github.io)
 :::
 :::
 ::::
